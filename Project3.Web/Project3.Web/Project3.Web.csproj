@@ -5,6 +5,16 @@
     <UserSecretsId>aspnet-Project3.Web-1AB50DAE-3413-4A29-A243-B2AADCE4DEB4</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="src\components\tutorial.jsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="src\components\tutorial.jsx">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />

@@ -9,7 +9,6 @@
 // });
 
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
 
 class CommentBox extends Component {
     render() {
@@ -21,7 +20,4 @@ class CommentBox extends Component {
     }
 }
 
-ReactDOM.render(
-    <CommentBox/>,
-    document.getElementById('content')
-);
+export default CommentBox;
