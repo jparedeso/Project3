@@ -13,6 +13,7 @@ namespace Project3.API
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            ConfigureWebApi(app);
         }
     }
 }
