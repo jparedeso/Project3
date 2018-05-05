@@ -333,7 +333,8 @@ namespace Project3.API.Controllers
                 UserName = model.Email,
                 Email = model.Email,
                 FirstName = model.FirstName,
-                LastName = model.LastName
+                LastName = model.LastName,
+                Joined = DateTimeOffset.Now
             };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);

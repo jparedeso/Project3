@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -25,7 +26,7 @@ namespace Project3.API.Models
         //Custom Fields
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public DateTime Joined { get; set; }
+        public DateTimeOffset Joined { get; set; }
         public byte[] Picture { get; set; }
     }
 
@@ -44,11 +45,12 @@ namespace Project3.API.Models
         }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, CustomRole, int, CustomUserLogin, CustomUserRole, CustomUserClaim>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("DefaultConnection")
         {
+            //Database.SetInitializer(new CreateDatabaseIfNotExists<ApplicationDbContext>());
         }
         
         public static ApplicationDbContext Create()

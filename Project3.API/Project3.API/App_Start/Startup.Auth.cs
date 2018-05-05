@@ -34,13 +34,13 @@ namespace Project3.API
             PublicClientId = "self";
             OAuthOptions = new OAuthAuthorizationServerOptions
             {
-                TokenEndpointPath = new PathString("/Token"),
+                TokenEndpointPath = new PathString("/oauth/Token"),
                 Provider = new ApplicationOAuthProvider(PublicClientId),
                 AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromMinutes(60),
-                RefreshTokenProvider = new ApplicationRefreshTokenProvider()
+                RefreshTokenProvider = new ApplicationRefreshTokenProvider(),
                 // In production mode set AllowInsecureHttp = false
-                // AllowInsecureHttp = true
+                AllowInsecureHttp = true
             };
 
             // Enable the application to use bearer tokens to authenticate users
