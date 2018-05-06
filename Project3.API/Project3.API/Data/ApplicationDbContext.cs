@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Project3.API.Models;
 using Microsoft.EntityFrameworkCore.Design;
-using Project3.Web.Models;
 
-namespace Project3.Web.Data
+namespace Project3.API.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, CustomRole, int, CustomUserClaim, CustomUserRole, CustomUserLogin, CustomRoleClaim, CustomUserToken>
     {
@@ -25,14 +21,14 @@ namespace Project3.Web.Data
         }
     }
 
-    public class BloggingContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>
-    {
-        public ApplicationDbContext CreateDbContext(string[] args)
-        {
-            var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
-            optionsBuilder.UseSqlServer("Data source=project3db.cxnhooasyo17.us-east-1.rds.amazonaws.com,1433;Initial Catalog=Project3;User ID=project3;Password=Project31234;Connection Timeout=0;MultipleActiveResultSets=true;");
+    //public class BloggingContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>
+    //{
+    //    public ApplicationDbContext CreateDbContext(string[] args)
+    //    {
+    //        var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
+    //        optionsBuilder.UseSqlServer("Data source=project3db.cxnhooasyo17.us-east-1.rds.amazonaws.com,1433;Initial Catalog=Project3;User ID=project3;Password=Project31234;Connection Timeout=0;MultipleActiveResultSets=true;");
 
-            return new ApplicationDbContext(optionsBuilder.Options);
-        }
-    }
+    //        return new ApplicationDbContext(optionsBuilder.Options);
+    //    }
+    //}
 }

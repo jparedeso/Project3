@@ -1,15 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using Project3.Web.Models;
 using Project3.Web.Models.AccountViewModels;
 using Project3.Web.Services;
@@ -24,17 +31,23 @@ namespace Project3.Web.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
+        private readonly Utilities.Utilities _utilities;
+        private readonly AppSettings _appSettings;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger)
+            ILogger<AccountController> logger,
+            AppSettings appSettings,
+            IHttpContextAccessor httpContextAccessor)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
+            _appSettings = appSettings;
+            _utilities = new Utilities.Utilities(appSettings, httpContextAccessor);
         }
 
         [TempData]
@@ -65,19 +78,57 @@ namespace Project3.Web.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return RedirectToLocal(returnUrl);
-                }
-                if (result.RequiresTwoFactor)
-                {
-                    return RedirectToAction(nameof(LoginWith2fa), new { returnUrl, model.RememberMe });
                 }
                 if (result.IsLockedOut)
                 {
                     _logger.LogWarning("User account locked out.");
                     return RedirectToAction(nameof(Lockout));
                 }
-                else
+
+                try
                 {
+                    // We authenticated. Try to get Token from API
+                    var buffer = Encoding.ASCII.GetBytes($"username={model.Email}&password={model.Password}&grant_type=password");
+
+                    var req = (HttpWebRequest)WebRequest.Create($"{_utilities.ApiUrl}Oauth/Token");
+                    req.Method = "POST";
+                    req.ContentType = "application/x-www-form-urlencoded";
+                    req.ContentLength = buffer.Length;
+
+                    using (var data = await req.GetRequestStreamAsync())
+                    {
+                        await data.WriteAsync(buffer, 0, buffer.Length);
+                        await data.FlushAsync();
+                        data.Close();
+                    }
+
+                    Dictionary<string, object> body;
+
+                    using (var response = (HttpWebResponse)await req.GetResponseAsync())
+                    using (var reader = new StreamReader(response.GetResponseStream()))
+                    {
+                        body = JsonConvert.DeserializeObject<Dictionary<string, object>>(await reader.ReadToEndAsync());
+                    }
+
+                    var accessToken = body["access_token"].ToString();
+                    var refreshToken = body["refresh_token"].ToString();
+                    var expires = Convert.ToDateTime(body["expires"].ToString());
+
+                    if (model.RememberMe)
+                    {
+                        Utilities.Utilities.AddCookie(HttpContext, "RememberMe", model.Email, DateTime.Now.AddDays(30d));
+                    }
+
+                    Utilities.Utilities.AddCookie(HttpContext, "AccessToken", accessToken, expires);
+                    Utilities.Utilities.AddCookie(HttpContext, "RefreshToken", refreshToken, DateTime.Now.AddDays(14d));
+
+                    return RedirectToLocal(returnUrl);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                    //await _signInManager.SignOutAsync();
+                    HttpContext.Session.Clear();
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return View(model);
                 }
@@ -85,116 +136,6 @@ namespace Project3.Web.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
-        }
-
-        [HttpGet]
-        [AllowAnonymous]
-        public async Task<IActionResult> LoginWith2fa(bool rememberMe, string returnUrl = null)
-        {
-            // Ensure the user has gone through the username & password screen first
-            var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
-
-            if (user == null)
-            {
-                throw new ApplicationException($"Unable to load two-factor authentication user.");
-            }
-
-            var model = new LoginWith2faViewModel { RememberMe = rememberMe };
-            ViewData["ReturnUrl"] = returnUrl;
-
-            return View(model);
-        }
-
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> LoginWith2fa(LoginWith2faViewModel model, bool rememberMe, string returnUrl = null)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
-            if (user == null)
-            {
-                throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
-            }
-
-            var authenticatorCode = model.TwoFactorCode.Replace(" ", string.Empty).Replace("-", string.Empty);
-
-            var result = await _signInManager.TwoFactorAuthenticatorSignInAsync(authenticatorCode, rememberMe, model.RememberMachine);
-
-            if (result.Succeeded)
-            {
-                _logger.LogInformation("User with ID {UserId} logged in with 2fa.", user.Id);
-                return RedirectToLocal(returnUrl);
-            }
-            else if (result.IsLockedOut)
-            {
-                _logger.LogWarning("User with ID {UserId} account locked out.", user.Id);
-                return RedirectToAction(nameof(Lockout));
-            }
-            else
-            {
-                _logger.LogWarning("Invalid authenticator code entered for user with ID {UserId}.", user.Id);
-                ModelState.AddModelError(string.Empty, "Invalid authenticator code.");
-                return View();
-            }
-        }
-
-        [HttpGet]
-        [AllowAnonymous]
-        public async Task<IActionResult> LoginWithRecoveryCode(string returnUrl = null)
-        {
-            // Ensure the user has gone through the username & password screen first
-            var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
-            if (user == null)
-            {
-                throw new ApplicationException($"Unable to load two-factor authentication user.");
-            }
-
-            ViewData["ReturnUrl"] = returnUrl;
-
-            return View();
-        }
-
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> LoginWithRecoveryCode(LoginWithRecoveryCodeViewModel model, string returnUrl = null)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
-            if (user == null)
-            {
-                throw new ApplicationException($"Unable to load two-factor authentication user.");
-            }
-
-            var recoveryCode = model.RecoveryCode.Replace(" ", string.Empty);
-
-            var result = await _signInManager.TwoFactorRecoveryCodeSignInAsync(recoveryCode);
-
-            if (result.Succeeded)
-            {
-                _logger.LogInformation("User with ID {UserId} logged in with a recovery code.", user.Id);
-                return RedirectToLocal(returnUrl);
-            }
-            if (result.IsLockedOut)
-            {
-                _logger.LogWarning("User with ID {UserId} account locked out.", user.Id);
-                return RedirectToAction(nameof(Lockout));
-            }
-            else
-            {
-                _logger.LogWarning("Invalid recovery code entered for user with ID {UserId}", user.Id);
-                ModelState.AddModelError(string.Empty, "Invalid recovery code entered.");
-                return View();
-            }
         }
 
         [HttpGet]
@@ -220,21 +161,41 @@ namespace Project3.Web.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                model.UserName = model.Email;
+
+                var result = await _userManager.PasswordValidators[0].ValidateAsync(_userManager, new ApplicationUser
                 {
-                    _logger.LogInformation("User created a new account with password.");
-
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
-                    await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
-
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    _logger.LogInformation("User created a new account with password.");
-                    return RedirectToLocal(returnUrl);
+                    UserName = model.UserName,
+                    Email = model.UserName
+                }, model.Password);
+                if (!result.Succeeded && result.Errors.Any())
+                {
+                    return BadRequest(new { message = result.Errors.First().Description });
                 }
-                AddErrors(result);
+
+                var currentUser = await _userManager.FindByEmailAsync(model.Email);
+
+                if (currentUser != null)
+                {
+                    return BadRequest(new { message = "Email already exists." });
+                }
+
+                var url = $"{_utilities.ApiUrlFull}Account/Register";
+                var requestUri = new Uri(url);
+                var client = new HttpClient();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var json = JsonConvert.SerializeObject(model);
+
+                var response = await client.PostAsync(requestUri, new StringContent(json, Encoding.UTF8, "application/json"));
+
+                if (response.StatusCode != HttpStatusCode.Created)
+                {
+                    response.Content = new StringContent("Server Error");
+                    return StatusCode(500, response);
+                }
+
+                return RedirectToAction(nameof(Login));
             }
 
             // If we got this far, something failed, redisplay form
@@ -243,10 +204,23 @@ namespace Project3.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Logout()
+        public async Task<ActionResult> Logout()
         {
+            var refreshToken = Utilities.Utilities.GetCookieValue(HttpContext.Request, "RefreshToken");
+            var response = await Utilities.API.Post(_appSettings, new HttpContextAccessor(), "Account/Logout", new { RefreshToken = refreshToken });
+
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return BadRequest();
+            }
+
+            Utilities.Utilities.RemoveCookie(HttpContext, "AccessToken");
+            Utilities.Utilities.RemoveCookie(HttpContext, "RefreshToken");
+
+            HttpContext.Session.Clear();
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
+
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
@@ -370,7 +344,7 @@ namespace Project3.Web.Controllers
                 // For more information on how to enable account confirmation and password reset please
                 // visit https://go.microsoft.com/fwlink/?LinkID=532713
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user);
-                var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, code, Request.Scheme);
+                var callbackUrl = Url.ResetPasswordCallbackLink(user.Id.ToString(), code, Request.Scheme);
                 await _emailSender.SendEmailAsync(model.Email, "Reset Password",
                    $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
                 return RedirectToAction(nameof(ForgotPasswordConfirmation));

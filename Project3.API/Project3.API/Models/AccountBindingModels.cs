@@ -1,6 +1,5 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using Newtonsoft.Json;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.Azure.KeyVault.Models;
 
 namespace Project3.API.Models
 {
@@ -34,27 +33,30 @@ namespace Project3.API.Models
 
     public class RegisterBindingModel
     {
-        [Required]
+        [Required(ErrorMessage = "Enter an Email Address.")]
+        [EmailAddress(ErrorMessage = "Enter a valid Email Address.")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Enter your first name")]
+        [StringLength(50)]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Enter your last name")]
+        [StringLength(50)]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessage = "Enter a password")]
+        [StringLength(100, ErrorMessage = "{0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "Passwords don't match.")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -88,5 +90,10 @@ namespace Project3.API.Models
         [Display(Name = "Confirm new password")]
         [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+    }
+
+    public class LogoutBindingModel
+    {
+        public string RefreshToken { get; set; }
     }
 }

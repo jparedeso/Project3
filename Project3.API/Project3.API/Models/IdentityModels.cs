@@ -1,43 +1,45 @@
 ﻿using System;
-using System.Data.Entity;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
+using System.Linq;
+using Project3.API.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Project3.API.Models
 {
     public class CustomUserRole : IdentityUserRole<int> { }
     public class CustomUserClaim : IdentityUserClaim<int> { }
     public class CustomUserLogin : IdentityUserLogin<int> { }
+    public class CustomRoleClaim : IdentityRoleClaim<int> { }
+    public class CustomUserToken : IdentityUserToken<int> { }
 
-    // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
-    public class ApplicationUser : IdentityUser<int, CustomUserLogin, CustomUserRole, CustomUserClaim>
+    // Add profile data for application users by adding properties to the ApplicationUser class
+    public class ApplicationUser : IdentityUser<int>
     {
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser, int> manager, string authenticationType)
-        {
-            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
-            var userIdentity = await manager.CreateIdentityAsync(this, authenticationType);
-            // Add custom user claims here
-            return userIdentity;
-        }
-
-        //Custom Fields
+        // Personal Fields
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
+        // Registration
         public DateTimeOffset Joined { get; set; }
+        public bool FullyRegistered { get; set; }
+
+        // Refresh Token
+        public string RefreshToken { get; set; }
+        public DateTimeOffset? RefreshTokenExpiration { get; set; }
+
+        //Additional Information
         public byte[] Picture { get; set; }
+        public string Gender { get; set; }
+        public DateTimeOffset DateOfBirth { get; set; }
     }
 
-    public class CustomRole : IdentityRole<int, CustomUserRole>
+    public class CustomRole : IdentityRole<int>
     {
-        public CustomRole()
-        {
-        }
+        public CustomRole() { }
+        public CustomRole(string name) { Name = name; }
     }
 
-    public class CustomUserStore : UserStore<ApplicationUser, CustomRole, int, CustomUserLogin, CustomUserRole, CustomUserClaim>
+    public class CustomUserStore : UserStore<ApplicationUser, CustomRole, ApplicationDbContext, int>
     {
         public CustomUserStore(ApplicationDbContext context)
             : base(context)
@@ -45,17 +47,19 @@ namespace Project3.API.Models
         }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, CustomRole, int, CustomUserLogin, CustomUserRole, CustomUserClaim>
+    public class CustomRoleStore : RoleStore<CustomRole, ApplicationDbContext, int>
     {
-        public ApplicationDbContext()
-            : base("DefaultConnection")
+        public CustomRoleStore(ApplicationDbContext context)
+            : base(context)
         {
-            //Database.SetInitializer(new CreateDatabaseIfNotExists<ApplicationDbContext>());
         }
-        
-        public static ApplicationDbContext Create()
+    }
+
+    public static class UserManagerExtensions
+    {
+        public static ApplicationUser FindByRefreshToken(this UserManager<ApplicationUser> um, string refreshToken)
         {
-            return new ApplicationDbContext();
+            return um?.Users?.SingleOrDefault(x => x.RefreshToken == refreshToken);
         }
     }
 }

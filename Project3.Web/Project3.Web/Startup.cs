@@ -12,7 +12,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Project3.Web.Data;
 using Project3.Web.Models;
 using Project3.Web.Services;
-using React.AspNet;
 
 namespace Project3.Web
 {
@@ -23,7 +22,7 @@ namespace Project3.Web
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public static IConfiguration Configuration { get; set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
@@ -31,17 +30,38 @@ namespace Project3.Web
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, CustomRole>(option =>
+                {
+                    option.Password.RequireDigit = true;
+                    option.Password.RequiredLength = 6;
+                    option.Password.RequiredUniqueChars = 0;
+                    option.Password.RequireLowercase = true;
+                    option.Password.RequireNonAlphanumeric = true;
+                    option.Password.RequireUppercase = true;
+                })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddReact();
+            services.AddMvc().AddSessionStateTempDataProvider();
 
-            services.AddMvc();
+            services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
+            services.AddSession(options =>
+            {
+                // Set a short timeout for easy testing.
+                options.Cookie = new CookieBuilder
+                {
+                    Domain = "/",
+                    Expiration = TimeSpan.MaxValue,
+                    HttpOnly = true,
+                    Name = "AspNetSession"
+                };
+            });
+
+            services.AddSingleton(Configuration.GetSection("AppSettings").Get<AppSettings>());
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             return services.BuildServiceProvider();
         }
@@ -66,29 +86,13 @@ namespace Project3.Web
             //    context.Database.Migrate();
             //}
 
-            // Initialise ReactJS.NET. Must be before static files.
-            app.UseReact(config =>
-            {
-                // If you want to use server-side rendering of React components,
-                // add all the necessary JavaScript files here. This includes
-                // your components as well as all of their dependencies.
-                // See http://reactjs.net/ for more information. Example:
-                //config
-                //  .AddScript("~/Scripts/First.jsx")
-                //  .AddScript("~/Scripts/Second.jsx");
-
-                // If you use an external build too (for example, Babel, Webpack,
-                // Browserify or Gulp), you can improve performance by disabling
-                // ReactJS.NET's version of Babel and loading the pre-transpiled
-                // scripts. Example:
-                //config
-                //  .SetLoadBabel(false)
-                //  .AddScriptWithoutTransform("~/Scripts/bundle.server.js");
-            });
-
             app.UseStaticFiles();
 
             app.UseAuthentication();
+
+            app.UseMiddleware<RequestMiddleware>();
+
+            app.UseSession();
 
             app.UseMvc(routes =>
             {
