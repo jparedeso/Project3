@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using Project3.API.Models;
+using Project3.API.Models.Identity;
 
 namespace Project3.API.Controllers
 {
@@ -31,7 +31,7 @@ namespace Project3.API.Controllers
         [Route("Token")]
         public async Task<ActionResult> CreateToken([FromForm]LoginModel login)
         {
-            if (!ModelState.IsValid) return BadRequest(new { message = "No se pudo crear el token." });
+            if (!ModelState.IsValid) return BadRequest(new { message = "Could not create token" });
 
             ActionResult response = Unauthorized();
 
@@ -46,7 +46,7 @@ namespace Project3.API.Controllers
                     // Validate Refresh Token
                     if (user == null)
                     {
-                        return BadRequest(new {message = "No se encontró un usuario con este refresh token."});
+                        return BadRequest(new {message = "There is no user with this token."});
                     }
 
                     if (user.RefreshTokenExpiration.HasValue && DateTimeOffset.Compare(DateTimeOffset.Now, user.RefreshTokenExpiration.Value) > -1)
@@ -78,12 +78,12 @@ namespace Project3.API.Controllers
 
                     if (user == null)
                     {
-                        return BadRequest(new { message = "El usuario no existe." });
+                        return BadRequest(new { message = "User does not exist." });
                     }
 
                     var result = await _signInManager.CheckPasswordSignInAsync(user, login.Password, false);
 
-                    if (!result.Succeeded) return BadRequest(new { message = "La contraseña no es válida." });
+                    if (!result.Succeeded) return BadRequest(new { message = "Password is invalid." });
 
                     // Generate access token
                     // Generate refresh token (random GUID + model.username)

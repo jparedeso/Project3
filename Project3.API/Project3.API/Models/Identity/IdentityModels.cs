@@ -4,7 +4,7 @@ using Project3.API.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
-namespace Project3.API.Models
+namespace Project3.API.Models.Identity
 {
     public class CustomUserRole : IdentityUserRole<int> { }
     public class CustomUserClaim : IdentityUserClaim<int> { }

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Project3.API.Models;
 using Microsoft.EntityFrameworkCore.Design;
+using Project3.API.Models.Identity;
 
 namespace Project3.API.Data
 {

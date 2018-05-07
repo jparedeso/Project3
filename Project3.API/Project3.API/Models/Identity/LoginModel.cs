@@ -1,4 +1,4 @@
-﻿namespace Project3.API.Models
+﻿namespace Project3.API.Models.Identity
 {
     public class LoginModel
     {

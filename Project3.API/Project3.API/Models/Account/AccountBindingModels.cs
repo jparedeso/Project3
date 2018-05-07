@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.Azure.KeyVault.Models;
 
-namespace Project3.API.Models
+namespace Project3.API.Models.Account   
 {
     // Models used as parameters to AccountController actions.
 

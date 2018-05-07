@@ -15,6 +15,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Project3.API.Data;
 using Project3.API.Models;
+using Project3.API.Models.Identity;
 
 namespace Project3.API
 {

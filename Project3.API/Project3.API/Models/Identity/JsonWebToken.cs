@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Project3.API.Models
+namespace Project3.API.Models.Identity
 {
     public class JsonWebToken
     {

@@ -180,14 +180,7 @@ namespace Project3.Web.Controllers
                     return BadRequest(new { message = "Email already exists." });
                 }
 
-                var url = $"{_utilities.ApiUrlFull}Account/Register";
-                var requestUri = new Uri(url);
-                var client = new HttpClient();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                var json = JsonConvert.SerializeObject(model);
-
-                var response = await client.PostAsync(requestUri, new StringContent(json, Encoding.UTF8, "application/json"));
+                var response = await Utilities.API.Post(_appSettings, new HttpContextAccessor(), "Account/Register", model);
 
                 if (response.StatusCode != HttpStatusCode.Created)
                 {

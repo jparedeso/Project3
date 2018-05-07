@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using Project3.API.Models;
+using Project3.API.Models.Account;
+using Project3.API.Models.Identity;
 using Project3.API.ViewModels;
 
 namespace Project3.API.Controllers
 {
+    [Authorize(AuthenticationSchemes = "Bearer")]
     [Route("api/Account")]
     public class AccountController : Controller
     {
@@ -33,8 +32,7 @@ namespace Project3.API.Controllers
         public async Task<UserInfoViewModel> GetUserInfo()
         {
             var externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
-            var currentUser = HttpContext.User;
-            var user = await _userManager.GetUserAsync(currentUser);
+            var user = await _userManager.FindByEmailAsync(User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
             return new UserInfoViewModel
             {
@@ -91,10 +89,6 @@ namespace Project3.API.Controllers
         }
 
         #region Helpers
-        private AuthenticationManager Authentication
-        {
-            get { return HttpContext.Authentication; }
-        }
 
         private ActionResult GetErrorResult(IdentityResult result)
         {
@@ -168,7 +162,7 @@ namespace Project3.API.Controllers
                 {
                     LoginProvider = providerKeyClaim.Issuer,
                     ProviderKey = providerKeyClaim.Value,
-                    UserName = identity.FindFirst(c => c.Type == ClaimTypes.Name).Value
+                    UserName = identity.FindFirst(ClaimTypes.NameIdentifier).Value
                 };
             }
         }
