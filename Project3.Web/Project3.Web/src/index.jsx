@@ -2,9 +2,9 @@
 import ReactDOM from 'react-dom';
 import "./css/site.css";
 
-import CommentBox from './components/tutorial';
+import App from './app/App';
 
 ReactDOM.render(
-    <CommentBox />,
+    <App />,
     document.getElementById('content')
 );

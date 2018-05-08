@@ -1,0 +1,111 @@
+
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 100px;
+  padding: 20px;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.header {
+  height: 38px;
+  margin-bottom: 20px;
+  background-color: black;
+}
+
+label {
+  text-align: left;
+}
+
+form {
+  width: 80%;
+  margin: 5% auto;
+}
+
+li {
+  list-style: none;
+}
+
+#submitButton {
+  display: block;
+  border-radius: 0;
+  width: 100%;
+}
+
+.noRadius {
+  border-radius: 0px;
+}
+
+.formContainer {
+  border: 1px solid black;
+}
+
+.registrationLink {
+  display: block;
+  text-align: center;
+}
+
+.headerButtons {
+  border-radius: 0px;
+  background-color: black;
+  float: right;
+}
+
+.dropDownForumLinks {
+  width: 160px;
+  border: 1px solid black;
+}
+
+.dropDownUserLinks {
+  width: 154px;
+  border: 1px solid black;
+}
+
+.dropDownForum {
+  clear: both;
+  position: absolute;
+  right: 0;
+  top: 5.5%;
+  z-index: 1234;
+  background-color: white;
+  opacity: .9;
+}
+
+.dropDownForum :hover {
+  cursor: pointer;
+  background-color: rgb(160, 148, 160);
+}
+
+.dropDownUser{
+  clear: both;
+  position: absolute;
+  right: 159px;
+  top: 5.5%;
+  z-index: 1234;
+  background-color: white;
+  opacity: .9;
+}
+
+.dropDownUser :hover {
+  cursor: pointer;
+  background-color: rgb(160, 148, 160);
+}
