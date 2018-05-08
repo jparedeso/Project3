@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Login.css';
 
-class Login extends React.Component {
-    state ={
-        email: '',
-        password: ''
-    };
+class Login extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+            email: '',
+            password: ''
+        };
+    }
+    //state ={
+    //    email: '',
+    //    password: ''
+    //};
 
     // Need to use a lifecycle hook to send data to backend on the submit button press
     
@@ -17,7 +25,7 @@ class Login extends React.Component {
         const type = event.target.type;
         this.setState({
             [type]: event.target.value
-        })
+        });
     }
 
     render() {

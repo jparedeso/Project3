@@ -1,14 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Registration.css';
 
-class Registration extends React.Component {
-    state ={
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-    };
+class Registration extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: ''
+        };
+    }
+
+    //state ={
+    //    firstName: '',
+    //    lastName: '',
+    //    email: '',
+    //    password: '',
+    //};
 
 
     // need to add a method that will authenticate that all of the  
@@ -33,8 +44,8 @@ class Registration extends React.Component {
             firstName: '',
             lastName: '',
             email: '',
-            password: '',
-        })
+            password: ''
+        });
     }
 
 
@@ -43,7 +54,7 @@ class Registration extends React.Component {
         const name = event.target.name;
         this.setState({
             [name]: event.target.value
-        })
+        });
     }
 
     render() {
@@ -53,48 +64,43 @@ class Registration extends React.Component {
                 <form>
                     <div className="form-group">
                         <label>First Name</label>
-                        <input value={this.state.firstName} type="text" className="noRadius form-control" 
-                        name='firstName'
-                        aria-describedby="emailHelp" 
-                        placeholder="Enter First Name"
-                        onChange={(event) => this.keyPress(event)}
-                        />
+                        <input value={this.state.firstName} type="text" className="noRadius form-control"
+                               name='firstName'
+                               aria-describedby="emailHelp"
+                               placeholder="Enter First Name"
+                               onChange={(event) => this.keyPress(event)}/>
                     </div>
                     <div className="form-group">
                         <label>Last Name</label>
-                        <input value={this.state.lastName} type="text" className="noRadius form-control" 
-                        name='lastName'                       
-                        placeholder="Enter Last Name"
-                        onChange={(event) => this.keyPress(event)}
-                        />
+                        <input value={this.state.lastName} type="text" className="noRadius form-control"
+                               name='lastName'
+                               placeholder="Enter Last Name"
+                               onChange={(event) => this.keyPress(event)}/>
                     </div>
                     <div className="form-group">
                         <label>Email address</label>
                         <input value={this.state.email} type="email" className="noRadius form-control"
-                        name='email'
-                        aria-describedby="emailHelp" 
-                        placeholder="Enter email"
-                        onChange={(event) => this.keyPress(event)}
-                        />
+                               name='email'
+                               aria-describedby="emailHelp"
+                               placeholder="Enter email"
+                               onChange={(event) => this.keyPress(event)}/>
                     </div>
                     <div className="form-group">
                         <label>Password</label>
-                        <input value={this.state.password} type="password" className="noRadius form-control" 
-                        name='password'
-                        placeholder="Password"
-                        onChange={(event) => this.keyPress(event)}
-                        />
+                        <input value={this.state.password} type="password" className="noRadius form-control"
+                               name='password'
+                               placeholder="Password"
+                               onChange={(event) => this.keyPress(event)}/>
                     </div>
                     <button type="submit" className="btn btn-success"
-                    id='submitButton'
-                    onClick={(e) => this.registerUser(e)}
-                    >
+                            id='submitButton'
+                            onClick={(e) => this.registerUser(e)}>
                         Register
                     </button>
                 </form>
                 <Link to={'/Login'} className="registrationLink">Already have an account? Login in Here</Link>
             </div>
-        )
+        );
 
 
     }
