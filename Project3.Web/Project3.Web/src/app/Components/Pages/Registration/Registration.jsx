@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from "axios";
+var serialize = require('form-serialize');
 import styles from './Registration.css';
 
 class Registration extends Component {
@@ -7,45 +9,43 @@ class Registration extends Component {
         super();
 
         this.state = {
-            firstName: '',
-            lastName: '',
-            email: '',
-            password: ''
+            FirstName: '',
+            LastName: '',
+            Email: '',
+            Password: '',
+            ConfirmPassword: '',
+            __RequestVerificationToken: ''
         };
     }
 
-    //state ={
-    //    firstName: '',
-    //    lastName: '',
-    //    email: '',
-    //    password: '',
-    //};
-
+    componentWillMount() {
+        axios.get("XsrfToken/Get").then(res => {
+            this.setState({ __RequestVerificationToken: res.data.token });
+        });
+    }
 
     // need to add a method that will authenticate that all of the  
     registerUser(e) {
         e.preventDefault();
-        const { firstName, lastName, email, password } = this.state;
-        console.log(firstName, lastName, email, password);
-        // fetch('https://mywebsite.com/endpoint/', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({
-        //         firstName,
-        //         lastName,
-        //         email,
-        //         password
-        //     })
-        // })
-        this.setState({
-            firstName: '',
-            lastName: '',
-            email: '',
-            password: ''
-        });
+        //const { FirstName, LastName, Email, Password, ConfirmPassword, __RequestVerificationToken } = this.state;
+        //console.log(FirstName, LastName, Email, Password, ConfirmPassword);
+        axios.post("Account/Register", serialize(document.querySelector("#registerForm")),
+            {
+                withCredentials: true,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            }).then(() => {
+                this.setState({
+                    FirstName: '',
+                    LastName: '',
+                    Email: '',
+                    Password: '',
+                    ConfirmPassword: '',
+                    __RequestVerificationToken: ''
+                });
+            });
+        
     }
 
 
@@ -61,37 +61,45 @@ class Registration extends Component {
 
         return (
             <div className='container formContainer'>
-                <form>
+                <form id="registerForm">
                     <div className="form-group">
                         <label>First Name</label>
-                        <input value={this.state.firstName} type="text" className="noRadius form-control"
-                               name='firstName'
-                               aria-describedby="emailHelp"
+                        <input value={this.state.FirstName} type="text" className="noRadius form-control"
+                               name='FirstName'
+                               aria-describedby="EmailHelp"
                                placeholder="Enter First Name"
                                onChange={(event) => this.keyPress(event)}/>
                     </div>
                     <div className="form-group">
                         <label>Last Name</label>
-                        <input value={this.state.lastName} type="text" className="noRadius form-control"
-                               name='lastName'
+                        <input value={this.state.LastName} type="text" className="noRadius form-control"
+                               name='LastName'
                                placeholder="Enter Last Name"
                                onChange={(event) => this.keyPress(event)}/>
                     </div>
                     <div className="form-group">
                         <label>Email address</label>
-                        <input value={this.state.email} type="email" className="noRadius form-control"
-                               name='email'
-                               aria-describedby="emailHelp"
-                               placeholder="Enter email"
+                        <input value={this.state.Email} type="Email" className="noRadius form-control"
+                               name='Email'
+                               aria-describedby="EmailHelp"
+                               placeholder="Enter Email"
                                onChange={(event) => this.keyPress(event)}/>
                     </div>
                     <div className="form-group">
                         <label>Password</label>
-                        <input value={this.state.password} type="password" className="noRadius form-control"
-                               name='password'
+                        <input value={this.state.Password} type="Password" className="noRadius form-control"
+                               name='Password'
                                placeholder="Password"
                                onChange={(event) => this.keyPress(event)}/>
                     </div>
+                    <div className="form-group">
+                        <label>Confirm Password</label>
+                        <input value={this.state.ConfirmPassword} type="Password" className="noRadius form-control"
+                               name='ConfirmPassword'
+                               placeholder="Confirm Password"
+                               onChange={(event) => this.keyPress(event)} />
+                    </div>
+                    <input type="hidden" name="__RequestVerificationToken" value={this.state.__RequestVerificationToken} />
                     <button type="submit" className="btn btn-success"
                             id='submitButton'
                             onClick={(e) => this.registerUser(e)}>

@@ -17,7 +17,10 @@
   },
   "homepage": "https://github.com/jparedeso/Project3#readme",
   "dependencies": {
+    "axios": "^0.18.0",
+    "form-serialize": "^0.7.2",
     "react": "^16.3.2",
+    "react-cookie": "^2.1.4",
     "react-dom": "^16.3.2",
     "react-promise": "^2.0.0",
     "react-redux": "^5.0.7",

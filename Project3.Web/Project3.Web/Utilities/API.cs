@@ -21,10 +21,10 @@ namespace Project3.Web.Utilities
             };
 
             string accessToken = Utilities.GetCookieValue(httpContextAccessor.HttpContext.Request, "AccessToken");
-            if (string.IsNullOrWhiteSpace(accessToken))
-            {
-                throw new HttpRequestException("Unatuhorized");
-            }
+            //if (string.IsNullOrWhiteSpace(accessToken))
+            //{
+            //    throw new HttpRequestException("Unatuhorized");
+            //}
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
