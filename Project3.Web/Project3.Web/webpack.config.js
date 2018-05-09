@@ -40,7 +40,7 @@ module.exports = env => {
                         test: /\.jsx?$/,
                         use: "babel-loader",
                         include: /src/,
-                        exclude: /node_modules/
+                        exclude: /node_modules/,
                     },
                     {
                         test: /\.css$/,
@@ -57,7 +57,7 @@ module.exports = env => {
                                 loader: "url-loader",
                                 options: {
                                     limit: 40000
-                                }
+                                },
                             }
                             //"image-webpack-loader"
                         ]

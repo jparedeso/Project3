@@ -48,6 +48,37 @@ class Registration extends Component {
         
     }
 
+    passwordCheck(e) {
+        e.preventDefault();
+        const { password, passwordConfirm } = this.state;
+        if (password === passwordConfirm) {
+            alert('The password check worked');
+            this.auth();
+        } else {
+            alert("Your passwords are different dumbass");
+        }
+    }
+
+    auth() {
+        // loop over state
+        // for each value, check to make sure that only letters, @, and numbers are in valid.
+        const userObj = Object.assign({}, this.state);
+        for (var property in userObj) {
+            userObj[property]
+            if (/[^a-zA-Z0-9@\-\/\s\.]/.test(userObj[property])) {
+                alert("One of the props had an invalid character");
+                return;
+            };
+            
+            // INVALID: Undefined
+            if (userObj[property] === "" || undefined) {
+                alert("One of the props was empty or undefined");
+                return;
+            };
+        }
+        this.registerUser();
+    }
+
 
     // This method will update our inputs and store the inserted data into our state so we can send it to the server.
     keyPress(event) {
