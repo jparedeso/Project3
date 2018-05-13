@@ -11,8 +11,6 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
-using Project3.Web;
-using Project3.Web.Utilities;
 
 namespace Project3.Web
 {
@@ -147,6 +145,7 @@ namespace Project3.Web
                     var actionName = rd.Values["action"].ToString();
 
                     if (controllerName == "Home" ||
+                        controllerName == "XsrfToken" ||
                         controllerName == "Account" && (actionName == "Login" || actionName == "Register"))
                     {
                         await _next.Invoke(context);
