@@ -7,7 +7,7 @@ class Profile extends Component {
         super();
 
         this.state = {
-            loggedIn: false,
+            loggedIn: true,
             gameCollection: [
                 { name: 'Mario', value: '$25.97', condition: 'Good', imageSrc: '/images/sm64.jpg', id: 1 },
                 { name: 'Zelda', value: '$18.75', condition: 'Alright', imageSrc: '/images/zelda64.jpg', id: 1 }
