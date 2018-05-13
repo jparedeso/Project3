@@ -6,14 +6,17 @@ import Login from './Components/Pages/Login/Login';
 import Registration from './Components/Pages/Registration/Registration';
 import Navbar from './Components/Navbar/Navbar';
 import Profile from './Components/Pages/Profile/Profile';
+import Header from './Components/TestHeader/TestHeader';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Navbar />
         <Router>
+
           <div>
+          <Header />
+
             <Route exact path="/" component={Registration} />
             <Route exact path="/Login" component={Login} />
             <Route exact path='/Profile' component={Profile}/>

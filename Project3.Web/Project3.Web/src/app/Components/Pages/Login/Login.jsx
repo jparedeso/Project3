@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Login.css';
+import axios from "axios";
+const serialize = require('form-serialize');
 
 class Login extends Component {
     constructor() {
@@ -10,13 +12,60 @@ class Login extends Component {
             email: '',
             password: ''
         };
-    }
-    //state ={
-    //    email: '',
-    //    password: ''
-    //};
+    };
 
-    // Need to use a lifecycle hook to send data to backend on the submit button press
+    componentWillMount() {
+        axios.get("XsrfToken/Get").then(res => {
+            this.setState({ __RequestVerificationToken: res.data.token });
+        });
+    };
+
+    auth() {
+        // loop over state
+        // for each value, check to make sure that only letters, @, and numbers are valid.
+        const userObj = Object.assign({}, this.state);
+        for (var property in userObj) {
+            userObj[property]
+            if (/[^a-zA-Z0-9@\-\/\s\.]/.test(userObj[property])) {
+                alert("One of the props had an invalid character");
+                return;
+            };
+            
+            // INVALID: Undefined
+            if (userObj[property] === "" || undefined) {
+                alert("One of the props was empty or undefined");
+                return;
+            };
+        }
+        this.registerUser();
+    }
+
+
+    // Refactor this code
+    registerUser(e) {
+        e.preventDefault();
+        //const { FirstName, LastName, Email, Password, ConfirmPassword, __RequestVerificationToken } = this.state;
+        //console.log(FirstName, LastName, Email, Password, ConfirmPassword);
+        axios.post("Account/Register", serialize(document.querySelector("#registerForm")),
+            {
+                withCredentials: true,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            }).then(() => {
+                this.setState({
+                    FirstName: '',
+                    LastName: '',
+                    Email: '',
+                    Password: '',
+                    ConfirmPassword: '',
+                    __RequestVerificationToken: ''
+                });
+            });
+        
+    }
+   
+
     
 
 

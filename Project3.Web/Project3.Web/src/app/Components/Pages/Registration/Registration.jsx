@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from "axios";
-var serialize = require('form-serialize');
+const serialize = require('form-serialize');
 import styles from './Registration.css';
 
 class Registration extends Component {
