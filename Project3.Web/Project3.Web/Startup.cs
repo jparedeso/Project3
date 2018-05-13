@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -99,20 +100,19 @@ namespace Project3.Web
 
             app.UseAuthentication();
 
-            app.UseMiddleware<RequestMiddleware>();
+            app.UseGetRoutesMiddleware(GetRoutes);
 
             app.UseSession();
 
-            app.UseMvc(routes =>
+            app.UseMvc(GetRoutes);
+        }
+
+        private readonly Action<IRouteBuilder> GetRoutes =
+            routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-
-                routes.MapSpaFallbackRoute(
-                    name: "spa-fallback",
-                    defaults: new { controller = "Home", action = "Index" });
-            });
-        }
+            };
     }
 }
