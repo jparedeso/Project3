@@ -1,0 +1,45 @@
+body {
+  background-color:  rgb(248, 252, 236);
+}
+
+label, #submitButton, .registrationLink, #regReq {
+  font-family: 'Audiowide', cursive;
+  color: red;
+}
+
+#regReq {
+  text-align: center;
+  font-size: 30px;
+}
+
+#form {
+  background-color: rgb(163, 152, 136);
+  border: rgb(163, 152, 136);
+  border-radius: 10px;
+}
+
+.formContainer {
+  border: none;
+}
+
+#submitButton {
+  background-color: black;
+  color: white;
+  border: none;
+}
+
+#marioPipe {
+  margin-left: 10;
+}
+
+#mario {
+  width: 400px;
+  height: 473px;
+  margin-left: 80px;
+}
+
+.marioPic {
+  background-color: blue;
+  border: blue;
+  border-radius: 10px;
+}

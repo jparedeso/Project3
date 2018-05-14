@@ -1,4 +1,11 @@
+#logInForm {
+  background-color: rgb(163, 152, 136);
+  border: rgb(163, 152, 136);
+  border-radius: 10px;
+}
 
-
+placeholder {
+  font-family: 'Titillium Web', sans-serif;
+}
 
 

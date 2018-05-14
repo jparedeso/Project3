@@ -80,26 +80,36 @@ class Login extends Component {
     render() {
 
         return (
-            <div className='container formContainer'>
+            <div id="main" className='container formContainer'>
+                <div className="row">
+                    <div className="col-sm-12">
+                    <p id="regReq">WAIT... THE  PRINCESS  REQUESTS  THAT  YOU  REGISTER  OR  LOGIN  BEFORE  ENTERING THE  KINGDOM!
+                    </p>
+                    <br />
+                    </div>
+                </div>
+                <div id="logInForm"className="row">
                 <form>
                     <div className="form-group">
-                        <label>Email address</label>
+                        <label>EMAIL ADDRESS</label>
                         <input value={this.state.email} type="email" className="noRadius form-control" 
                         aria-describedby="emailHelp" 
-                        placeholder="Enter email"
+                        placeholder="EXAMPLE@EMAIL.MAIL"
                         onChange={(event) => this.keyPress(event)}
                         />
                     </div>
                     <div className="form-group">
-                        <label>Password</label>
+                        <label>PASSWORD</label>
                         <input value={this.state.password} type="password" className="noRadius form-control" 
-                        placeholder="Password"
+                        placeholder="PASSWORD"
                         onChange={(event) => this.keyPress(event)}
                         />
                     </div>
-                    <button type="submit" className="btn btn-success" id='submitButton'>Login</button>
+                    <button type="submit" className="btn btn-success" id='submitButton'>LOGIN</button>
+                    <br />
+                    <Link to={'/'} className="registrationLink">DON'T HAVE AN ACCOUNT? CREATE ONE HERE</Link>
                 </form>
-                <Link to={'/'} className="registrationLink">Don't have an account? Create One Here</Link>
+                </div>
             </div>
         )
 
