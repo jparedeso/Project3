@@ -92,52 +92,65 @@ class Registration extends Component {
 
         return (
             <div className='container formContainer'>
-                <form id="registerForm">
-                    <div className="form-group">
-                        <label>First Name</label>
-                        <input value={this.state.FirstName} type="text" className="noRadius form-control"
+                <div className="row">
+                    <p id="regReq">WAIT... THE  PRINCESS  REQUESTS  THAT  YOU  REGISTER  OR  LOGIN  BEFORE  ENTERING THE  KINGDOM!</p>
+                    <br />
+                    <div id="form" className="col-sm-6">
+                        <form id="registerForm">
+                            <div className="form-group">
+                                <label>FIRST NAME</label>
+                                <input value={this.state.FirstName} type="text" className="noRadius form-control"
                                name='FirstName'
                                aria-describedby="EmailHelp"
-                               placeholder="Enter First Name"
+                               placeholder="FIRST NAME"
                                onChange={(event) => this.keyPress(event)}/>
-                    </div>
-                    <div className="form-group">
-                        <label>Last Name</label>
-                        <input value={this.state.LastName} type="text" className="noRadius form-control"
+                            </div>
+                            <div className="form-group">
+                             <label>LAST NAME</label>
+                                <input value={this.state.LastName} type="text" className="noRadius form-control"
                                name='LastName'
-                               placeholder="Enter Last Name"
+                               placeholder="LAST NAME"
                                onChange={(event) => this.keyPress(event)}/>
-                    </div>
-                    <div className="form-group">
-                        <label>Email address</label>
-                        <input value={this.state.Email} type="Email" className="noRadius form-control"
+                            </div>
+                            <div className="form-group">
+                                <label>EMAIL ADDRESS</label>
+                                <input value={this.state.Email} type="Email" className="noRadius form-control"
                                name='Email'
                                aria-describedby="EmailHelp"
-                               placeholder="Enter Email"
+                               placeholder="EXAMPLE@EMAIL.MAIL"
                                onChange={(event) => this.keyPress(event)}/>
-                    </div>
-                    <div className="form-group">
-                        <label>Password</label>
-                        <input value={this.state.Password} type="Password" className="noRadius form-control"
+                            </div>
+                            <div className="form-group">
+                                <label>PASSWORD</label>
+                                <input value={this.state.Password} type="Password" className="noRadius form-control"
                                name='Password'
-                               placeholder="Password"
+                               placeholder="PASSWORD"
                                onChange={(event) => this.keyPress(event)}/>
-                    </div>
-                    <div className="form-group">
-                        <label>Confirm Password</label>
-                        <input value={this.state.ConfirmPassword} type="Password" className="noRadius form-control"
+                            </div>
+                            <div className="form-group">
+                                <label>CONFIRM PASSWORD</label>
+                                <input value={this.state.ConfirmPassword} type="Password" className="noRadius form-control"
                                name='ConfirmPassword'
-                               placeholder="Confirm Password"
+                               placeholder="CONFIRM PASSWORD"
                                onChange={(event) => this.keyPress(event)} />
-                    </div>
-                    <input type="hidden" name="__RequestVerificationToken" value={this.state.__RequestVerificationToken} />
-                    <button type="submit" className="btn btn-success"
+                            </div>
+                            <input type="hidden" name="__RequestVerificationToken" value={this.state.__RequestVerificationToken} />
+                            <button type="submit" className="btn btn-success"
                             id='submitButton'
                             onClick={(e) => this.registerUser(e)}>
-                        Register
-                    </button>
-                </form>
-                <Link to={'/Login'} className="registrationLink">Already have an account? Login in Here</Link>
+                                 REGISTER
+                            </button>
+                            <br/>
+                            <Link to={'/Login'} className="registrationLink">ALREADY HAVE AN ACCOUNT? LOGIN HERE</Link>
+                        </form>
+                    </div>
+                    <div id="marioPipe" className="col-sm-6">
+                        {/* ////////////////////////////////// */}
+                        <div className="marioPic">
+                            <img id="mario" src="../src\app\Components\Pages\Registration\mario_pipe.png" />
+                        </div>
+                    </div>
+                </div>
             </div>
         );
 
