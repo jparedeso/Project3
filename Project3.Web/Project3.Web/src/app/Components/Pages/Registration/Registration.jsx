@@ -147,7 +147,7 @@ class Registration extends Component {
                     <div id="marioPipe" className="col-sm-6">
                         {/* ////////////////////////////////// */}
                         <div className="marioPic">
-                            <img id="mario" src="../src\app\Components\Pages\Registration\mario_pipe.png" />
+                            <img id="mario" src="https://reichanjapan.files.wordpress.com/2016/02/mariogiftcard.png?w=230&h=335" />
                         </div>
                     </div>
                 </div>
