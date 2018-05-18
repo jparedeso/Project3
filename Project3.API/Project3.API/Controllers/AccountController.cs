@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Project3.API.Models;
 using Project3.API.Models.Account;
 using Project3.API.Models.Identity;
 using Project3.API.ViewModels;
@@ -73,6 +74,19 @@ namespace Project3.API.Controllers
             }
 
             return Created("api", new {message = "User was created."});
+        }
+
+        [HttpGet]
+        [Route("Test")]
+        public async Task<ActionResult> Test()
+        {
+            var user = await _userManager.FindByNameAsync(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var users = UserModel.GetUsers(user.Id);
+
+
+
+            return Json(users);
+
         }
 
         [HttpPost]
