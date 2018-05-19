@@ -57,7 +57,7 @@ class Header extends React.Component {
                 </div>
                 <div className="col-sm-5">
                         <div className="row">
-                            <h2>APP NAME HERE</h2>
+                            <h2>CART CATALOG</h2>
                         </div>
                         <div
                         ref = {element => {

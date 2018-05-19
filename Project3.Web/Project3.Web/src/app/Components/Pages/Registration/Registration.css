@@ -40,7 +40,6 @@ label, #submitButton, .registrationLink, #regReq {
 }
 
 .marioPic {
-  /* background-color: blue;
-  border: blue; */
   border-radius: 10px;
+  animation-duration: 3s;
 }

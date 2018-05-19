@@ -1,15 +1,14 @@
-
+h1 {
+    font-family: 'Audiowide', cursive;
+    color:red;
+    margin: 0px 0px 0px 15px;
+}
 
 .game-grid-container {
     border: 2px solid rgb(248, 252, 236);
     border-radius: 5px;
-    /* width: 80%; */
     margin: 20px;
     padding: 10px;
-    /* display: grid; */
-    /* grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    grid-gap: 10px;  */
     color:black;
     background-color: rgb(248, 252, 236);
     font-family: 'Audiowide', cursive;
@@ -18,12 +17,10 @@
 }
 
 #gameStats {
-    margin-left: 10px
+    margin-left: 5px
 }
 
 .gameImage {
-    /* grid-column: 1 / 2;
-    grid-row: 1 / 3; */
     margin: 5px 5px 5px 40px;
     width: 130px;
     height: 130px;
@@ -38,68 +35,49 @@ strong {
 }
 
 .gameName {
-    /* grid-column: 2;
-    grid-row: 1 / 2; */
-    margin: 5px;
-    /* border: 1px solid black; */
+    margin: 0px;
     font-size: 15px;
 }
 
-.gameValue {
-    /* grid-column: 3;
-    grid-row: 1 / 2; */
-    margin: 5px;
-    /* border: 1px solid black; */
+#coin {
+    margin-top: 0px;
+    width: 25px;
+    height: 25px;
+}
+
+.gameValue, .gameCondition, .gamePlatform  {
     text-align: center;
+    padding: 0px;
 }
 
 .gameCondition {
-    /* grid-column: 4 / 4;
-    grid-row: 1 / 2; */
-    margin: 5px;
-    /* border: 1px solid black; */
-    text-align: center;
+    margin-left: 20px;
+}
+
+.lifeHeart {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+}
+
+.gamePlatform {
+    margin-left: 15px;
 }
 
 .gameSummary {
-    /* grid-column: 2 / 4;
-    grid-row: 2 / 3;  */
     max-width: 100%;
     height: 130px;
     overflow: auto;
     margin: 5px 5px 5px 15px;
-    /* border: 1px solid black; */
 }
 
-.col-sm-1 {
-    align-content: center;
-    margin: 5px;
-    color: white;
-    background-color: black;
+.actions {
+    margin-left: 60px;
 }
 
-#edit {
-    /* grid-column: 4/5;
-    grid-row: 2 / 2; */
+#edit, #save, #delete {
     margin: 5px;
-    height: 25px;
-    width: 40px;
-    background-color: black;
-    border: none;
-    text-align: center;
-    font-family: 'Audiowide', cursive;
-    font-size: 13px;
-}
-
-#save {
-    /* grid-column: 5/6;
-    grid-row: 2 / 2; */
-    margin: 5px;
-    height: 25px;
-    width: 30px;
-    background-color: black;
-    border: none;
-    text-align: center;
-    font-family: 'Audiowide', cursive;
-    font-size: 13px;
-}
+    height: 20px;
+    width: 20px;
+    margin-left: 0px;
+} 

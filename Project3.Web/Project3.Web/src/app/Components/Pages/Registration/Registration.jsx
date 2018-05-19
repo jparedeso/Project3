@@ -146,7 +146,7 @@ class Registration extends Component {
                     </div>
                     <div id="marioPipe" className="col-sm-6">
                         {/* ////////////////////////////////// */}
-                        <div className="marioPic">
+                        <div className="marioPic animated slideInUp">
                             <img id="mario" src="https://reichanjapan.files.wordpress.com/2016/02/mariogiftcard.png?w=230&h=335" />
                         </div>
                     </div>
