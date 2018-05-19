@@ -10,6 +10,9 @@ label, #submitButton, .registrationLink, #regReq {
 #regReq {
   text-align: center;
   font-size: 30px;
+  animation-delay: 1.5s;
+  animation-duration: 1s;
+  animation-iteration-count: 2;
 }
 
 #form {
@@ -41,5 +44,5 @@ label, #submitButton, .registrationLink, #regReq {
 
 .marioPic {
   border-radius: 10px;
-  animation-duration: 3s;
+  animation-duration: 1s;
 }

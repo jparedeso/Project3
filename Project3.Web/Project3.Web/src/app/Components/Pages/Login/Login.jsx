@@ -83,8 +83,8 @@ class Login extends Component {
             <div id="main" className='container formContainer'>
                 <div className="row">
                     <div className="col-sm-12">
-                    <p id="regReq">WAIT... THE  PRINCESS  REQUESTS  THAT  YOU  REGISTER  OR  LOGIN  BEFORE  ENTERING THE  KINGDOM!
-                    </p>
+                    <h1 className="flash" id="regReq">WAIT... THE  PRINCESS  REQUESTS  THAT  YOU  REGISTER  OR  LOGIN  BEFORE  ENTERING THE  KINGDOM!
+                    </h1>
                     <br />
                     </div>
                 </div>

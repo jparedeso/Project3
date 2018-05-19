@@ -8,4 +8,11 @@ placeholder {
   font-family: 'Titillium Web', sans-serif;
 }
 
+#regReq {
+  text-align: center;
+  font-size: 30px;
+  animation-delay: .5s;
+  animation-duration: 1s;
+  animation-iteration-count: 2;
+}
 

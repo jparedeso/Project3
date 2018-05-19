@@ -93,7 +93,7 @@ class Registration extends Component {
         return (
             <div className='container formContainer'>
                 <div className="row">
-                    <p id="regReq">WAIT... THE  PRINCESS  REQUESTS  THAT  YOU  REGISTER  OR  LOGIN  BEFORE  ENTERING THE  KINGDOM!</p>
+                    <h1 id="regReq" className="flash">WAIT... THE  PRINCESS  REQUESTS  THAT  YOU  REGISTER  OR  LOGIN  BEFORE  ENTERING THE  KINGDOM!</h1>
                     <br />
                     <div id="form" className="col-sm-6">
                         <form id="registerForm">
@@ -146,7 +146,7 @@ class Registration extends Component {
                     </div>
                     <div id="marioPipe" className="col-sm-6">
                         {/* ////////////////////////////////// */}
-                        <div className="marioPic animated slideInUp">
+                        <div className="marioPic animated bounceInUp">
                             <img id="mario" src="https://reichanjapan.files.wordpress.com/2016/02/mariogiftcard.png?w=230&h=335" />
                         </div>
                     </div>
