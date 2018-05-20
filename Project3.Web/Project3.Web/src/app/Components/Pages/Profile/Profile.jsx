@@ -27,8 +27,8 @@ class Profile extends Component {
         for (var i = 0; i < gameSearch.length; i++) {
             const gameName = gameSearch[i].name;
             const platformName = gameSearch[i].platform;
-            console.log(gameName);
-            console.log(platformName);
+            // console.log(gameName);
+            // console.log(platformName);
 
 
             var settings = {
@@ -76,7 +76,7 @@ class Profile extends Component {
         
                 var averagePrice = sum/priceArray.length;
                 // console.log(sum);
-                console.log("game name: " + gameName + "game price: " + averagePrice);
+                // console.log("game name: " + gameName + "game price: " + averagePrice);
 
                 value.push(averagePrice.toFixed(2));
                 

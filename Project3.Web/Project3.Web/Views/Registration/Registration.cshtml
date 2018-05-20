@@ -1,0 +1,63 @@
+<!-- registration -->
+<!-- def needs a lot of converting back to html -->
+<div class='container formContainer'>
+    <div class="row">
+        <h1 id="regReq" class="flash">WAIT... THE  PRINCESS  REQUESTS  THAT  YOU  REGISTER  OR  LOGIN  BEFORE  ENTERING THE  KINGDOM!</h1>
+        <br />
+        <div id="form" class="col-sm-6">
+            <form id="registerForm">
+                <div class="form-group">
+                    <label class="rounded">FIRST NAME</label>
+                    <input value={this.state.FirstName} type="text" class="noRadius rounded form-control"
+                    name='FirstName'
+                    aria-describedby="EmailHelp"
+                    placeholder="FIRST NAME"
+                    onChange={(event) => this.keyPress(event)}/>
+                </div>
+                <div class="form-group">
+                    <label class="rounded">LAST NAME</label>
+                    <input value={this.state.LastName} type="text" class="noRadius rounded form-control"
+                    name='LastName'
+                    placeholder="LAST NAME"
+                    onChange={(event) => this.keyPress(event)}/>
+                </div>
+                <div class="form-group">
+                    <label>EMAIL ADDRESS</label>
+                    <input value={this.state.Email} type="Email" class="noRadius form-control rounded"
+                    name='Email'
+                    aria-describedby="EmailHelp"
+                    placeholder="EXAMPLE@EMAIL.MAIL"
+                    onChange={(event) => this.keyPress(event)}/>
+                </div>
+                <div class="form-group">
+                    <label class="rounded">PASSWORD</label>
+                    <input value={this.state.Password} type="Password" class="noRadius rounded form-control"
+                    name='Password'
+                    placeholder="PASSWORD"
+                    onChange={(event) => this.keyPress(event)}/>
+                </div>
+                <div class="form-group">
+                    <label class="rounded">CONFIRM PASSWORD</label>
+                    <input value={this.state.ConfirmPassword} type="Password" class="noRadius rounded form-control"
+                    name='ConfirmPassword'
+                    placeholder="CONFIRM PASSWORD"
+                    onChange={(event) => this.keyPress(event)} />
+                </div>
+                <input class="rounded" type="hidden" name="__RequestVerificationToken" value={this.state.__RequestVerificationToken} />
+                <button type="submit" class="btn btn-success"
+                id='submitButton'
+                onClick={(e) => this.registerUser(e)}>
+                        REGISTER
+                </button>
+                <br/>
+                <Link to={'/Login'} class="registrationLink">ALREADY HAVE AN ACCOUNT? LOGIN HERE</Link>
+            </form>
+        </div>
+        <div id="marioPipe" class="col-sm-6">
+            {/* ////////////////////////////////// */}
+            <div class="marioPic animated bounceInUp">
+                <img id="mario" src="https://reichanjapan.files.wordpress.com/2016/02/mariogiftcard.png?w=230&h=335" />
+            </div>
+        </div>
+    </div>
+</div>
