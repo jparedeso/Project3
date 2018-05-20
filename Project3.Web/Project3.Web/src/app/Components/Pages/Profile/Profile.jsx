@@ -81,7 +81,7 @@ class Profile extends Component {
                 value.push(averagePrice);
                 
                 that.setState({ value: value });
-                console.log(that.state.value, "++");
+                // console.log(that.state.value, "++");
             });
 
         }
