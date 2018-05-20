@@ -9,8 +9,8 @@ class Profile extends Component {
         this.state = {
             loggedIn: true,
             gameCollection: [
-                { name: 'Super Mario Bros.', value: '$14.50', platform: 'snes', condition: 'Good', imageSrc: 'https://vignette.wikia.nocookie.net/mario/images/6/60/SMBBoxart.png/revision/latest?cb=20120609143443', id: 1 },
-                { name: 'Zelda; Breath of the Wild', value: '$35.25', platform: 'nes', condition: 'Alright', imageSrc: "https://www.nintendo.com/games/detail/the-legend-of-zelda-breath-of-the-wild-switch", id: 2 }
+                { name: 'Super Mario World', value: '$14.50', platform: 'snes', condition: 'Good', imageSrc: 'https://vignette.wikia.nocookie.net/mario/images/6/60/SMBBoxart.png/revision/latest?cb=20120609143443', id: 1 },
+                { name: 'Zelda', value: '$35.25', platform: 'nes', condition: 'Alright', imageSrc: "https://www.nintendo.com/games/detail/the-legend-of-zelda-breath-of-the-wild-switch", id: 2 }
             ],
             value: []
         };
@@ -19,8 +19,8 @@ class Profile extends Component {
         // const nameSearch = this.state.gameCollection[0].name;
         // const api_call = `https://cors-anywhere.herokuapp.com/https://svcs.ebay.com/services/search/FindingService/v1?RESPONSE-DATA-FORMAT=JSON&categoryId=139973&keywords=${nameSearch},nes&categoryId=139973`;
         // console.log(api_call);
-    }
-        componentDidMount () {
+   
+        
         const gameSearch = this.state.gameCollection;
         let value = this.state.value;
 
@@ -85,12 +85,13 @@ class Profile extends Component {
             });
 
         }
-
+        
+    }
         
     
 
 
-    }
+
 
     
 

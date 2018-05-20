@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import styles from './ForumWrapper.css';
-// import ForumMenu from '../ForumMenu/ForumMenu';
+import ForumMenu from '../ForumMenu/ForumMenu';
+import ForumTitle from '../ForumTitle/ForumTitle';
+import ForumDisplay from '../ForumDisplay/ForumDisplay';
 
 class ForumWrapper extends Component {
     constructor() {
@@ -11,7 +13,9 @@ class ForumWrapper extends Component {
     render() {
         return (
             <div>
-                <h1>Forum will go here</h1>
+                <ForumTitle />
+                <ForumDisplay />
+                <ForumMenu />
             </div>
         )
     }

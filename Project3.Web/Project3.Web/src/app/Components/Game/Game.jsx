@@ -14,7 +14,7 @@ const Game = props => {
           <h1>INVENTORY</h1>
         </div>
           <div id="addGame" className="col-sm-2">
-            <button id="addGameBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#commentModal">
+            <button id="addGameBtn" type="button" className="btn btn-primary" data-toggle="modal" data-target="#commentModal">
               ADD GAME
             </button>
         </div>
@@ -28,7 +28,7 @@ const Game = props => {
 
               <div className="col-sm-3 gameName"><strong>TITLE: </strong> {game.name}
               </div>
-              <div className="col-sm-2 gameValue"><img id="coin" src="https://media0.giphy.com/media/yCyVbqru5Ggfu/giphy.gif"></img><strong>EST. VALUE: </strong> {game.value}
+              <div className="col-sm-2 gameValue"><img id="coin" src="https://media0.giphy.com/media/yCyVbqru5Ggfu/giphy.gif"></img><strong>EST. VALUE: </strong> $ {props.values[index]}
               </div>
               <div className="col-sm-2 gameCondition dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>EST. CONDITION: </strong> {game.condition}
                 {/* <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
@@ -61,20 +61,20 @@ const Game = props => {
         )
       })}
 
-        <div class="modal fade" id="commentModal">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h4 class="modal-title">ADD A POST</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <div className="modal fade" id="commentModal">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h4 className="modal-title">ADD A POST</h4>
+                <button type="button" className="close" data-dismiss="modal">&times;</button>
               </div>
 
-              <div class="modal-body">
-                <textarea class="postBody" type="text" placeholder="ADD YOUR POST HERE" name="Post"></textarea>
+              <div className="modal-body">
+                <textarea className="postBody" type="text" placeholder="ADD YOUR POST HERE" name="Post"></textarea>
               </div>
 
-              <div class="modal-footer">
-                <button id="submitPost" type="submit" class="btn btn-primary" data-dismiss="modal">POST</button>
+              <div className="modal-footer">
+                <button id="submitPost" type="submit" className="btn btn-primary" data-dismiss="modal">POST</button>
               </div>
 
             </div>

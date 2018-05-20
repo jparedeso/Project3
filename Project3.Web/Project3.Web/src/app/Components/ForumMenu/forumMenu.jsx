@@ -5,7 +5,7 @@ const ForumMenu = props => {
   return (
     <div className="container">
       <div className="row">
-        <h3 className="welcome">{WHICHEVER} FORUM</h3>
+        <h3 className="welcome"> FORUM</h3>
       </div>
       <div className="row">
         <div className="col-sm-2 forumMenu sticky">
@@ -26,7 +26,7 @@ const ForumMenu = props => {
             </ul>
         </div>
       </div>
-      </div>
+    </div>
   )
 }
 export default ForumMenu;
