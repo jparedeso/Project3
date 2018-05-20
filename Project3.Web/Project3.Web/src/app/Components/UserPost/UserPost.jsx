@@ -1,7 +1,7 @@
 import React from 'react';
-import './Game.css';
+import './UserPost.css';
 
-const Game = props => {
+const UserPost = props => {
   return (
     <div className="container">
       <div className="row commentComponent">
@@ -25,4 +25,4 @@ const Game = props => {
   )
 }
 
-export default Game;
+export default UserPost;
