@@ -2,7 +2,7 @@ import React from 'react';
 import './Game.css';
 
 const Game = props => {
-  console.log(props.values[0]);
+  // console.log(props.values[0]);
   const games= props.games;
   // console.log("===", values[0]);
   // {props.values[index]}
@@ -28,7 +28,7 @@ const Game = props => {
 
               <div className="col-sm-3 gameName"><strong>TITLE: </strong> {game.name}
               </div>
-              <div className="col-sm-2 gameValue"><img id="coin" src="https://media0.giphy.com/media/yCyVbqru5Ggfu/giphy.gif"></img><strong>EST. VALUE: </strong> $ {props.values[index]}
+              <div className="col-sm-2 gameValue"><img id="coin" src="https://media0.giphy.com/media/yCyVbqru5Ggfu/giphy.gif"></img><strong>EST. VALUE: </strong> ${props.values[index]}
               </div>
               <div className="col-sm-2 gameCondition dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><strong>EST. CONDITION: </strong> {game.condition}
                 {/* <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
