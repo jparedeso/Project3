@@ -91,16 +91,16 @@ class Login extends Component {
                 <div id="logInForm"className="row">
                 <form>
                     <div className="form-group">
-                        <label>EMAIL ADDRESS</label>
-                        <input value={this.state.email} type="email" className="noRadius form-control" 
+                        <label className="rounded">EMAIL ADDRESS</label>
+                        <input value={this.state.email} type="email" className="noRadius rounded form-control" 
                         aria-describedby="emailHelp" 
                         placeholder="EXAMPLE@EMAIL.MAIL"
                         onChange={(event) => this.keyPress(event)}
                         />
                     </div>
                     <div className="form-group">
-                        <label>PASSWORD</label>
-                        <input value={this.state.password} type="password" className="noRadius form-control" 
+                        <label className="rounded">PASSWORD</label>
+                        <input value={this.state.password} type="password" className="noRadius form-control rounded" 
                         placeholder="PASSWORD"
                         onChange={(event) => this.keyPress(event)}
                         />

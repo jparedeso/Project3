@@ -5,17 +5,24 @@ const Game = props => {
   const { games } = props;
   return (
     <div>
-    <div className="inventory">
-      <h1>INVENTORY</h1>
+    <div className="inventory container">
+      <div className="row">
+        <div className="col-sm-3">
+          <h1>INVENTORY</h1>
+        </div>
+          <div id="addGame" className="col-sm-2">
+            <button id="addGameBtn" type="button" class="btn btn-primary" data-toggle="modal" data-target="#commentModal">
+              ADD GAME
+            </button>
+        </div>
+      </div>
     </div>
     <div>
       {games.map( game  => {
         return (
           <div className="game-grid-container">
             <div id="gameStats" className="row">
-              {/* <div className="col-sm-3 gameImage">
-                <img className='' src={game.imageSrc} alt={game.imageSrc} />
-              </div> */}
+
               <div className="col-sm-3 gameName"><strong>TITLE: </strong> {game.name}
               </div>
               <div className="col-sm-2 gameValue"><img id="coin" src="https://media0.giphy.com/media/yCyVbqru5Ggfu/giphy.gif"></img><strong>EST. VALUE: </strong> {game.value}
@@ -50,6 +57,27 @@ const Game = props => {
           </div>
         )
       })}
+
+        <div class="modal fade" id="commentModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-title">ADD A POST</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <div class="modal-body">
+                <textarea class="postBody" type="text" placeholder="ADD YOUR POST HERE" name="Post"></textarea>
+              </div>
+
+              <div class="modal-footer">
+                <button id="submitPost" type="submit" class="btn btn-primary" data-dismiss="modal">POST</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   )

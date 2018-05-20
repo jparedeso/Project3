@@ -21,6 +21,10 @@ label, #submitButton, .registrationLink, #regReq {
   border-radius: 10px;
 }
 
+.rounded {
+   border-radius: 10px;
+}
+
 .formContainer {
   border: none;
 }

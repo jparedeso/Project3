@@ -4,6 +4,10 @@
   border-radius: 10px;
 }
 
+.rounded {
+  border-radius: 10px;
+}
+
 placeholder {
   font-family: 'Titillium Web', sans-serif;
 }

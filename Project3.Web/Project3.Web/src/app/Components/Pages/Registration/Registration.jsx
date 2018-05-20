@@ -98,43 +98,43 @@ class Registration extends Component {
                     <div id="form" className="col-sm-6">
                         <form id="registerForm">
                             <div className="form-group">
-                                <label>FIRST NAME</label>
-                                <input value={this.state.FirstName} type="text" className="noRadius form-control"
+                                <label className="rounded">FIRST NAME</label>
+                                <input value={this.state.FirstName} type="text" className="noRadius rounded form-control"
                                name='FirstName'
                                aria-describedby="EmailHelp"
                                placeholder="FIRST NAME"
                                onChange={(event) => this.keyPress(event)}/>
                             </div>
                             <div className="form-group">
-                             <label>LAST NAME</label>
-                                <input value={this.state.LastName} type="text" className="noRadius form-control"
+                             <label className="rounded">LAST NAME</label>
+                                <input value={this.state.LastName} type="text" className="noRadius rounded form-control"
                                name='LastName'
                                placeholder="LAST NAME"
                                onChange={(event) => this.keyPress(event)}/>
                             </div>
                             <div className="form-group">
                                 <label>EMAIL ADDRESS</label>
-                                <input value={this.state.Email} type="Email" className="noRadius form-control"
+                                <input value={this.state.Email} type="Email" className="noRadius form-control rounded"
                                name='Email'
                                aria-describedby="EmailHelp"
                                placeholder="EXAMPLE@EMAIL.MAIL"
                                onChange={(event) => this.keyPress(event)}/>
                             </div>
                             <div className="form-group">
-                                <label>PASSWORD</label>
-                                <input value={this.state.Password} type="Password" className="noRadius form-control"
+                                <label className="rounded">PASSWORD</label>
+                                <input value={this.state.Password} type="Password" className="noRadius rounded form-control"
                                name='Password'
                                placeholder="PASSWORD"
                                onChange={(event) => this.keyPress(event)}/>
                             </div>
                             <div className="form-group">
-                                <label>CONFIRM PASSWORD</label>
-                                <input value={this.state.ConfirmPassword} type="Password" className="noRadius form-control"
+                                <label className="rounded">CONFIRM PASSWORD</label>
+                                <input value={this.state.ConfirmPassword} type="Password" className="noRadius rounded form-control"
                                name='ConfirmPassword'
                                placeholder="CONFIRM PASSWORD"
                                onChange={(event) => this.keyPress(event)} />
                             </div>
-                            <input type="hidden" name="__RequestVerificationToken" value={this.state.__RequestVerificationToken} />
+                            <input className="rounded" type="hidden" name="__RequestVerificationToken" value={this.state.__RequestVerificationToken} />
                             <button type="submit" className="btn btn-success"
                             id='submitButton'
                             onClick={(e) => this.registerUser(e)}>
