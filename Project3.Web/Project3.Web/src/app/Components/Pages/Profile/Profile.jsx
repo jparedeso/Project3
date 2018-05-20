@@ -78,7 +78,7 @@ class Profile extends Component {
                 // console.log(sum);
                 console.log("game name: " + gameName + "game price: " + averagePrice);
 
-                value.push(averagePrice);
+                value.push(averagePrice.toFixed(2));
                 
                 that.setState({ value: value });
                 // console.log(that.state.value, "++");
