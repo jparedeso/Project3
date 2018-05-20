@@ -9,13 +9,8 @@ class Profile extends Component {
         this.state = {
             loggedIn: true,
             gameCollection: [
-<<<<<<< HEAD
-                { name: 'Mario', value: '$14.50', platform: 'nes', condition: 'Good', imageSrc: '/images/sm64.jpg', id: 1 },
-                { name: 'Zelda', value: '$35.25', platform: 'nes', condition: 'Alright', imageSrc: '/images/zelda64.jpg', id: 2 }
-=======
                 { name: 'Super Mario Bros.', value: '$14.50', platform: 'snes', condition: 'Good', imageSrc: 'https://vignette.wikia.nocookie.net/mario/images/6/60/SMBBoxart.png/revision/latest?cb=20120609143443', id: 1 },
                 { name: 'Zelda; Breath of the Wild', value: '$35.25', platform: 'nes', condition: 'Alright', imageSrc: "https://www.nintendo.com/games/detail/the-legend-of-zelda-breath-of-the-wild-switch", id: 2 }
->>>>>>> 9c4e488450bb3cc300c36e4a9de4d32af12634f7
             ],
             value: []
         };

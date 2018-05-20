@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from './ForumWrapper.css';
-import ForumMenu from '../ForumMenu/ForumMenu';
+// import ForumMenu from '../ForumMenu/ForumMenu';
 
 class ForumWrapper extends Component {
     constructor() {
@@ -11,7 +11,7 @@ class ForumWrapper extends Component {
     render() {
         return (
             <div>
-                <ForumMenu />
+                <h1>Forum will go here</h1>
             </div>
         )
     }
