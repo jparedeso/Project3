@@ -9,7 +9,7 @@ class Profile extends Component {
         this.state = {
             loggedIn: true,
             gameCollection: [
-                { name: 'Mario', value: '$14.50', platform: 'snes', condition: 'Good', imageSrc: '/images/sm64.jpg', id: 1 },
+                { name: 'Mario', value: '$14.50', platform: 'nes', condition: 'Good', imageSrc: '/images/sm64.jpg', id: 1 },
                 { name: 'Zelda', value: '$35.25', platform: 'nes', condition: 'Alright', imageSrc: '/images/zelda64.jpg', id: 2 }
             ],
             value: []
@@ -19,7 +19,8 @@ class Profile extends Component {
         // const nameSearch = this.state.gameCollection[0].name;
         // const api_call = `https://cors-anywhere.herokuapp.com/https://svcs.ebay.com/services/search/FindingService/v1?RESPONSE-DATA-FORMAT=JSON&categoryId=139973&keywords=${nameSearch},nes&categoryId=139973`;
         // console.log(api_call);
-
+    }
+        componentDidMount () {
         const gameSearch = this.state.gameCollection;
         let value = this.state.value;
 
@@ -43,6 +44,8 @@ class Profile extends Component {
                 "Postman-Token": "2533f0d4-46b4-4ae3-90c5-bfa1c936774a"
                 }
             }
+
+            let that = this;
             
             $.ajax(settings).done(function (response) {
                 var results = JSON.parse(response);
@@ -73,17 +76,21 @@ class Profile extends Component {
         
                 var averagePrice = sum/priceArray.length;
                 // console.log(sum);
-                console.log(averagePrice);
+                console.log("game name: " + gameName + "game price: " + averagePrice);
 
                 value.push(averagePrice);
-        
+                
+                that.setState({ value: value });
+                console.log(that.state.value, "++");
             });
+
         }
 
-        console.log(this.state.value);
+        
+    
+
 
     }
-
 
     
 
@@ -114,8 +121,8 @@ class Profile extends Component {
                 { this.state.loggedIn ? 
                     <div styles={styles}>
                         <Game 
-                        games={this.state.gameCollection}
                         values={this.state.value}
+                        games={this.state.gameCollection}
                         />
                     </div> :
                     <RequestLogin/>

@@ -2,10 +2,13 @@ import React from 'react';
 import './Game.css';
 
 const Game = props => {
-  const { games } = props;
+  console.log(props.values[0]);
+  const games= props.games;
+  // console.log("===", values[0]);
   return (
     <div>
-      {games.map( game  => {
+      {games.map( (game, index)  => {
+        console.log(props.values, "====");
         return (
           <div className="game-grid-container">
             <div id="gameStats" className="row">
@@ -14,7 +17,7 @@ const Game = props => {
               </div> */}
               <div className="col-sm-5 gameName"><strong>TITLE: </strong> {game.name}
               </div>
-              <div className="col-sm-2 gameValue"><strong>EST. VALUE: </strong> {game.value}
+              <div className="col-sm-2 gameValue"><strong>EST. VALUE: </strong> {props.values[index]}
               </div>
               <div className="col-sm-2 gameCondition"><strong>EST. CONDITION: </strong> {game.condition}
               </div>
