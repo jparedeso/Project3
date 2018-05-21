@@ -13,7 +13,7 @@ const DropDownButton = props => {
                 <img id="forumsBtn" role="button" className="redButton dropbtn" src={buttonSrc} onClick={() => props.forumMethod()} />
             { forumBool ? 
             <div id="forumsDrpDwn" className="dropdown-menu dropdown-menu-right">
-                <a href="#">FORUMS HOME</a>
+                <Link to={'/Forum'} >Forum Home</Link>
                 <a href="#">Link 2</a>
                 <a href="#">Link 3</a>
             </div> : null

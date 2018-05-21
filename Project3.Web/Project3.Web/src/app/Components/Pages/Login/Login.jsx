@@ -85,24 +85,24 @@ class Login extends Component {
             <div id="main" className='container formContainer'>
                 <div className="row">
                     <div className="col-sm-12">
-                    <p id="regReq">WAIT... THE  PRINCESS  REQUESTS  THAT  YOU  REGISTER  OR  LOGIN  BEFORE  ENTERING THE  KINGDOM!
-                    </p>
+                    <h1 className="flash" id="regReq">WAIT... THE  PRINCESS  REQUESTS  THAT  YOU  REGISTER  OR  LOGIN  BEFORE  ENTERING THE  KINGDOM!
+                    </h1>
                     <br />
                     </div>
                 </div>
                 <div id="logInForm"className="row">
                 <form id="loginForm">
                     <div className="form-group">
-                        <label>EMAIL ADDRESS</label>
-                        <input value={this.state.email} name="Email" type="email" className="noRadius form-control" 
+                        <label className="rounded">EMAIL ADDRESS</label>
+                        <input value={this.state.email} name="Email" type="email" className="noRadius rounded form-control"
                         aria-describedby="emailHelp" 
                         placeholder="EXAMPLE@EMAIL.MAIL"
                         onChange={(event) => this.keyPress(event)}
                         />
                     </div>
                     <div className="form-group">
-                        <label>PASSWORD</label>
-                        <input value={this.state.password} name="Password" type="password" className="noRadius form-control" 
+                        <label className="rounded">PASSWORD</label>
+                        <input value={this.state.password} name="Password" type="password" className="noRadius form-control rounded"
                         placeholder="PASSWORD"
                         onChange={(event) => this.keyPress(event)}
                         />

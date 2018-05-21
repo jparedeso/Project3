@@ -8,7 +8,7 @@ class Navabar extends Component {
 
         this.state = {
             forumDropdown: ["General Discussion", "Reviews"],
-            userDropdown: ["Register", "Login", "Profile", "Sign Out"],
+            userDropdown: ["REGISTER", "LOGIN", "PROFILE", "SIGNOUT"],
             forumMenu: false,
             userMenu: false
         };

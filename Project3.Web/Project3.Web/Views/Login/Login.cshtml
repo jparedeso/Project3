@@ -1,0 +1,33 @@
+<!-- log in -->
+<!-- def needs a lot to convert back to html -->
+<div id="main" class='container formContainer'>
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="flash" id="regReq">WAIT... THE  PRINCESS  REQUESTS  THAT  YOU  REGISTER  OR  LOGIN  BEFORE  ENTERING THE  KINGDOM!
+            </h1>
+            <br />
+        </div>
+    </div>
+    <div id="logInForm"class="row">
+        <form>
+            <div class="form-group">
+                <label class="rounded">EMAIL ADDRESS</label>
+                <input value={this.state.email} type="email" class="noRadius rounded form-control" 
+                aria-describedby="emailHelp" 
+                placeholder="EXAMPLE@EMAIL.MAIL"
+                onChange={(event) => this.keyPress(event)}
+                />
+            </div>
+            <div class="form-group">
+                <label class="rounded">PASSWORD</label>
+                <input value={this.state.password} type="password" class="noRadius form-control rounded" 
+                placeholder="PASSWORD"
+                onChange={(event) => this.keyPress(event)}
+                />
+            </div>
+            <button type="submit" class="btn btn-success" id='submitButton'>LOGIN</button>
+            <br />
+            <Link to={'/'} class="registrationLink">DON'T HAVE AN ACCOUNT? CREATE ONE HERE</Link>
+        </form>
+    </div>
+</div>
