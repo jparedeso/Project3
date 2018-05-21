@@ -35,4 +35,12 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="src\content\js\" />
+    <Folder Include="src\content\css\" />
+    <Folder Include="src\content\images\" />
+    <Folder Include="src\content\fonts\" />
+    <Folder Include="Views\Forums\" />
+  </ItemGroup>
+
 </Project>

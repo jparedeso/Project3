@@ -5,7 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
-using Costos.API.Utilities;
+using Project3.API.Utilities;
 using Newtonsoft.Json.Linq;
 
 namespace Project3.API.Models.Game
@@ -38,15 +38,15 @@ namespace Project3.API.Models.Game
         }
 
 
-        public static JToken GetUsers(NameValueCollection nvc)
+        public static JToken GetGames(NameValueCollection nvc)
         {
             using (SqlConnection conn = DbConnectionFactory.CreateSqlConnection())
-            using (SqlCommand command = new SqlCommand("Users_Select", conn))
+            using (SqlCommand command = new SqlCommand("Game_Select", conn))
             {
                 command.CommandType = CommandType.StoredProcedure;
 
                 //if (!string.IsNullOrEmpty(clientIdentifier))
-                command.Parameters.AddWithValue("@UserID", nvc["UserID"]);
+                command.Parameters.AddWithValue("@GameID", nvc["GameID"]);
 
                 using (SqlDataReader reader = command.ExecuteReader())
                 {

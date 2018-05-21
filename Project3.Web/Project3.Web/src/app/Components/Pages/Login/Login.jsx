@@ -10,15 +10,16 @@ class Login extends Component {
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            __RequestVerificationToken: ''
         };
-    };
+    }
 
     componentWillMount() {
         axios.get("XsrfToken/Get").then(res => {
             this.setState({ __RequestVerificationToken: res.data.token });
         });
-    };
+    }
 
     auth() {
         // loop over state
@@ -46,7 +47,7 @@ class Login extends Component {
         e.preventDefault();
         //const { FirstName, LastName, Email, Password, ConfirmPassword, __RequestVerificationToken } = this.state;
         //console.log(FirstName, LastName, Email, Password, ConfirmPassword);
-        axios.post("Account/Register", serialize(document.querySelector("#registerForm")),
+        axios.post("Account/Login", serialize(document.querySelector("#loginForm")),
             {
                 withCredentials: true,
                 headers: {
@@ -54,14 +55,15 @@ class Login extends Component {
                 }
             }).then(() => {
                 this.setState({
-                    FirstName: '',
-                    LastName: '',
-                    Email: '',
-                    Password: '',
-                    ConfirmPassword: '',
+                    email: '',
+                    password: '',
                     __RequestVerificationToken: ''
                 });
-            });
+
+                this.props.history.push("/Profile");
+            }).catch(error => {
+            console.log(error);
+        });
         
     }
    
@@ -89,10 +91,10 @@ class Login extends Component {
                     </div>
                 </div>
                 <div id="logInForm"className="row">
-                <form>
+                <form id="loginForm">
                     <div className="form-group">
                         <label>EMAIL ADDRESS</label>
-                        <input value={this.state.email} type="email" className="noRadius form-control" 
+                        <input value={this.state.email} name="Email" type="email" className="noRadius form-control" 
                         aria-describedby="emailHelp" 
                         placeholder="EXAMPLE@EMAIL.MAIL"
                         onChange={(event) => this.keyPress(event)}
@@ -100,12 +102,13 @@ class Login extends Component {
                     </div>
                     <div className="form-group">
                         <label>PASSWORD</label>
-                        <input value={this.state.password} type="password" className="noRadius form-control" 
+                        <input value={this.state.password} name="Password" type="password" className="noRadius form-control" 
                         placeholder="PASSWORD"
                         onChange={(event) => this.keyPress(event)}
                         />
                     </div>
-                    <button type="submit" className="btn btn-success" id='submitButton'>LOGIN</button>
+                    <input type="hidden" name="__RequestVerificationToken" value={this.state.__RequestVerificationToken} />
+                        <button  className="btn btn-success" id='submitButton' onClick={this.registerUser}>LOGIN</button>
                     <br />
                     <Link to={'/'} className="registrationLink">DON'T HAVE AN ACCOUNT? CREATE ONE HERE</Link>
                 </form>

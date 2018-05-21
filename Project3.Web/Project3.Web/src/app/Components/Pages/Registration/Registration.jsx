@@ -44,7 +44,11 @@ class Registration extends Component {
                     ConfirmPassword: '',
                     __RequestVerificationToken: ''
                 });
-            });
+
+//                this.props.history.push("/");
+        }).catch(error => {
+            alert(error.data.message);
+        });
         
     }
 

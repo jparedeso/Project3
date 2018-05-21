@@ -6,7 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
 
-namespace Costos.API.Utilities
+namespace Project3.API.Utilities
 {
     public class ParameterDictionary : IEnumerable
     {

@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
-using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Project3.Web.Data;
@@ -81,14 +77,14 @@ namespace Project3.Web
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            if (env.IsDevelopment() || env.IsStaging())
-            {
-                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
-                {
-                    HotModuleReplacement = true,
-                    ReactHotModuleReplacement = true
-                });
-            }
+//            if (env.IsDevelopment() || env.IsStaging())
+//            {
+//                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+//                {
+//                    HotModuleReplacement = true,
+//                    ReactHotModuleReplacement = true
+//                });
+//            }
 
             //using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             //{

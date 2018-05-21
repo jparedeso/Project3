@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 
-namespace Costos.API.Utilities
+namespace Project3.API.Utilities
 {
     public enum DuplicateColumnHandling
     {
@@ -134,6 +134,9 @@ namespace Costos.API.Utilities
 
                     string key = Convert.ToString(row.ItemArray[0]);
 
+                    var jToken = JToken.FromObject(reader[col]);
+                    var val = jToken.ToString().Contains("\"Data\": null") && jToken.ToString().Contains("\"AssemblyName\": \"\"") ? null : jToken;
+
                     switch (duplicateColumnHandling)
                     {
                         case DuplicateColumnHandling.Ignore:
@@ -141,14 +144,16 @@ namespace Costos.API.Utilities
                                 JToken value;
 
                                 if (!json.TryGetValue(key, out value))
-                                    json.Add(Convert.ToString(row.ItemArray[0]), JToken.FromObject(reader[col]));
+                                {
+                                    json.Add(Convert.ToString(row.ItemArray[0]), val);
+                                }
                             }
                             break;
                         case DuplicateColumnHandling.Overwrite:
-                            json[key] = JToken.FromObject(reader[col]);
+                            json[key] = val;
                             break;
                         default:
-                            json.Add(Convert.ToString(row.ItemArray[0]), JToken.FromObject(reader[col]));
+                            json.Add(Convert.ToString(row.ItemArray[0]), val);
                             break;
                     }
                 }

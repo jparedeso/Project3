@@ -1,7 +1,7 @@
 ﻿using System.Data.SqlClient;
 using System.Threading.Tasks;
 
-namespace Costos.API.Utilities
+namespace Project3.API.Utilities
 {
     public static class DbConnectionFactory
     {

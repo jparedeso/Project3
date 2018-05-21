@@ -82,7 +82,7 @@ namespace Project3.Web.Controllers
                 if (result.IsLockedOut)
                 {
                     _logger.LogWarning("User account locked out.");
-                    return RedirectToAction(nameof(Lockout));
+                    return Lockout();
                 }
 
                 try
@@ -122,6 +122,8 @@ namespace Project3.Web.Controllers
                     Utilities.Utilities.AddCookie(HttpContext, "AccessToken", accessToken, expires);
                     Utilities.Utilities.AddCookie(HttpContext, "RefreshToken", refreshToken, DateTime.Now.AddDays(14d));
 
+                    return Ok();
+
                     //return RedirectToLocal(returnUrl);
                 }
                 catch (Exception ex)
@@ -129,13 +131,13 @@ namespace Project3.Web.Controllers
                     Console.WriteLine(ex);
                     //await _signInManager.SignOutAsync();
                     HttpContext.Session.Clear();
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return View(model);
+                    //ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    return BadRequest(new { message = "Invalid login attempt." });
                 }
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return StatusCode(500, "Something failed");
         }
 
         [HttpGet]
@@ -156,7 +158,7 @@ namespace Project3.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
+        public async Task<ActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
@@ -188,11 +190,11 @@ namespace Project3.Web.Controllers
                     return StatusCode(500, response);
                 }
 
-                return RedirectToAction(nameof(Login));
+                return Created("/api/Account/Register", "User created");
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return StatusCode(500, "Something failed");
         }
 
         [HttpPost]
