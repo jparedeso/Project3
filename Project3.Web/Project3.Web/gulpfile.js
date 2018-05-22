@@ -67,20 +67,29 @@ gulp.task("watch", () => {
 //});
 
 gulp.task('image', () =>
-    gulp.src('src/images/*')
+    gulp.src('src/content/images/*')
         .pipe(imagemin())
         .pipe(gulp.dest(imagesPath))
 );
 
 gulp.task('style', () =>
     gulp.src('src/content/css/*.css')
-    .pipe(concat('style.css'))
+    .pipe(concat('site.css'))
     .pipe(gulp.dest(cssPath))
 );
 
+gulp.task("vendor:css", () => {
+    gulp.src([
+            "node_modules/bootstrap/dist/js/bootstrap.css",
+            "node_modules\animate.css/animate.css"
+        ])
+        .pipe(concat('vendor.css'))
+        .pipe(gulp.dest(compilePath));
+});
 
 gulp.task("vendor:js", () => {
     gulp.src([
+        "node_modules\jquery\dist/jquery.js",
         "node_modules/bootstrap/dist/js/bootstrap.js",
         "node_modules/jquery-validation/dist/jquery.validate.js",
         "node_modules/@fortawesome/fontawesome/index.js"
@@ -89,4 +98,4 @@ gulp.task("vendor:js", () => {
         .pipe(gulp.dest(compilePath));
 });
 
-gulp.task("default", ["clean", "image", "vendor:js", "style", "bundle.babel", "babel:watch"]);
+gulp.task("default", ["clean", "image", "vendor:js", "vendor:css", "style", "bundle.babel", "babel:watch"]);

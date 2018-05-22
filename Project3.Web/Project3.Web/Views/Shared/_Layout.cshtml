@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <environment include="Development,Staging">
         <link rel="stylesheet" href="~/dist/css/vendor.css" />
-        <link rel="stylesheet" href="~/dist/css/bundle.css" />
+        <link rel="stylesheet" href="~/dist/css/site.css" />
     </environment>
     <environment include="Production">
         <link rel="stylesheet" href="~/dist/css/vendor.min.css" asp-append-version="true" />
-        <link rel="stylesheet" href="~/dist/css/bundle.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/dist/css/site.min.css" asp-append-version="true" />
     </environment>
 </head>
 <body>
@@ -26,14 +26,12 @@
     </div>
 
     <environment include="Development,Staging">
-        <script src="~/dist/js/manifest.js"></script>
-        <script src="~/dist/js/vendor.js"></script>
-        <script src="~/dist/js/bundle.js"></script>
+        <script src="~/dist/content/js/vendor.js"></script>
+        <script src="~/dist/content/js/site.js"></script>
     </environment>
     <environment include="Production">
-        <script src="~/dist/js/manifest.min.js" asp-append-version="true"></script>
         <script src="~/dist/js/vendor.min.js" asp-append-version="true"></script>
-        <script src="~/dist/js/bundle.min.js" asp-append-version="true"></script>
+        <script src="~/dist/js/site.min.js" asp-append-version="true"></script>
     </environment>
 
     @RenderSection("Scripts", required: false)

@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/jparedeso/Project3#readme",
   "dependencies": {
+    "animate.css": "^3.6.1",
+    "animation": "^0.1.3",
     "axios": "^0.18.0",
     "del": "^3.0.0",
     "form-serialize": "^0.7.2",
