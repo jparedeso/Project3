@@ -1,0 +1,183 @@
+body {
+  background: rgb(75, 72, 72);
+}
+
+.currentThread {
+  color: red;
+  font-family: 'Audiowide', cursive;
+  margin-top: 20px;
+}
+
+#addPost {
+  background-color:red;
+  color: black;
+  border-radius: 10px;
+  border: none;
+  font-family: 'Audiowide', cursive;
+  margin-top: 20px;
+}
+
+.commentComponent {
+  margin-top: 25px;
+}
+
+.userInfoCard {
+  margin-top: 5px;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(248, 252, 236);
+  color: red;
+  text-align: center;
+  font-family: 'Audiowide', cursive;
+}
+
+.card-img-top {
+  width: 100px;
+  height: 100px;
+  padding-top: 5px;
+  border: none;
+  border-radius: 10px;
+}
+
+.card-text {
+  font-size: 12px;
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.userComment {
+  height: 183px;
+  padding: 5px;
+  margin: 5px 5px 5px 0px;
+  border: none;
+  border-radius: 10px;
+  overflow: auto;
+  font-family: 'Titillium Web', sans-serif;
+  background-color: rgb(248, 252, 236);
+}
+
+.up, .down {
+  /* margin-top: 5px; */
+  font-family: 'Audiowide', cursive;
+  width: 40px;
+  height: 40px;
+  background-color: rgb(248, 252, 236);
+}
+
+#commentModal {
+  font-family: 'Audiowide', cursive;
+  color: red;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  margin-top: 100px;
+}
+
+.modal-content {
+  border-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.modal-header {
+   background-color: #2c2c2c;
+   font-size: 30px;
+}
+
+.modal-body {
+  background-color: rgb(248, 252, 236);
+}
+
+#submitPost {
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+}
+
+.postBody {
+  color: black;
+  font-family: 'Titillium Web', sans-serif;
+  border-radius: 10px;
+}
+
+textarea {
+  width: 567px;
+  height: 100px;
+  overflow: auto;
+}
+
+body {
+  background: rgb(75, 72, 72);
+}
+
+.welcome {
+  font-family: 'Audiowide', cursive;
+  color: red;
+}
+
+.forumMenu {
+  border-radius: 10px;
+  padding: 10px;
+  margin: 5px 15px 5px 5px;;
+  background-color: rgb(248, 252, 236);
+  font-family: 'Audiowide', cursive;
+  text-align: left;
+  font-size: 18px;
+}
+
+ul {
+  border-radius: 10px;
+  margin-top: -10px;
+  margin-bottom: 0px;
+  margin-left: 14px;
+  padding-left: 10px;
+  padding-right: 2px;
+  background-color: rgb(219, 247, 144);
+  font-family: 'Titillium Web', sans-serif;
+}
+
+.platform {
+  color: black;
+}
+
+.forumTitle {
+  color: red;
+}
+
+.topRow {
+  background-color: rgb(219, 247, 144);
+  border: none;
+  border-radius: 5px;
+}
+
+.thead {
+   background-color: rgb(219, 247, 144);
+}
+
+#addThread {
+  font-size: 10px;
+  color: white;
+  background-color: black;
+  margin-left: 10px;
+  border-radius: 10px;
+}
+
+.table {
+  border-radius: 10px;
+  padding: 10px;
+  background-color: rgb(248, 252, 236);
+  font-family: 'Titillium Web', sans-serif;
+  color: black;
+}
+
+th {
+  color: red;
+  font-family: 'Audiowide', cursive;
+}
+
+.artTitle {
+  font-weight: bold;
+  color: black;
+}
+
+.align {
+  text-align: center;
+}

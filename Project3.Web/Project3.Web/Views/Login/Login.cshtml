@@ -1,33 +1,43 @@
-<!-- log in -->
-<!-- def needs a lot to convert back to html -->
+<!-- <!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Audiowide|Press+Start+2P" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="Login.css">
+  <title>Login</title>
+</head>
+<body> -->
 <div id="main" class='container formContainer'>
-    <div class="row">
-        <div class="col-sm-12">
-            <h1 class="flash" id="regReq">WAIT... THE  PRINCESS  REQUESTS  THAT  YOU  REGISTER  OR  LOGIN  BEFORE  ENTERING THE  KINGDOM!
-            </h1>
-            <br />
-        </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <h1 class="flash" id="regReq">WAIT... THE PRINCESS REQUESTS THAT YOU REGISTER OR LOGIN BEFORE ENTERING THE KINGDOM!
+      </h1>
+      <br>
     </div>
-    <div id="logInForm"class="row">
-        <form>
-            <div class="form-group">
-                <label class="rounded">EMAIL ADDRESS</label>
-                <input value={this.state.email} type="email" class="noRadius rounded form-control" 
-                aria-describedby="emailHelp" 
-                placeholder="EXAMPLE@EMAIL.MAIL"
-                onChange={(event) => this.keyPress(event)}
-                />
-            </div>
-            <div class="form-group">
-                <label class="rounded">PASSWORD</label>
-                <input value={this.state.password} type="password" class="noRadius form-control rounded" 
-                placeholder="PASSWORD"
-                onChange={(event) => this.keyPress(event)}
-                />
-            </div>
-            <button type="submit" class="btn btn-success" id='submitButton'>LOGIN</button>
-            <br />
-            <Link to={'/'} class="registrationLink">DON'T HAVE AN ACCOUNT? CREATE ONE HERE</Link>
-        </form>
-    </div>
+  </div>
+  <div id="logInForm" class="row">
+    <form>
+      <div class="form-group">
+        <label class="rounded">EMAIL ADDRESS</label>
+        <input type="email" class="noRadius rounded form-control" aria-describedby="emailHelp" placeholder="EXAMPLE@EMAIL.MAIL">
+      </div>
+      <div class="form-group">
+        <label class="rounded">PASSWORD</label>
+        <input type="password" class="noRadius form-control rounded" placeholder="PASSWORD"></input>
+      </div>
+      <button type="submit" class="btn btn-success" id='submitButton'>LOGIN</button>
+      <br>
+      <br>
+      <a class="registrationLink">DON'T HAVE AN ACCOUNT? CREATE ONE HERE</a>
+      <br>
+    </form>
+  </div>
 </div>
+<!-- </body>
+</html> -->
