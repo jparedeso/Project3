@@ -1,82 +1,126 @@
-<!-- forum with all react components, still may need some converting -->
+<!-- <!DOCTYPE html>
+<html lang="en-us">
 
-<!-- Forum Title -->
-<div class="container">
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Audiowide|Press+Start+2P" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+  <link rel="stylesheet" href="ForumHome.css">
+  <title>Forum Page</title>
+</head>
+
+<body> -->
+  <br>
+  <div class="container">
     <div class="row">
-        <h3 class="welcome">[WHICHEVER] FORUM</h3>
+      <h2 class="welcome">{WHICHEVER} FORUM</h2>
     </div>
+    <div class="row">
+      <div class="col-sm-2 forumMenu sticky">
+        <a href="" class="forumTitle">GENERAL</a>
+        <br>
+        <a href="" class="forumTitle">REVIEW</a>
+        <br>
+        <p class="forumTitle">PLATFORMS</p>
+         <ul>
+          <a class="platform" href="">Atari 2600</a><br>
+          <a class="platform" href="">NES</a><br>
+          <a class="platform" href="">Nintendo 64</a><br>
+          <a class="platform" href="">Nintendo Gameboy</a><br>
+          <a class="platform" href="">Super Nintendo</a><br>
+          <a class="platform" href="">Playstation</a><br>
+          <a class="platform" href="">Playstation2</a><br>
+          <a class="platform" href="">Sega Genesis</a><br>
+          <a class="platform" href="">Sega Master System</a><br>
+          <a class="platform" href="">Xbox</a><br>
+        </ul>
+      </div>
+ 
+      <div class="col-sm-9">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="topRow">{THREAD TOPIC NAME}<button id="addThread" type="button" class="btn btn-primary" data-toggle="modal" data-target="#newThreadModal">NEW THREAD</button></th>
+              <th class="align topRow">AUTHOR</th>
+              <th class="align topRow">CREATED</th>
+              <th class="align topRow">LATEST ACTIVITY</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a class="artTitle" href="#">Donkey Kong Sucks!</a></td>
+              <td class="align">Luigi</td>
+              <td class="align">4:43pm</td>
+              <td class="align">4:43pm</td>
+            </tr>
+            <tr>
+            <td><a class="artTitle" href="#">I think they should bring back duck hunt!</a></td>
+            <td class="align">D-Duck</td>
+            <td class="align">3:04am</td>
+            <td class="align">4:53pm</td>
+            </tr>
+            <tr>
+              <td><a class="artTitle" href="#">Bowzer is really a gentle giant, not a filty rat!</a></td>
+              <td class="align">Link</td>
+              <td class="align">11:21am</td>
+              <td class="align">1:03pm</td>
+            </tr>
+            <tr>
+              <td>
+                <a class="artTitle" href="#">Donkey Kong Sucks!</a>
+              </td>
+              <td class="align">Luigi</td>
+              <td class="align">4:43pm</td>
+              <td class="align">7:43pm</td>
+            </tr>
+            <tr>
+              <td>
+                <a class="artTitle" href="#">Donkey Kong Sucks!</a>
+              </td>
+              <td class="align">Luigi</td>
+              <td class="align">4:43pm</td>
+              <td class="align">4:19am</td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+  </div>
+  </div>
+
+<div class="modal fade" id="newThreadModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">START A NEW THREAD</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <form action="/action_page.php">
+          THREAD TITLE:
+          <br>
+          <input class="threadTitle" type="text" name="ThreadTitle">
+          <br> POST:
+          <br>
+          <textarea class="threadBody" type="text" name="Post"></textarea>
+          <br>
+          <br>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button id="submitThread" type="submit" class="btn btn-primary" data-dismiss="modal">POST</button>
+      </div>
+
+    </div>
+  </div>
 </div>
 
-<!-- Forum left main menu box -->
-<div class="container">
-    <div class="row">
-        <h3 class="welcome"> FORUM</h3>
-    </div>
-    <div class="row">
-        <div class="col-sm-2 forumMenu sticky">
-            <a href="" class="forumTitle">GENERAL</a><br/>
-            <a href="" class="forumTitle">REVIEW</a><br/>
-                <p class="forumTitle">PLATFORMS</p>
-            <ul>
-                <a class="platform" href="">Atari 2600</a><br/>
-                <a class="platform" href="">NES</a><br/>
-                <a class="platform" href="">Nintendo 64</a><br/>
-                <a class="platform" href="">Nintendo Gameboy</a><br/>
-                <a class="platform" href="">Super Nintendo</a><br/>
-                <a class="platform" href="">Playstation</a><br/>
-                <a class="platform" href="">Playstation2</a><br/>
-                <a class="platform" href="">Sega Genesis</a><br/>
-                <a class="platform" href="">Sega Master System</a><br/>
-                <a class="platform" href="">Xbox</a><br/>
-            </ul>
-        </div>
-    </div>
-</div>
-
-<!-- Thread Topics -->
-<div class="container">
-    <div class="row">
-        <div class="col-sm-9 col-sm-col-lg-offset-2">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th class="topRow">[THREAD TOPIC NAME]<button id="addThread">NEW THREAD</button></th>
-                        <th class="align topRow">AUTHOR</th>
-                        <th class="align topRow">CREATED</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><a class="artTitle" href="#">Donkey Kong Sucks!</a></td>
-                        <td class="align">Luigi</td>
-                        <td class="align">4:43pm</td>
-                    </tr>
-                    <tr>
-                        <td><a class="artTitle" href="#">I think they should bring back duck hunt!</a></td>
-                        <td class="align">D-Duck</td>
-                        <td class="align">3:04am</td>
-                    </tr>
-                    <tr>
-                        <td><a class="artTitle" href="#">Bowzer is really a gentle giant, not a filty rat!</a></td>
-                        <td class="align">Link</td>
-                        <td class="align">11:21am</td>
-                    </tr>
-                    <tr>
-                        <td>
-                        <a class="artTitle" href="#">Donkey Kong Sucks!</a>
-                        </td>
-                        <td class="align">Luigi</td>
-                        <td class="align">4:43pm</td>
-                    </tr>
-                    <tr>
-                        <td>
-                        <a class="artTitle" href="#">Donkey Kong Sucks!</a>
-                        </td>
-                        <td class="align">Luigi</td>
-                        <td class="align">4:43pm</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div >
-</div>
+  <!-- </body>
+</html> -->

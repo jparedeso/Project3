@@ -1,63 +1,64 @@
-<!-- registration -->
-<!-- def needs a lot of converting back to html -->
-<div class='container formContainer'>
+<!-- <!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Audiowide|Press+Start+2P" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="Registration.css">
+  <title>Registration</title>
+</head>
+
+<body> -->
+  <div class='container formContainer'>
     <div class="row">
-        <h1 id="regReq" class="flash">WAIT... THE  PRINCESS  REQUESTS  THAT  YOU  REGISTER  OR  LOGIN  BEFORE  ENTERING THE  KINGDOM!</h1>
-        <br />
-        <div id="form" class="col-sm-6">
-            <form id="registerForm">
-                <div class="form-group">
-                    <label class="rounded">FIRST NAME</label>
-                    <input value={this.state.FirstName} type="text" class="noRadius rounded form-control"
-                    name='FirstName'
-                    aria-describedby="EmailHelp"
-                    placeholder="FIRST NAME"
-                    onChange={(event) => this.keyPress(event)}/>
-                </div>
-                <div class="form-group">
-                    <label class="rounded">LAST NAME</label>
-                    <input value={this.state.LastName} type="text" class="noRadius rounded form-control"
-                    name='LastName'
-                    placeholder="LAST NAME"
-                    onChange={(event) => this.keyPress(event)}/>
-                </div>
-                <div class="form-group">
-                    <label>EMAIL ADDRESS</label>
-                    <input value={this.state.Email} type="Email" class="noRadius form-control rounded"
-                    name='Email'
-                    aria-describedby="EmailHelp"
-                    placeholder="EXAMPLE@EMAIL.MAIL"
-                    onChange={(event) => this.keyPress(event)}/>
-                </div>
-                <div class="form-group">
-                    <label class="rounded">PASSWORD</label>
-                    <input value={this.state.Password} type="Password" class="noRadius rounded form-control"
-                    name='Password'
-                    placeholder="PASSWORD"
-                    onChange={(event) => this.keyPress(event)}/>
-                </div>
-                <div class="form-group">
-                    <label class="rounded">CONFIRM PASSWORD</label>
-                    <input value={this.state.ConfirmPassword} type="Password" class="noRadius rounded form-control"
-                    name='ConfirmPassword'
-                    placeholder="CONFIRM PASSWORD"
-                    onChange={(event) => this.keyPress(event)} />
-                </div>
-                <input class="rounded" type="hidden" name="__RequestVerificationToken" value={this.state.__RequestVerificationToken} />
-                <button type="submit" class="btn btn-success"
-                id='submitButton'
-                onClick={(e) => this.registerUser(e)}>
-                        REGISTER
-                </button>
-                <br/>
-                <Link to={'/Login'} class="registrationLink">ALREADY HAVE AN ACCOUNT? LOGIN HERE</Link>
-            </form>
+      <h1 id="regReq" class="flash">WAIT... THE PRINCESS REQUESTS THAT YOU REGISTER OR LOGIN BEFORE ENTERING THE KINGDOM!</h1>
+      <br />
+      <div id="form" class="col-sm-6">
+        <form id="registerForm">
+          <div class="form-group">
+            <label class="rounded">FIRST NAME</label>
+            <input type="text" class="noRadius rounded form-control" name='FirstName' aria-describedby="EmailHelp"
+              placeholder="FIRST NAME">
+          </div>
+          <div class="form-group">
+            <label class="rounded">LAST NAME</label>
+            <input type="text" class="noRadius rounded form-control" name='LastName' placeholder="LAST NAME">
+          </div>
+          <div class="form-group">
+            <label>EMAIL ADDRESS</label>
+            <input type="Email" class="noRadius form-control rounded" name='Email' aria-describedby="EmailHelp"
+              placeholder="EXAMPLE@EMAIL.MAIL">
+          </div>
+          <div class="form-group">
+            <label class="rounded">PASSWORD</label>
+            <input type="Password" class="noRadius rounded form-control" name='Password' placeholder="PASSWORD">
+          </div>
+          <div class="form-group">
+            <label class="rounded">CONFIRM PASSWORD</label>
+            <input value={this.state.ConfirmPassword} type="Password" class="noRadius rounded form-control" name='ConfirmPassword'
+              placeholder="CONFIRM PASSWORD">
+          </div>
+          <input class="rounded" type="hidden" name="__RequestVerificationToken" value={this.state.__RequestVerificationToken}
+          />
+          <button type="submit" class="btn btn-success" id='submitButton'> REGISTER
+          </button>
+          <br>
+          <br>
+          <a href="" class="registrationLink">ALREADY HAVE AN ACCOUNT? LOGIN HERE</a>
+        </form>
+      </div>
+      <div id="marioPipe" class="col-sm-6">
+        <div class="marioPic animated bounceInUp">
+          <img id="mario" src="https://reichanjapan.files.wordpress.com/2016/02/mariogiftcard.png?w=230&h=335" />
         </div>
-        <div id="marioPipe" class="col-sm-6">
-            {/* ////////////////////////////////// */}
-            <div class="marioPic animated bounceInUp">
-                <img id="mario" src="https://reichanjapan.files.wordpress.com/2016/02/mariogiftcard.png?w=230&h=335" />
-            </div>
-        </div>
+      </div>
     </div>
-</div>
+  </div>
+<!-- </body>
+</html> -->
