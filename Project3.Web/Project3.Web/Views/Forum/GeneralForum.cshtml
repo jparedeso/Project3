@@ -1,31 +1,13 @@
-<!-- <!DOCTYPE html>
-<html lang="en-us">
-
-<head>
-  <meta charset="UTF-8" name="viewport" content="width=device-width, initial scale=1.0">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-    crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-    crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Audiowide|Press+Start+2P" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
-  <link rel="stylesheet" href="ForumHome.css">
-  <title>Forum Page</title>
-</head>
-
-<body> -->
-  <br>
+<br>
   <div class="container">
     <div class="row">
-      <h2 class="welcome">{WHICHEVER} FORUM</h2>
+      <h2 class="welcome">GENERAL FORUM</h2>
     </div>
     <div class="row">
       <div class="col-sm-2 forumMenu sticky">
-        <a href="" class="forumTitle">GENERAL</a>
+        <a href="Views/Forum/GeneralForum.cshtml" class="forumTitle">GENERAL</a>
         <br>
-        <a href="" class="forumTitle">REVIEW</a>
+        <a href="Views/Forum/ReviewForum.cshtml" class="forumTitle">REVIEW</a>
         <br>
         <p class="forumTitle">PLATFORMS</p>
          <ul>
@@ -46,13 +28,14 @@
         <table class="table">
           <thead>
             <tr>
-              <th class="topRow">{THREAD TOPIC NAME}<button id="addThread" type="button" class="btn btn-primary" data-toggle="modal" data-target="#newThreadModal">NEW THREAD</button></th>
+              <th class="topRow">GENERAL THREADS<button id="addThread" type="button" class="btn btn-primary" data-toggle="modal" data-target="#newThreadModal">NEW THREAD</button></th>
               <th class="align topRow">AUTHOR</th>
               <th class="align topRow">CREATED</th>
               <th class="align topRow">LATEST ACTIVITY</th>
             </tr>
           </thead>
           <tbody>
+              <!-- these tr's will eventually be removed for dynamic ones from the GET -->
             <tr>
               <td><a class="artTitle" href="#">Donkey Kong Sucks!</a></td>
               <td class="align">Luigi</td>
@@ -60,7 +43,7 @@
               <td class="align">4:43pm</td>
             </tr>
             <tr>
-            <td><a class="artTitle" href="#">I think they should bring back duck hunt!</a></td>
+            <td><a class="artTitle" href="Views/UserPost/UserPost.cshtml">I think they should bring back duck hunt!</a></td>
             <td class="align">D-Duck</td>
             <td class="align">3:04am</td>
             <td class="align">4:53pm</td>
@@ -121,6 +104,3 @@
     </div>
   </div>
 </div>
-
-  <!-- </body>
-</html> -->
