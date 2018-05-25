@@ -32,7 +32,7 @@ class Profile extends Component {
 
 
             var settings = {
-                "async": true,
+                "async": false,
                 "crossDomain": true,
                 "url": `https://cors-anywhere.herokuapp.com/https://svcs.ebay.com/services/search/FindingService/v1?RESPONSE-DATA-FORMAT=JSON&keywords=${gameName},${platformName}&categoryId=139973`,
                 "method": "GET",

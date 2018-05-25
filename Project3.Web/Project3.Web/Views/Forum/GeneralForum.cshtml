@@ -34,7 +34,7 @@
               <th class="align topRow">LATEST ACTIVITY</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="displayReviewThreads">
               <!-- these tr's will eventually be removed for dynamic ones from the GET -->
             <tr>
               <td><a class="artTitle" href="#">Donkey Kong Sucks!</a></td>
@@ -88,17 +88,17 @@
         <form action="/action_page.php">
           THREAD TITLE:
           <br>
-          <input class="threadTitle" type="text" name="ThreadTitle">
+          <input class="threadTitle" class="form-control" type="text" name="ThreadTitle" id="modalThreadTitle">
           <br> POST:
           <br>
-          <textarea class="threadBody" type="text" name="Post"></textarea>
+          <textarea class="threadBody" class="form-control" type="text" name="Post" id="modalPost"></textarea>
           <br>
           <br>
         </form>
-      </div>
-
-      <div class="modal-footer">
-        <button id="submitThread" type="submit" class="btn btn-primary" data-dismiss="modal">POST</button>
+        
+        <div class="modal-footer">
+          <button id="submitGeneralThread" type="submit" class="btn btn-primary" data-dismiss="modal">POST</button>
+        </div>
       </div>
 
     </div>

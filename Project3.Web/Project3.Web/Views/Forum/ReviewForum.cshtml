@@ -34,10 +34,10 @@
              <th class="align topRow">LATEST ACTIVITY</th>
            </tr>
          </thead>
-         <tbody>
-           <tr>
+         <tbody id="displayReviewThreads">
+           <!-- <tr>
              <td><a class="artTitle" href="#">dynamic threads from DB will go here</a></td>
-           </tr>
+           </tr> -->
            <!-- <tr>
                 <td><a class="artTitle" href="#">Donkey Kong Sucks!</a></td>
                 <td class="align">Luigi</td>
@@ -59,21 +59,21 @@
      </div>
 
      <div class="modal-body">
-       <form action="/action_page.php">
-         THREAD TITLE:
-         <br>
-         <input class="threadTitle" type="text" name="ThreadTitle">
-         <br> POST:
-         <br>
-         <textarea class="threadBody" type="text" name="Post"></textarea>
-         <br>
-         <br>
-       </form>
-     </div>
-
-     <div class="modal-footer">
-       <button id="submitThread" type="submit" class="btn btn-primary" data-dismiss="modal">POST</button>
-     </div>
+        <form action="/action_page.php">
+          THREAD TITLE:
+          <br>
+          <input class="threadTitle" class="form-control" type="text" name="ThreadTitle" id="modalThreadTitle">
+          <br> POST:
+          <br>
+          <textarea class="threadBody" class="form-control" type="text" name="Post" id="modalPost"></textarea>
+          <br>
+          <br>
+        </form>
+        
+        <div class="modal-footer">
+          <button id="submitReviewThread" type="submit" class="btn btn-primary" data-dismiss="modal">POST</button>
+        </div>
+      </div>
 
    </div>
  </div>
