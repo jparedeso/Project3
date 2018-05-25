@@ -1,4 +1,4 @@
-﻿/// <binding BeforeBuild='clean, babel' ProjectOpened='watch' />
+﻿/// <binding BeforeBuild='default' />
 const gulp = require("gulp");
 const babel = require("gulp-babel");
 const plumber = require("gulp-plumber");
@@ -15,16 +15,6 @@ const compilePath = "wwwroot/dist/js";
 const fontsPath = "wwwroot/dist/fonts";
 const imagesPath = "wwwroot/dist/images";
 const cssPath = "wwwroot/dist/css";
-
-// gulp.task('cleanSrc', () => {
-//     return del(["Src/content/js/**"]);
-// });
-
-// gulp.task("copyFromContentToSrc", ["cleanSrc"], () => {
-//     gulp.src(["Content/js/**/*.js", "!Content/js/**/*.min.js", "!Content/js/components", "!Content/js/components/**", "!Content/js/plugins", "!Content/js/plugins/**", "!Content/js/sections", "!Content/js/sections/**", "!Content/js/vendor", "!Content/js/vendor/**"])
-//         .pipe(gulp.dest("Src/js"));
-// });
-
 gulp.task('clean', () => {
     return del.sync(["wwwroot/dist"]);
 });
@@ -80,16 +70,16 @@ gulp.task('style', () =>
 
 gulp.task("vendor:css", () => {
     gulp.src([
-            "node_modules/bootstrap/dist/js/bootstrap.css",
-            "node_modules\animate.css/animate.css"
+            "node_modules/bootstrap/dist/css/bootstrap.css",
+            "node_modules/animate.css/animate.css"
         ])
         .pipe(concat('vendor.css'))
-        .pipe(gulp.dest(compilePath));
+        .pipe(gulp.dest(cssPath));
 });
 
 gulp.task("vendor:js", () => {
     gulp.src([
-        "node_modules\jquery\dist/jquery.js",
+        "node_modules/jquery/dist/jquery.js",
         "node_modules/bootstrap/dist/js/bootstrap.js",
         "node_modules/jquery-validation/dist/jquery.validate.js",
         "node_modules/@fortawesome/fontawesome/index.js"
@@ -99,3 +89,5 @@ gulp.task("vendor:js", () => {
 });
 
 gulp.task("default", ["clean", "image", "vendor:js", "vendor:css", "style", "bundle.babel", "babel:watch"]);
+
+gulp.task("watch", ["babel:watch"]);
