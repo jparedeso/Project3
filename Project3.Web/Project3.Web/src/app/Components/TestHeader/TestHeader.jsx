@@ -70,29 +70,6 @@ class Header extends React.Component {
                             userMethod = {() => this.userDropDown()}
                             />
                         </div>
-
-                        
-                    {/* <div className="row">
-                        <div className="col-sm-5 dropdown">
-                            <img id="forumsBtn" role="button" className="redButton dropbtn" src={buttonSrc} onclick={() => someMethod()} />
-                        <div id="forumsDrpDwn" className="dropdown-menu dropdown-menu-right">
-                            <a href="#">FORUMS HOME</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
-                        </div>
-                            <p id="forums">FORUMS</p>
-                        </div>
-                        <div className="col-sm-5 dropdown">
-                            <img id="userBtn" role="button" className="redButton dropbtn" src={buttonSrc} onclick="showUserMenu()" />
-                        <div id="userDrpDwn" className="dropdown-menu dropdown-menu-right">
-                            <a href="#">REGISTER</a>
-                            <a href="#">LOG-IN</a>
-                            <a href="#">PROFILE</a>
-                            <a href="#">SIGN-OUT</a>
-                        </div>
-                            <p id="user">USER</p>
-                        </div>
-                    </div> */}
                     </div>
                 </div>      
                 </div>

@@ -1,0 +1,80 @@
+<br>
+ <div class="container">
+   <div class="row">
+     <h2 class="welcome">REVIEW FORUM</h2>
+   </div>
+   <div class="row">
+     <div class="col-sm-2 forumMenu sticky">
+       <a href="Views/Forum/GeneralForum.cshtml" class="forumTitle">GENERAL</a>
+       <br>
+       <a href="Views/Forum/ReviewForum.cshtml" class="forumTitle">REVIEW</a>
+       <br>
+       <p class="forumTitle">PLATFORMS</p>
+        <ul>
+         <a class="platform" href="Views/Forum/Atari2600Forum.cshtml">Atari 2600</a><br>
+         <a class="platform" href="Views/Forum/NESForum.cshtml">NES</a><br>
+         <a class="platform" href="Views/Forum/SegaGenesisForum.cshtml">Sega Genesis</a><br>
+         <a class="platform" href="Views/Forum/GameboyForum.cshtml">Gameboy</a><br>
+         <a class="platform" href="Views/Forum/SuperNintendoForum.cshtml">Super Nintendo</a><br>
+         <a class="platform" href="Views/Forum/NeoGeoForum.cshtml">Neo-Geo</a><br>
+         <a class="platform" href="Views/Forum/PlaystationForum.cshtml">Playstaion</a><br>
+         <a class="platform" href="Views/Forum/Nintendo64Forum.cshtml">Nintendo 64</a><br>
+         <a class="platform" href="Views/Forum/SegaSaturnForum.cshtml">Sega Saturn</a><br>
+         <a class="platform" href="Views/Forum/DreamcastForum.cshtml">Dreamcast</a><br>
+       </ul>
+     </div>
+
+     <div class="col-sm-9">
+       <table class="table">
+         <thead>
+           <tr>
+             <th class="topRow">THREADS<button id="addThread" type="button" class="btn btn-primary" data-toggle="modal" data-target="#newThreadModal">NEW THREAD</button></th>
+             <th class="align topRow">AUTHOR</th>
+             <th class="align topRow">CREATED</th>
+             <th class="align topRow">LATEST ACTIVITY</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <td><a class="artTitle" href="#">dynamic threads from DB will go here</a></td>
+           </tr>
+           <!-- <tr>
+                <td><a class="artTitle" href="#">Donkey Kong Sucks!</a></td>
+                <td class="align">Luigi</td>
+                <td class="align">4:43pm</td>
+                <td class="align">4:43pm</td>
+            </tr> -->
+         </tbody>
+       </table>
+   </div>
+ </div>
+ </div>
+
+<div class="modal fade" id="newThreadModal">
+ <div class="modal-dialog">
+   <div class="modal-content">
+     <div class="modal-header">
+       <h4 class="modal-title">START A NEW THREAD</h4>
+       <button type="button" class="close" data-dismiss="modal">&times;</button>
+     </div>
+
+     <div class="modal-body">
+       <form action="/action_page.php">
+         THREAD TITLE:
+         <br>
+         <input class="threadTitle" type="text" name="ThreadTitle">
+         <br> POST:
+         <br>
+         <textarea class="threadBody" type="text" name="Post"></textarea>
+         <br>
+         <br>
+       </form>
+     </div>
+
+     <div class="modal-footer">
+       <button id="submitThread" type="submit" class="btn btn-primary" data-dismiss="modal">POST</button>
+     </div>
+
+   </div>
+ </div>
+</div>

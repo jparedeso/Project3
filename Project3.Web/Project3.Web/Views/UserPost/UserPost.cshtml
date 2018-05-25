@@ -1,0 +1,121 @@
+<!-- <!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Audiowide|Press+Start+2P" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+  <link rel="stylesheet" href="UserPost.css">
+  <link rel="stylesheet" href="Menu.css">
+  <title>Thread Posts</title>
+</head>
+
+<body> -->
+
+<div class="container">
+  <div class="newPost" class="row">
+    <div class="col-sm-5">
+      <h2 class="currentThread">CURRENT THREAD TITLE</h2>
+    </div>
+    <div class="col-sm-2">
+      <button id="addPost" type="button" class="btn btn-primary" data-toggle="modal" data-target="#commentModal">
+        ADD POST
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2 forumMenu sticky">
+      <a href="" class="forumTitle">GENERAL</a>
+      <br>
+      <a href="" class="forumTitle">REVIEW</a>
+      <br>
+      <p class="forumTitle">PLATFORMS</p>
+      <ul>
+         <a class="platform" href="">Atari 2600</a>
+            <br>
+            <a class="platform" href="">NES</a>
+            <br>
+            <a class="platform" href="">Sega Genesis</a>
+            <br>
+            <a class="platform" href="">Gameboy</a>
+            <br>
+            <a class="platform" href="">Super Nintendo</a>
+            <br>
+            <a class="platform" href="">Neo-Geo</a>
+            <br>
+            <a class="platform" href="">Playstaion</a>
+            <br>
+            <a class="platform" href="">Nintendo 64</a>
+            <br>
+            <a class="platform" href="">Sega Saturn</a>
+            <br>
+            <a class="platform" href="">Dreamcast</a>
+            <br>
+
+      </ul>
+      
+    </div>
+      <div class="col-sm-2 userInfoCard commentComponent">
+        <div class="card">
+          <img class="card-img-top" src="https://vignette.wikia.nocookie.net/disney/images/d/d5/Donaldstar_1600.jpg/revision/latest?cb=20100629001545"
+            alt="Card image">
+          <div class="card-body">
+            <h4 class="card-title">D-Duck</h4>
+            <p class="card-text">Member of the kingdom since: 2017</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-7 userComment">
+        <p>THIS IS THE POST BODY. AND NO THESE PICS ARE FOR REAL, JUST HAVING FUN :)
+        </p><br>
+        <img role="button" class="up" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJbgvalDYmoSjhnLiAOos5FsxisuX6TUSWgIG7zPIB62NM74A9">
+        <img role="button" class="down" src="https://vignette.wikia.nocookie.net/epicrapbattlesofhistory/images/9/92/Mario_thumbs_down.png/revision/latest?cb=20140623232325">
+      </div>
+  </div>
+</div>
+    
+    <!-- The Modal -->
+    <div class="modal fade" id="commentModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">ADD A POST</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+    
+          <div class="modal-body">
+              <textarea class="postBody" type="text" placeholder="ADD YOUR POST HERE" name="Post"></textarea>
+          </div>
+    
+          <div class="modal-footer">
+            <button id="submitPost" type="submit" class="btn btn-primary" data-dismiss="modal">POST</button>
+          </div>
+    
+        </div>
+      </div>
+    </div>
+
+
+  <!-- <script>
+    $(document).ready(function () {
+      $("addPost").click(function () {
+        $("commentModal").modal();
+      });
+    });
+</script> -->
+
+
+<!-- </body>
+
+
+</html> -->
