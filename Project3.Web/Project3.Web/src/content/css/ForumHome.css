@@ -1,10 +1,11 @@
 body {
-  /* background: rgb(75, 72, 72); */
+ background-color:  rgb(75, 72, 72);
 }
 
 .welcome {
   font-family: 'Audiowide', cursive;
   color: red;
+  text-align: left;
 }
 
 .forumMenu {
@@ -24,7 +25,7 @@ ul {
   margin-left: 14px;
   padding-left: 10px;
   padding-right: 2px;
-  background-color: rgb(219, 247, 144);
+  background-color: rgb(236, 253, 189);
   font-family: 'Titillium Web', sans-serif;
 }
 
@@ -32,12 +33,20 @@ ul {
   color: black;
 }
 
+#platformList, #lightGreen, #lightGreen2, #lightGreen3 {
+  background-color: rgb(236, 253, 189);
+}
+
 .forumTitle {
   color: red;
 }
 
+#tableTop {
+  background-color: rgb(236, 253, 189);
+}
+
 .topRow {
-  background-color: rgb(219, 247, 144);
+  background-color: rgb(236, 253, 189);
   border: none;
   border-radius: 5px;
 }
