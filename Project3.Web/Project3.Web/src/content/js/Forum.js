@@ -1,7 +1,7 @@
 
 $(document).ready(function(){    
     
-    $("#submitReviewThread").on("click", function(event) {
+    $("#submitThread").on("click", function(event) {
         event.preventDefault();
         var newThread = {
             Name: $("#modalThreadTitle").val().trim()
@@ -14,13 +14,13 @@ $(document).ready(function(){
 
         // Send the POST request to create new thread.
 
-        // $.ajax("/api/thread/review", {
+        // $.ajax("/api/thread/", {
         //     type: "POST",
         //     data: newThread
         // }).then(
         //     function() {
         //         console.log("added new thread");
-        //         $.ajax("/api/thread/review/post", {
+        //         $.ajax("/api/thread//post", {
         //             type: "POST",
         //             data: newPost
         //         }).then(
@@ -34,24 +34,23 @@ $(document).ready(function(){
         // );
     });
 
-
-    // if ($("#displayReviewThreads")[0]) {
-    //     // get data for review threads
+    // if ($("#displayThreads")[0]) {
+    //     // get data for  threads
     //     $.ajax({
-    //         url: "/api/thread/review",
+    //         url: "/api/thread/",
     //         method: "GET",
     //         success: function(data) {
     //             console.log(data);
 
-    //             // empty to displayReviewThreads before adding new content
-    //             $("#displayReviewThreads").empty();
+    //             // empty to displayThreads before adding new content
+    //             $("#displayThreads").empty();
     //             // if the data is not there, then return an error message
     //             if (!data) {
-    //                 $("#displayReviewThreads").append("<h2> I'm sorry, but there aren't any review threads yet</h2>");
+    //                 $("#displayThreads").append("<h2> I'm sorry, but there aren't any  threads yet</h2>");
     //             }
     //             else {
     //                 for (var i = 0; i < data.length; i++) {
-    //                     $("#displayReviewThreads").append("<tr>" + 
+    //                     $("#displayThreads").append("<tr>" + 
     //                     "<td><a class='artTitle' href='#'>" + data[i].Name + "</a></td>" + 
     //                     "<td class='align'>" + data[i].userName + "</td>" +
     //                     "<td class='align'>" + data[i].Created + "</td>" +
@@ -67,6 +66,6 @@ $(document).ready(function(){
     //         }
     //     });
     // }
-
     
 });
+
