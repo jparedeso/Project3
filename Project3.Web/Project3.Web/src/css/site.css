@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 20px;
     padding-bottom: 20px;
+    background-color:  rgb(75, 72, 72);
 }
 
 /* Wrapping element */
@@ -17,6 +18,7 @@ hr {
 footer {
     color: red;
     font-family: 'Audiowide', cursive;
+    margin-left: 20px;
 }
 
 /* Carousel */

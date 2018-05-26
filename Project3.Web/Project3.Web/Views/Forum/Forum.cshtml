@@ -22,13 +22,13 @@
       <h2 class="welcome">{WHICHEVER} FORUM</h2>
     </div>
     <div class="row">
-      <div class="col-sm-2 forumMenu sticky">
+      <div class="col-sm-2 forumMenu">
         <a href="" class="forumTitle">GENERAL</a>
         <br>
         <a href="" class="forumTitle">REVIEW</a>
         <br>
         <p class="forumTitle">PLATFORMS</p>
-         <ul>
+         <ul id="platformList">
           <a class="platform" href="">Atari 2600</a><br>
           <a class="platform" href="">NES</a><br>
           <a class="platform" href="">Sega Genesis</a><br>
@@ -46,10 +46,10 @@
         <table class="table">
           <thead>
             <tr>
-              <th class="topRow">{THREAD TOPIC NAME}<button id="addThread" type="button" class="btn btn-primary" data-toggle="modal" data-target="#newThreadModal">NEW THREAD</button></th>
-              <th class="align topRow">AUTHOR</th>
-              <th class="align topRow">CREATED</th>
-              <th class="align topRow">LATEST ACTIVITY</th>
+              <th id="tableTop" class="topRow">{THREAD TOPIC NAME}<button id="addThread" type="button" class="btn btn-primary" data-toggle="modal" data-target="#newThreadModal">NEW THREAD</button></th>
+              <th id="lightGreen" class="align topRow">AUTHOR</th>
+              <th id="lightGreen2" class="align topRow">CREATED</th>
+              <th id="lightGreen3" class="align topRow">LATEST ACTIVITY</th>
             </tr>
           </thead>
           <tbody id="displayThreads">
