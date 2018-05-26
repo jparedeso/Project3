@@ -4,3 +4,7 @@ const test = 5;
 function showUserMenu() {
   document.getElementById("userDrpDwn").classList.toggle("show");
 }
+
+function showForums() {
+  document.getElementById("forumsDrpDwn").classList.toggle("show");
+}

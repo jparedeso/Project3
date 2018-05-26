@@ -35,7 +35,7 @@
                 <div class="row">
                     <div class="col-sm-5 dropdown">
                         <img id="forumsBtn" role="button" class="redButton dropbtn" src="dist/images/redButton.png" onclick="showForums()">
-                        <div id="forumsDrpDwn" class="dropdown-menu dropdown-menu-right">
+                        <div id="forumsDrpDwn" class="dropdown-content">
                             <a href="../Forum/Forum">FORUMS HOME</a>
                             <a href="#">Link 2</a>
                             <a href="#">Link 3</a>
@@ -45,7 +45,7 @@
                     <div class="col-sm-5 dropdown">
                         <img id="userBtn" role="button" class="redButton dropbtn" src="dist/images/redButton.png" onclick="showUserMenu()">
                         <div id="userDrpDwn" class="dropdown-content">                      
-                            <a href="#">PROFILE</a>
+                            <a href="../Profile/Profile">PROFILE</a>
                             @if (SignInManager.IsSignedIn(User))
                                 {
                                     <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
