@@ -122,9 +122,9 @@ namespace Project3.Web.Controllers
                     Utilities.Utilities.AddCookie(HttpContext, "AccessToken", accessToken, expires);
                     Utilities.Utilities.AddCookie(HttpContext, "RefreshToken", refreshToken, DateTime.Now.AddDays(14d));
 
-                    return RedirectToAction("Index", "Home");
+//                    return RedirectToAction("Index", "Home");
 
-                    //return RedirectToLocal(returnUrl);
+                    return RedirectToLocal(returnUrl);
                 }
                 catch (Exception ex)
                 {
