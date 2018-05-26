@@ -2,6 +2,7 @@
 
 function gameValue() {
     var value = [];
+    
     $.ajax({
         url: "/api/games",
         method: "GET",
