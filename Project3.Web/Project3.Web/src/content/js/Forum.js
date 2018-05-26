@@ -1,39 +1,48 @@
+var Forum = function() {
+    function init() {
+        initEventHandlers();
+    }
 
-$(document).ready(function(){    
+    function initEventHandlers() {
+        submitThread();
+    }
     
-    $("#submitThread").on("click", function(event) {
-        event.preventDefault();
-        var newThread = {
-            Name: $("#modalThreadTitle").val().trim()
-        };
+    function submitThread() {
+        $("#submitThread").on("click", function(event) {
+            event.preventDefault();
+            var newThread = {
+                Name: $("#modalThreadTitle").val().trim()
+            };
 
-        var newPost = {
-            Content: $("#modalPost").val().trim()
-        };
-        console.log(newThread, newPost);
+            var newPost = {
+                Content: $("#modalPost").val().trim()
+            };
+            console.log(newThread, newPost);
 
-        // Send the POST request to create new thread.
+            // Send the POST request to create new thread.
 
-        // $.ajax("/api/thread/", {
-        //     type: "POST",
-        //     data: newThread
-        // }).then(
-        //     function() {
-        //         console.log("added new thread");
-        //         $.ajax("/api/thread//post", {
-        //             type: "POST",
-        //             data: newPost
-        //         }).then(
-        //             function() {
-        //                 console.log("added new post");
-        //                 // Reload the page
-        //                 location.reload();
-        //             }
-        //         );
-        //     }
-        // );
-    });
+            // $.ajax("/api/thread/", {
+            //     type: "POST",
+            //     data: newThread
+            // }).then(
+            //     function() {
+            //         console.log("added new thread");
+            //         $.ajax("/api/thread//post", {
+            //             type: "POST",
+            //             data: newPost
+            //         }).then(
+            //             function() {
+            //                 console.log("added new post");
+            //                 // Reload the page
+            //                 location.reload();
+            //             }
+            //         );
+            //     }
+            // );
+        });
+    }
 
+    function displayThreads() {
     // if ($("#displayThreads")[0]) {
     //     // get data for  threads
     //     $.ajax({
@@ -66,6 +75,14 @@ $(document).ready(function(){
     //         }
     //     });
     // }
-    
+    }
+
+    return {
+        init: init
+    }
+}();
+
+$(function() {
+    Forum.init();
 });
 
