@@ -1,5 +1,34 @@
 // Just a comment to have something in file so files push
 
+// add game, needs to run api first to return the data we want to send to Db. newGame is just using value of gameTitle for test
+$(document).ready(function(){  
+
+    $("#addGameBtn").on("click", function(event) {
+        event.preventDefault();
+        var newGame = {
+            Name: $(".gameTitle").val().trim()
+        };
+
+        console.log(newGame);
+
+        // Send the POST request to create new Game.
+
+        // $.ajax("/api/game", {
+        //     type: "POST",
+        //     data: newGame
+        // }).then(
+        //     function() {
+        //         console.log("added new game");
+        //     }
+        // );
+    });
+
+    
+
+});
+
+
+// ebay api in a function, still needs proper get route to test and input proper data
 function gameValue() {
     var value = [];
     
