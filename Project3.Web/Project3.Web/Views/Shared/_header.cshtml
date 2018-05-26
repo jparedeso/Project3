@@ -45,7 +45,6 @@
                         <div id="userDrpDwn" class="dropdown-content">
                             <a href="../Profile/Profile">PROFILE</a>
                             @if (SignInManager.IsSignedIn(User))
-<<<<<<< HEAD
                                 {
                                     <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
                                     <button id="logoutBtn" type="submit">LOG OUT</button>
@@ -64,26 +63,6 @@
                                     <a class="registerLink" href="/Account/Register">REGISTER</a>
                                     <a class="loginLink" href="/Account/Login">LOG IN</a>
                                 }
-=======
-                            {
-                                <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-                                    <button type="submit">LOG OUT</button>
-                                    @*  <ul class="nav navbar-nav navbar-right"> *@
-                                    @*      <li> *@
-                                    @*         <div>Hello @UserManager.GetUserName(User)!</div> *@
-                                    @*      </li> *@
-                                    @*      <li> *@
-                                    @*          <button type="submit" class="btn btn-link navbar-btn navbar-link">Log out</button> *@
-                                    @*    </li> *@
-                                    @*  </ul> *@
-                                </form>
-                            }
-                            else
-                            {
-                                <a class="registerLink" href="/Account/Register">REGISTER</a>
-                                <a class="loginLink" href="/Account/Login">LOG IN</a>
-                            }
->>>>>>> e150b0af89b1c874e143cfadf8a8b974b1284667
                         </div>
                         <p id="user">USER</p>
                     </div>
