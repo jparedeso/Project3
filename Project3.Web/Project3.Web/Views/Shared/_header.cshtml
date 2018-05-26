@@ -44,11 +44,27 @@
                     </div>
                     <div class="col-sm-5 dropdown">
                         <img id="userBtn" role="button" class="redButton dropbtn" src="dist/images/redButton.png" onclick="showUserMenu()">
-                        <div id="userDrpDwn" class="dropdown-menu dropdown-menu-right">
-                            <a href="#">REGISTER</a>
-                            <a href="#">LOG-IN</a>
+                        <div id="userDrpDwn" class="dropdown-menu dropdown-menu-right">                      
                             <a href="#">PROFILE</a>
-                            <a href="#">SIGN-OUT</a>
+                            @if (SignInManager.IsSignedIn(User))
+                                {
+                                    <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+                                    <button type="submit">Log out</button>
+                                        // <ul class="nav navbar-nav navbar-right">
+                                        //     <li>
+                                        //         <div>Hello @UserManager.GetUserName(User)!</div>
+                                        //     </li>
+                                        //     <li>
+                                        //         <button type="submit" class="btn btn-link navbar-btn navbar-link">Log out</button>
+                                        //     </li>
+                                        // </ul>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <a href="../Account/Register">REGISTER</a>
+                                    <a href="../Account/Login">LOG IN</a>
+                                }
                         </div>
                         <p id="user">USER</p>
                     </div>
@@ -56,26 +72,7 @@
             </div>
             <div class="col-sm-2">
                 @* style this as you wish, the if statement is the same as an #if in handlebars, just style whatever is inside. what is doing is showing one thing if you are logged in and another if you are logged out *@
-                @if (SignInManager.IsSignedIn(User))
-                {
-                    <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-                            </li>
-                            <li>
-                                <button type="submit" class="btn btn-link navbar-btn navbar-link">Log out</button>
-                            </li>
-                        </ul>
-                    </form>
-                }
-                else
-                {
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
-                        <li><a asp-area="" asp-controller="Account" asp-action="Login">Log in</a></li>
-                    </ul>
-                }
+                
             </div>
         </div>      
     </div>
