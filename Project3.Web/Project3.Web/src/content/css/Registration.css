@@ -2,7 +2,7 @@ body {
   background: #2c2c2c;
 }
 
-label, #submitButton, .registrationLink, #regReq {
+label, #submitButton, .registrationLink, #regReq, footer {
   font-family: 'Audiowide', cursive;
   color: red;
 }
@@ -16,7 +16,7 @@ label, #submitButton, .registrationLink, #regReq {
 }
 
 #form {
-  background-color: rgb(248, 252, 236);
+  background-color:  rgb(248, 252, 236);
   border: rgb(248, 252, 236);
   border-radius: 10px;
   padding: 40px;

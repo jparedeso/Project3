@@ -30,26 +30,38 @@
             </div>
             <div class="col-sm-5">
                 <div class="row">
-                    <h2>APP NAME HERE</h2>
+                    <h2>CART CATALOG</h2>
                 </div>
                 <div class="row">
                     <div class="col-sm-5 dropdown">
+<<<<<<< HEAD
                         <img id="forumsBtn" role="button" class="redButton dropbtn" src="/dist/images/redButton.png" onclick="showForums()">
                         <div id="forumsDrpDwn" class="dropdown-menu dropdown-menu-right">
                             <a href="#">FORUMS HOME</a>
+=======
+                        <img id="forumsBtn" role="button" class="redButton dropbtn" src="dist/images/redButton.png" onclick="showForums()">
+                        <div id="forumsDrpDwn" class="dropdown-content">
+                            <a href="../Forum/Forum">FORUMS HOME</a>
+>>>>>>> 5cac28102ca52a578c95c1642d312edf2cef9a43
                             <a href="#">Link 2</a>
                             <a href="#">Link 3</a>
                         </div>
                         <p id="forums">FORUMS</p>
                     </div>
                     <div class="col-sm-5 dropdown">
+<<<<<<< HEAD
                         <img id="userBtn" role="button" class="redButton dropbtn" src="/dist/images/redButton.png" onclick="showUserMenu()">
                         <div id="userDrpDwn" class="dropdown-menu dropdown-menu-right">                      
                             <a href="#">PROFILE</a>
+=======
+                        <img id="userBtn" role="button" class="redButton dropbtn" src="dist/images/redButton.png" onclick="showUserMenu()">
+                        <div id="userDrpDwn" class="dropdown-content">                      
+                            <a href="../Profile/Profile">PROFILE</a>
+>>>>>>> 5cac28102ca52a578c95c1642d312edf2cef9a43
                             @if (SignInManager.IsSignedIn(User))
                                 {
                                     <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-                                    <button type="submit">Log out</button>
+                                    <button type="submit">LOG OUT</button>
                                         // <ul class="nav navbar-nav navbar-right">
                                         //     <li>
                                         //         <div>Hello @UserManager.GetUserName(User)!</div>
@@ -62,8 +74,8 @@
                                 }
                                 else
                                 {
-                                    <a href="/Account/Register">REGISTER</a>
-                                    <a href="/Account/Login">LOG IN</a>
+                                    <a class="registerLink" href="/Account/Register">REGISTER</a>
+                                    <a class="loginLink" href="/Account/Login">LOG IN</a>
                                 }
                         </div>
                         <p id="user">USER</p>
