@@ -2,6 +2,25 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div id="content">
-    <h2>test</h2>
+@using Microsoft.AspNetCore.Identity
+@using Project3.Web.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<div class='container formContainer'>
+    
+    @if (SignInManager.IsSignedIn(User))
+    {
+        //whatever you want to show when people are already logged in. the following is a button example for logout, you can get rid of it if you want.
+        <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+                    <button type="submit">Log out</button>
+        </form>
+    }
+    else
+    {
+        //whatever you want to show when people are not logged in
+        <a href="../Account/Register">REGISTER</a>
+        <a href="../Account/Login">LOGIN</a>
+    }
 </div>

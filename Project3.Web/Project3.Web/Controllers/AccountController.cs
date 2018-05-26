@@ -122,7 +122,7 @@ namespace Project3.Web.Controllers
                     Utilities.Utilities.AddCookie(HttpContext, "AccessToken", accessToken, expires);
                     Utilities.Utilities.AddCookie(HttpContext, "RefreshToken", refreshToken, DateTime.Now.AddDays(14d));
 
-                    return Ok();
+                    return RedirectToAction("Index", "Home");
 
                     //return RedirectToLocal(returnUrl);
                 }
@@ -137,7 +137,7 @@ namespace Project3.Web.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            return StatusCode(500, "Something failed");
+            return View(model);
         }
 
         [HttpGet]
@@ -172,29 +172,32 @@ namespace Project3.Web.Controllers
                 }, model.Password);
                 if (!result.Succeeded && result.Errors.Any())
                 {
-                    return BadRequest(new { message = result.Errors.First().Description });
+                    ViewData["error"] = result.Errors.First();
+                    return View(model);
                 }
 
                 var currentUser = await _userManager.FindByEmailAsync(model.Email);
 
                 if (currentUser != null)
                 {
-                    return BadRequest(new { message = "Email already exists." });
+                    ViewData["error"] = "User already exists.";
+                    return View(model);
                 }
 
                 var response = await Utilities.API.Post(_appSettings, new HttpContextAccessor(), "Account/Register", model);
 
                 if (response.StatusCode != HttpStatusCode.Created)
                 {
-                    response.Content = new StringContent("Server Error");
-                    return StatusCode(500, response);
+                    ViewData["error"] = response.ReasonPhrase;
+                    return View(model);
                 }
 
-                return Created("/api/Account/Register", "User created");
+                return RedirectToAction("Index", "Home");
             }
 
             // If we got this far, something failed, redisplay form
-            return StatusCode(500, "Something failed");
+//            ViewData["error"] = "Something went wrong.";
+            return View(model);
         }
 
         [HttpPost]

@@ -139,21 +139,21 @@ namespace Project3.Web
                 {
                     var rd = routerContext.RouteData;
 
-                    if (rd == null) return;
-
-                    var controllerName = rd.Values["controller"].ToString();
-                    var actionName = rd.Values["action"].ToString();
-
-                    if (controllerName == "Home" ||
-                        controllerName == "XsrfToken" ||
-                        controllerName == "Account" && (actionName == "Login" || actionName == "Register"))
-                    {
-                        await _next.Invoke(context);
-                    }
-                    else
-                    {
-                        context.Response.Redirect("~/Account/Login", false);
-                    }
+//                    if (rd == null) return;
+//
+//                    var controllerName = rd.Values["controller"].ToString();
+//                    var actionName = rd.Values["action"].ToString();
+//
+//                    if (controllerName == "Home" ||
+//                        controllerName == "XsrfToken" ||
+//                        controllerName == "Account" && (actionName == "Login" || actionName == "Register"))
+//                    {
+//                        await _next.Invoke(context);
+//                    }
+//                    else
+//                    {
+//                        context.Response.Redirect($"/Account/Login?returnUrl=/{controllerName}/{actionName}", false);
+//                    }
                 }
             }
             catch (Exception ex)

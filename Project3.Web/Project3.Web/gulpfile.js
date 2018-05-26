@@ -1,4 +1,4 @@
-﻿/// <binding BeforeBuild='default' />
+﻿/// <binding BeforeBuild='default' ProjectOpened='watch' />
 const gulp = require("gulp");
 const babel = require("gulp-babel");
 const plumber = require("gulp-plumber");
@@ -9,8 +9,7 @@ const rename = require('gulp-rename');
 const del = require('del');
 const cache = require('gulp-cached');
 const imagemin = require('gulp-imagemin');
-const es6Path = "src/content/js/**/*.js";
-// const ignorePaths = ["!Src/Vendor/", "!Content/js/plugins/", "!Content/js/vendor/"];
+const es6Path = "src/content/js/*.js";
 const compilePath = "wwwroot/dist/js";
 const fontsPath = "wwwroot/dist/fonts";
 const imagesPath = "wwwroot/dist/images";
@@ -38,14 +37,6 @@ gulp.task("bundle.babel", () => {
         .pipe(babel())
         .pipe(concat('site.js'))
         .pipe(gulp.dest(compilePath));
-});
-
-gulp.task("babel:watch", () => {
-    gulp.watch(es6Path, ["bundle.babel"]);
-});
-
-gulp.task("watch", () => {
-    gulp.watch(es6Path, ["bundle.babel"]);
 });
 
 //gulp.task("copyFonts", () => {
@@ -88,6 +79,10 @@ gulp.task("vendor:js", () => {
         .pipe(gulp.dest(compilePath));
 });
 
-gulp.task("default", ["clean", "image", "vendor:js", "vendor:css", "style", "bundle.babel", "babel:watch"]);
+gulp.task("default", ["clean", "image", "vendor:js", "vendor:css", "style", "bundle.babel"]);
 
-gulp.task("watch", ["babel:watch"]);
+gulp.task("watch", () => {
+    gulp.watch(es6Path, ["bundle.babel"]);
+});
+
+gulp.task("vscode", ["clean", "image", "vendor:js", "vendor:css", "style", "bundle.babel", "watch"]);

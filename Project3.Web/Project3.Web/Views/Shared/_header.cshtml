@@ -1,0 +1,82 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Project3.Web.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<header class="sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+                <img src="images/arrows.jpg">
+            </div>
+            <div class="col-sm-3">
+                <div class="middle"></div>
+                <div class="middle"></div>
+                <div id="text" class="middle">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p id="select" class="noFcn">SELECT</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p id="start" class="noFcn">START</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="lrg" class="middle">
+                    <button class="blkButtons"></button>
+                    <button class="blkButtons"></button>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="row">
+                    <h2>APP NAME HERE</h2>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5 dropdown">
+                        <img id="forumsBtn" role="button" class="redButton dropbtn" src="images/redButton.png" onclick="showForums()">
+                        <div id="forumsDrpDwn" class="dropdown-menu dropdown-menu-right">
+                            <a href="#">FORUMS HOME</a>
+                            <a href="#">Link 2</a>
+                            <a href="#">Link 3</a>
+                        </div>
+                        <p id="forums">FORUMS</p>
+                    </div>
+                    <div class="col-sm-5 dropdown">
+                        <img id="userBtn" role="button" class="redButton dropbtn" src="images/redButton.png" onclick="showUserMenu()">
+                        <div id="userDrpDwn" class="dropdown-menu dropdown-menu-right">
+                            <a href="#">REGISTER</a>
+                            <a href="#">LOG-IN</a>
+                            <a href="#">PROFILE</a>
+                            <a href="#">SIGN-OUT</a>
+                        </div>
+                        <p id="user">USER</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                @* style this as you wish, the if statement is the same as an #if in handlebars, just style whatever is inside. what is doing is showing one thing if you are logged in and another if you are logged out *@
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                            </li>
+                            <li>
+                                <button type="submit" class="btn btn-link navbar-btn navbar-link">Log out</button>
+                            </li>
+                        </ul>
+                    </form>
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
+                        <li><a asp-area="" asp-controller="Account" asp-action="Login">Log in</a></li>
+                    </ul>
+                }
+            </div>
+        </div>      
+    </div>
+</header>

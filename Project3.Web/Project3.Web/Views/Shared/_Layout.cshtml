@@ -18,16 +18,19 @@
 </head>
 <body>
 <div class="body-content">
+    @{
+        Html.RenderPartial("_header");
+    }
     @RenderBody()
     <br/>
     <footer>
-        <p>&copy; 2018 CART CATALOG</p>
+        <p>PUT OUR FOOTER IN VIEWS/SHARED/_LAYOUT</p>
     </footer>
 </div>
 
     <environment include="Development,Staging">
-        <script src="~/dist/content/js/vendor.js"></script>
-        <script src="~/dist/content/js/site.js"></script>
+        <script src="~/dist/js/vendor.js"></script>
+        <script src="~/dist/js/site.js"></script>
     </environment>
     <environment include="Production">
         <script src="~/dist/js/vendor.min.js" asp-append-version="true"></script>
