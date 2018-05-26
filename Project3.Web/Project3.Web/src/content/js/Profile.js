@@ -1,6 +1,7 @@
 // Just a comment to have something in file so files push
 
 function gameValue() {
+    var value = [];
     $.ajax({
         url: "/api/games",
         method: "GET",
@@ -11,7 +12,6 @@ function gameValue() {
                 const platformName = data[i].Platform;
                 // console.log(gameName);
                 // console.log(platformName);
-
 
                 var settings = {
                     "async": false,
@@ -61,6 +61,8 @@ function gameValue() {
                     // console.log("game name: " + gameName + "game price: " + average);
 
                     var averagePrice = average.toFixed(2);
+
+                    value.push(averagePrice);
                     
                     // that.setState({ value: value });
                     // console.log(that.state.value, "++");
