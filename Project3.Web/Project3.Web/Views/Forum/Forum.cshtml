@@ -1,21 +1,6 @@
-<!-- <!DOCTYPE html>
-<html lang="en-us">
+@using Project3.Web.Models.GameModels
+@model List<PlatformModel>
 
-<head>
-  <meta charset="UTF-8" name="viewport" content="width=device-width, initial scale=1.0">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-    crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-    crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Audiowide|Press+Start+2P" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
-  <link rel="stylesheet" href="ForumHome.css">
-  <title>Forum Page</title>
-</head>
-
-<body> -->
   <br>
   <div class="container">
     <div class="row">
@@ -28,8 +13,14 @@
         <a href="" class="forumTitle">REVIEW</a>
         <br>
         <p class="forumTitle">PLATFORMS</p>
-         <ul>
-          <a class="platform" href="">Atari 2600</a><br>
+        <ul>
+            @foreach (var platform in Model)
+            {
+            <li>
+                <a class="platform" href="" id="@platform.PlatformId">@platform.Name</a>
+            </li>
+            }
+            @*<a class="platform" href="">Atari 2600</a><br>
           <a class="platform" href="">NES</a><br>
           <a class="platform" href="">Sega Genesis</a><br>
           <a class="platform" href="">Gameboy</a><br>
@@ -38,8 +29,8 @@
           <a class="platform" href="">Playstaion</a><br>
           <a class="platform" href="">Nintendo 64</a><br>
           <a class="platform" href="">Sega Saturn</a><br>
-          <a class="platform" href="">Dreamcast</a><br>
-        </ul>
+          <a class="platform" href="">Dreamcast</a><br>*@
+          </ul>
       </div>
  
       <div class="col-sm-9">
@@ -122,6 +113,3 @@
     </div>
   </div>
 </div>
-
-  <!-- </body>
-</html> -->
