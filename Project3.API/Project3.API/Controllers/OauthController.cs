@@ -40,8 +40,7 @@ namespace Project3.API.Controllers
                 case "refresh_token":
                 {
                     // Lookup which user is tied to model.RefreshToken
-                    var refreshToken = Encoding.Unicode.GetString(Convert.FromBase64String(login.Refresh_Token));
-                    var user = _userManager.FindByRefreshToken(refreshToken);
+                    var user = _userManager.FindByRefreshToken(login.Refresh_Token);
 
                     // Validate Refresh Token
                     if (user == null)
@@ -55,7 +54,7 @@ namespace Project3.API.Controllers
                     }
 
                     // Generate access token from the username (no password check required)
-                    var jwt = await BuildToken(user, refreshToken);
+                    var jwt = await BuildToken(user, login.Refresh_Token);
 
                     var tokenObject = new
                     {

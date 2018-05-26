@@ -94,25 +94,50 @@ namespace Project3.Web
                 {
                     var buffer = Encoding.ASCII.GetBytes($"grant_type=refresh_token&refresh_token={existingRefreshToken}");
 
-                    var req = (HttpWebRequest)WebRequest.Create($"{_configuration["AppSettings:APIUrl"]}oauth/Token");
+                    var req = (HttpWebRequest)WebRequest.Create($"{_configuration["AppSettings:APIUrl"]}Oauth/Token");
                     req.Method = "POST";
                     req.ContentType = "application/x-www-form-urlencoded";
                     req.ContentLength = buffer.Length;
 
-                    var stream = req.GetRequestStream();
-                    stream.Write(buffer, 0, buffer.Length);
-                    stream.Close();
+                    using (var data = await req.GetRequestStreamAsync())
+                    {
+                        await data.WriteAsync(buffer, 0, buffer.Length);
+                        await data.FlushAsync();
+                        data.Close();
+                    }
 
-                    using (var response = (HttpWebResponse)req.GetResponse())
+                    Dictionary<string, object> body;
+
+                    using (var response = (HttpWebResponse)await req.GetResponseAsync())
                     using (var reader = new StreamReader(response.GetResponseStream()))
                     {
-                        var body = JsonConvert.DeserializeObject<Dictionary<string, object>>(reader.ReadToEnd());
-                        var accessToken = body["access_token"].ToString();
-                        var expires = Convert.ToDateTime(body["expires"].ToString());
-
-                        Utilities.Utilities.AddCookie(context, "AccessToken", accessToken, expires);
-                        Utilities.Utilities.AddCookie(context, "RefreshToken", existingRefreshToken, DateTime.Now + new TimeSpan(14, 0, 0, 0));
+                        body = JsonConvert.DeserializeObject<Dictionary<string, object>>(await reader.ReadToEndAsync());
                     }
+
+                    var accessToken = body["access_token"].ToString();
+                    var expires = Convert.ToDateTime(body["expires"].ToString());
+
+                    Utilities.Utilities.AddCookie(context, "AccessToken", accessToken, expires);
+                    Utilities.Utilities.AddCookie(context, "RefreshToken", existingRefreshToken, DateTime.Now + new TimeSpan(14, 0, 0, 0));
+
+
+
+
+
+                    //var stream = req.GetRequestStream();
+                    //stream.Write(buffer, 0, buffer.Length);
+                    //stream.Close();
+
+                    //using (var response = (HttpWebResponse)req.GetResponse())
+                    //using (var reader = new StreamReader(response.GetResponseStream()))
+                    //{
+                    //    var body = JsonConvert.DeserializeObject<Dictionary<string, object>>(reader.ReadToEnd());
+                    //    var accessToken = body["access_token"].ToString();
+                    //    var expires = Convert.ToDateTime(body["expires"].ToString());
+
+                    //    Utilities.Utilities.AddCookie(context, "AccessToken", accessToken, expires);
+                    //    Utilities.Utilities.AddCookie(context, "RefreshToken", existingRefreshToken, DateTime.Now + new TimeSpan(14, 0, 0, 0));
+                    //}
                 }
                 else
                 {
@@ -152,8 +177,7 @@ namespace Project3.Web
                     }
                     else
                     {
-                        //                        context.Response.Redirect($"/Account/Login?returnUrl=/{controllerName}/{actionName}", false);
-                        await _next.Invoke(context);
+                        context.Response.Redirect($"/Account/Login?returnUrl=/{controllerName}/{actionName}", false);
                     }
                 }
             }

@@ -10,6 +10,7 @@ const del = require('del');
 const cache = require('gulp-cached');
 const imagemin = require('gulp-imagemin');
 const es6Path = "src/content/js/*.js";
+const stylePath = 'src/content/css/*.css';
 const compilePath = "wwwroot/dist/js";
 const fontsPath = "wwwroot/dist/fonts";
 const imagesPath = "wwwroot/dist/images";
@@ -83,6 +84,7 @@ gulp.task("default", ["clean", "image", "vendor:js", "vendor:css", "style", "bun
 
 gulp.task("watch", () => {
     gulp.watch(es6Path, ["bundle.babel"]);
+    gulp.watch(stylePath, ["style"]);
 });
 
 gulp.task("vscode", ["clean", "image", "vendor:js", "vendor:css", "style", "bundle.babel", "watch"]);
