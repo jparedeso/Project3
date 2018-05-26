@@ -152,7 +152,8 @@ namespace Project3.Web
                     }
                     else
                     {
-                        context.Response.Redirect($"/Account/Login?returnUrl=/{controllerName}/{actionName}", false);
+                        //                        context.Response.Redirect($"/Account/Login?returnUrl=/{controllerName}/{actionName}", false);
+                        await _next.Invoke(context);
                     }
                 }
             }
