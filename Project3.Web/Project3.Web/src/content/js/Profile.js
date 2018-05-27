@@ -16,15 +16,7 @@ const Profile = function () {
 
     function searchGames() {
         $("#addGameBtn").on("click", function () {
-            const game = $(".gameTitle").val().trim();
-
-            //$.ajax({
-            //    url: "/Games/Search/" + game,
-            //    method: "GET",
-            //    success: function(data) {
-            //        console.log(data);
-            //    }
-            //});
+            //Ideally we want to just HIGHLIGHT the current game selection, and then ADD it when we PRESS this button.
         });
 
         $("#searchGameForm").on("submit", function (e) {
