@@ -4,7 +4,6 @@ var Profile = function() {
     }
 
     function initEventHandlers() {
-
     }
 
     function gameValue() {
@@ -89,4 +88,4 @@ var Profile = function() {
 
 $(function() {
     Profile.init();
-});
+});[]
