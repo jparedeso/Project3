@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace Project3.API.Controllers
 {
     [Authorize(AuthenticationSchemes = "Bearer")]
-    [Route("api/Forum")]
-    public class ForumController : Controller
+    [Route("api/Game")]
+    public class GameController : Controller
     {
-        
+
     }
 }
