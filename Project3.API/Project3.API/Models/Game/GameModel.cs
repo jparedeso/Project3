@@ -16,6 +16,18 @@ namespace Project3.API.Models.Game
         {
             public int Id { get; set; }
             public string Name { get; set; }
+            public string Summary { get; set; }
+            public List<Genre> Genres { get; set; }
+            public List<Platform> Platforms { get; set; }
+            public int ReleaseDate { get; set; }
+            public string Cover { get; set; }
+        }
+
+        public class GameAPIModel
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public string Summary { get; set; }
             public List<int> Genres { get; set; }
             public List<int> Platforms { get; set; }
             public List<ReleaseDate> Release_dates { get; set; }
@@ -37,6 +49,38 @@ namespace Project3.API.Models.Game
             public string Url { get; set; }
         }
 
+        public class Logo
+        {
+            public string url { get; set; }
+        }
+
+
+        public class PlatformAPIModel
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public Logo Logo { get; set; }
+        }
+
+        public class Platform
+        {
+            public int PlatformId { get; set; }
+            public string PlatformName { get; set; }
+            public int GameId { get; set; }
+        }
+
+        public class GenreAPIModel
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+        }
+
+        public class Genre
+        {
+            public int GenreId { get; set; }
+            public string GenreName { get; set; }
+            public int GameId { get; set; }
+        }
 
         public static JToken GetGames(NameValueCollection nvc)
         {
@@ -51,6 +95,95 @@ namespace Project3.API.Models.Game
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     return JsonUtils.CreateJsonArrayFromSqlReader(reader);
+                }
+            }
+        }
+
+        public static JToken InsertGame(GameModel game)
+        {
+            using (SqlConnection conn = DbConnectionFactory.CreateSqlConnection())
+            using (SqlCommand command = new SqlCommand("AddGame", conn))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+
+                //if (!string.IsNullOrEmpty(clientIdentifier))
+                command.Parameters.AddWithValue("@GameID", game.Id);
+                command.Parameters.AddWithValue("@GameName", game.Name);
+                command.Parameters.AddWithValue("@ReleaseDate", game.ReleaseDate);
+                command.Parameters.AddWithValue("@Cover", game.Cover);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    return JsonUtils.CreateJsonFromSqlReader(reader);
+                }
+            }
+        }
+
+        public static JToken GetPlatform(int platformId)
+        {
+            using (SqlConnection conn = DbConnectionFactory.CreateSqlConnection())
+            using (SqlCommand command = new SqlCommand("Platforms_Select", conn))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@PlatformId", platformId);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    return JsonUtils.CreateJsonFromSqlReader(reader);
+                }
+            }
+        }
+
+        public static JToken InsertPlatform(PlatformAPIModel platform)
+        {
+            using (SqlConnection conn = DbConnectionFactory.CreateSqlConnection())
+            using (SqlCommand command = new SqlCommand("AddPlatform", conn))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@PlatformId", platform.Id);
+                command.Parameters.AddWithValue("@PlatformName", platform.Name);
+                command.Parameters.AddWithValue("@Logo", platform.Logo == null ? "https://www.picclickimg.com/00/s/MTYwMFgxNjAw/z/8xgAAOSwr81USRqc/$/Nintendo-WII-DVD-Video-Game-Case-White-Blank-_57.jpg" : platform.Logo.url);
+                //command.Parameters.AddWithValue("@GameId", platform.Cover);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    return JsonUtils.CreateJsonFromSqlReader(reader);
+                }
+            }
+        }
+
+        public static JToken GetGenre(int genreId)
+        {
+            using (SqlConnection conn = DbConnectionFactory.CreateSqlConnection())
+            using (SqlCommand command = new SqlCommand("Genres_Select", conn))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@GenreId", genreId);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    return JsonUtils.CreateJsonFromSqlReader(reader);
+                }
+            }
+        }
+
+        public static JToken InsertGenre(GenreAPIModel genre)
+        {
+            using (SqlConnection conn = DbConnectionFactory.CreateSqlConnection())
+            using (SqlCommand command = new SqlCommand("AddGenre", conn))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@GenreId", genre.Id);
+                command.Parameters.AddWithValue("@GenreName", genre.Name);
+                //command.Parameters.AddWithValue("@GameId", platform.Cover);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    return JsonUtils.CreateJsonFromSqlReader(reader);
                 }
             }
         }
