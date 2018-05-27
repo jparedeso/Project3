@@ -119,25 +119,6 @@ namespace Project3.Web
 
                     Utilities.Utilities.AddCookie(context, "AccessToken", accessToken, expires);
                     Utilities.Utilities.AddCookie(context, "RefreshToken", existingRefreshToken, DateTime.Now + new TimeSpan(14, 0, 0, 0));
-
-
-
-
-
-                    //var stream = req.GetRequestStream();
-                    //stream.Write(buffer, 0, buffer.Length);
-                    //stream.Close();
-
-                    //using (var response = (HttpWebResponse)req.GetResponse())
-                    //using (var reader = new StreamReader(response.GetResponseStream()))
-                    //{
-                    //    var body = JsonConvert.DeserializeObject<Dictionary<string, object>>(reader.ReadToEnd());
-                    //    var accessToken = body["access_token"].ToString();
-                    //    var expires = Convert.ToDateTime(body["expires"].ToString());
-
-                    //    Utilities.Utilities.AddCookie(context, "AccessToken", accessToken, expires);
-                    //    Utilities.Utilities.AddCookie(context, "RefreshToken", existingRefreshToken, DateTime.Now + new TimeSpan(14, 0, 0, 0));
-                    //}
                 }
                 else
                 {

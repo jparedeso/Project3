@@ -14,7 +14,7 @@ namespace Project3.API.Models.Game
     {
         public class GameModel
         {
-            public int Id { get; set; }
+            public int GameId { get; set; }
             public string Name { get; set; }
             public string Summary { get; set; }
             public string GenresStr { get; set; }
@@ -84,15 +84,15 @@ namespace Project3.API.Models.Game
             public int GameId { get; set; }
         }
 
-        public static JToken GetGames(NameValueCollection nvc)
+        public static JToken GetGames(string username, int? gameId)
         {
             using (SqlConnection conn = DbConnectionFactory.CreateSqlConnection())
             using (SqlCommand command = new SqlCommand("Game_Select", conn))
             {
                 command.CommandType = CommandType.StoredProcedure;
-
-                //if (!string.IsNullOrEmpty(clientIdentifier))
-                command.Parameters.AddWithValue("@GameID", nvc["GameID"]);
+                
+                command.Parameters.AddWithValue("@Username", username);
+                command.Parameters.AddWithValue("@GameId", gameId);
 
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
@@ -108,13 +108,30 @@ namespace Project3.API.Models.Game
             {
                 command.CommandType = CommandType.StoredProcedure;
 
-                command.Parameters.AddWithValue("@GameID", game.Id);
+                command.Parameters.AddWithValue("@GameID", game.GameId);
                 command.Parameters.AddWithValue("@Username", username);
                 command.Parameters.AddWithValue("@GameName", game.Name);
                 command.Parameters.AddWithValue("@Summary", game.Summary);
                 command.Parameters.AddWithValue("@Genres", game.GenresStr);
                 command.Parameters.AddWithValue("@Platforms", game.PlatformsStr);
                 command.Parameters.AddWithValue("@Cover", game.Cover);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    return JsonUtils.CreateJsonFromSqlReader(reader);
+                }
+            }
+        }
+
+        public static JToken InsertUserGame(string username, int id)
+        {
+            using (SqlConnection conn = DbConnectionFactory.CreateSqlConnection())
+            using (SqlCommand command = new SqlCommand("AddUserGame", conn))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@GameID", id);
+                command.Parameters.AddWithValue("@Username", username);
 
                 using (SqlDataReader reader = command.ExecuteReader())
                 {

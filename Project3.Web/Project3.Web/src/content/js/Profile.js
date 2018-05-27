@@ -2,6 +2,7 @@ const Profile = function () {
 
     function init() {
         initEventHandlers();
+        getUserGames();
     }
 
     function initEventHandlers() {
@@ -15,15 +16,7 @@ const Profile = function () {
 
     function searchGames() {
         $("#addGameBtn").on("click", function () {
-            const game = $(".gameTitle").val().trim();
-
-            //$.ajax({
-            //    url: "/Games/Search/" + game,
-            //    method: "GET",
-            //    success: function(data) {
-            //        console.log(data);
-            //    }
-            //});
+            //Ideally we want to just HIGHLIGHT the current game selection, and then ADD it when we PRESS this button.
         });
 
         $("#searchGameForm").on("submit", function (e) {
@@ -39,11 +32,11 @@ const Profile = function () {
                     console.log(response);
                     for (let i = 0; i < response.length; i++) {
                         $("#gameReturn").append(`
-                        <div class="gameSelection" data-id="${response[i].id}">${response[i].name}</div>
+                        <div class="gameSelection" data-id="${response[i].gameId}">${response[i].name}</div>
                         `);
                     }
                     $(".gameSelection").on("click", function () {
-                        var id = $(this).attr("data-id");
+                        const id = $(this).attr("data-id");
 
                         $.ajax({
                             url: "/Games/InsertGame",
@@ -51,11 +44,28 @@ const Profile = function () {
                             data: {id},
                             success: response => {
                                 console.log(response);
+                                $('#gameSearchModal').modal('hide');
+                                getUserGames();
                             }
-                        })
+                        });
                     });
                 }
             });
+        });
+    }
+
+    function getUserGames() {
+        $.ajax({
+            url: "/Games/SearchUserGames",
+            method: "GET",
+            success: response => {
+                $("#displayGames").html("");
+                for (var i = 0; i < response.length; i++) {
+                    $("#displayGames").append(`
+                    <div class="gameDisplay" data-id="${response[i].gameId}">${response[i].name}</div>
+                    `);
+                }
+            }
         });
     }
 

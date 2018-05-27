@@ -46,6 +46,15 @@ namespace Project3.API.Controllers
             return Json(genres);
         }
 
+        [HttpGet]
+        [Route("")]
+        public JsonResult SearchUserGames()
+        {
+            var games = Game.GetGames(User.FindFirst(ClaimTypes.NameIdentifier).Value, null);
+
+            return Json(games);
+        }
+
 
         [HttpGet]
         [Route("Search/{name}")]
@@ -55,11 +64,14 @@ namespace Project3.API.Controllers
             var gamesApi = await Utilities.API.Get<List<Game.GameAPIModel>>($"games/?search={name}&fields=id,name,summary,genres,platforms,cover.url,release_dates&limit={limit}");
             var games = new List<Game.GameModel>();
 
+            var userGamesJObj = Game.GetGames(User.FindFirst(ClaimTypes.NameIdentifier).Value, null);
+            var userGames = userGamesJObj.ToObject<List<Game.GameModel>>();
+
             foreach (var game in gamesApi)
             {
                 var newGame = new Game.GameModel
                 {
-                    Id = game.Id,
+                    GameId = game.Id,
                     Name = game.Name,
                     Summary = game.Summary,
                     Cover = game.Cover == null ? "https://www.picclickimg.com/00/s/MTYwMFgxNjAw/z/8xgAAOSwr81USRqc/$/Nintendo-WII-DVD-Video-Game-Case-White-Blank-_57.jpg" : game.Cover.Url,
@@ -90,6 +102,8 @@ namespace Project3.API.Controllers
                 games.Add(newGame);
             }
 
+            games = games.Where(p => userGames.All(p2 => p2.GameId != p.GameId)).ToList();
+
             return Json(games);
         }
 
@@ -101,38 +115,56 @@ namespace Project3.API.Controllers
             NameValueCollection nvc = HttpUtility.ParseQueryString(queryString);
             var id = int.Parse(nvc["id"]);
 
-            const int limit = 1;
-            var apiGame = await Utilities.API.Get<List<Game.GameAPIModel>>($"games/{id}/?fields=id,name,genres,platforms,summary,cover.url,release_dates&limit={limit}");
+            var dbGame = Game.GetGames(null, id);
 
-            var game = new Game.GameModel
+            if (!dbGame.HasValues)
             {
-                Id = apiGame[0].Id,
-                Name = apiGame[0].Name,
-                Summary = apiGame[0].Summary,
-                Cover = apiGame[0].Cover == null ? "https://www.picclickimg.com/00/s/MTYwMFgxNjAw/z/8xgAAOSwr81USRqc/$/Nintendo-WII-DVD-Video-Game-Case-White-Blank-_57.jpg" : apiGame[0].Cover.Url,
-                GenresStr = "",
-                PlatformsStr = ""
-            };
+                const int limit = 1;
+                var apiGame = await Utilities.API.Get<List<Game.GameAPIModel>>($"games/{id}/?fields=id,name,genres,platforms,summary,cover.url,release_dates&limit={limit}");
 
-            foreach (var genre in apiGame[0].Genres)
-            {
-                game.GenresStr += $"{genre},";
+                var game = new Game.GameModel
+                {
+                    GameId = apiGame[0].Id,
+                    Name = apiGame[0].Name,
+                    Summary = apiGame[0].Summary,
+                    Cover = apiGame[0].Cover == null ? "https://www.picclickimg.com/00/s/MTYwMFgxNjAw/z/8xgAAOSwr81USRqc/$/Nintendo-WII-DVD-Video-Game-Case-White-Blank-_57.jpg" : apiGame[0].Cover.Url,
+                    GenresStr = "",
+                    PlatformsStr = ""
+                };
+
+                foreach (var genre in apiGame[0].Genres)
+                {
+                    game.GenresStr += $"{genre},";
+                }
+
+                foreach (var platform in apiGame[0].Platforms)
+                {
+                    game.PlatformsStr += $"{platform},";
+                }
+
+                try
+                {
+                    var newGame = Game.InsertGame(User.FindFirst(ClaimTypes.NameIdentifier).Value, game);
+
+                    return Created("/api/Games", newGame);
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(500, new { message = ex.Message });
+                }
             }
-
-            foreach (var platform in apiGame[0].Platforms)
+            else
             {
-                game.PlatformsStr += $"{platform},";
-            }
+                try
+                {
+                    var newGame = Game.InsertUserGame(User.FindFirst(ClaimTypes.NameIdentifier).Value, id);
 
-            try
-            {
-                var newGame = Game.InsertGame(User.FindFirst(ClaimTypes.NameIdentifier).Value, game);
-
-                return Created("/api/Games", newGame);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, new { message = ex.Message });
+                    return Created("/api/Games", newGame);
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(500, new { message = ex.Message });
+                }
             }
         }
     }
