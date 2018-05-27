@@ -4,7 +4,34 @@ var Profile = function() {
     }
 
     function initEventHandlers() {
+        addGame();
+    }
 
+
+    function addGame() {
+        $("#addGameBtn").on("click", function(event) {
+            event.preventDefault();
+            var newGame = {
+                Name: $(".gameTitle").val().trim()
+            };
+    
+            console.log(newGame);
+    
+            // Send the POST request to create new Game.
+    
+            // $.ajax("/api/game", {
+            //     type: "POST",
+            //     data: newGame
+            // }).then(
+            //     function() {
+            //         console.log("added new game");
+            //     }
+            // );
+        });
+    }
+
+    function displayGames() {
+        
     }
 
     function gameValue() {
