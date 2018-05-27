@@ -18,7 +18,7 @@ container {
   width: 100%;
 }
 
-h1 {
+#cartCatalog {
   text-decoration: underline;
   font-size: 65px;
 }
