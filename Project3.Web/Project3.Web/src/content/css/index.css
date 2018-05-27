@@ -3,8 +3,8 @@ container {
 }
 
 #homePagePic {
-    width: 400px;
-    height: 500px;
+    width: 100%;
+    height: 100%;
 }
 
 #about {
@@ -27,5 +27,5 @@ h1 {
 
 .mushroomPic {
   width: 30px;
-  height: 30px;
+  height: 40px;
 }
