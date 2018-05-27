@@ -7,7 +7,7 @@ namespace Project3.Web.Models.GameModels
 {
     public class GameModel
     {
-        public int Id { get; set; }
+        public int GameId { get; set; }
         public string Name { get; set; }
         public string Summary { get; set; }
         public List<Genre> Genres { get; set; }

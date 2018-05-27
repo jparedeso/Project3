@@ -31,6 +31,14 @@ namespace Project3.Web.Controllers
             return View();
         }
 
+        [HttpGet]
+        public async Task<ActionResult> SearchUserGames()
+        {
+            var games = await Utilities.API.Get<List<GameModel>>(_appSettings, _httpContextAccessor, "Games");
+
+            return Json(games);
+        }
+
         [Route("Search")]
         public async Task<ActionResult> SearchGame()
         {
