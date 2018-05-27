@@ -30,6 +30,7 @@ const Profile = function () {
                 data   : {name},
                 success: response => {
                     console.log(response);
+                    $("#gameReturn").html("");
                     for (let i = 0; i < response.length; i++) {
                         $("#gameReturn").append(`
                         <div class="gameSelection" data-id="${response[i].gameId}">${response[i].name}</div>
