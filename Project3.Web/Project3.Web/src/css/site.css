@@ -15,6 +15,11 @@ hr {
     color: black;
 }
 
+#homePagePic {
+    width: 200px;
+    height: 500px;
+}
+
 footer {
     color: red;
     font-family: 'Audiowide', cursive;
