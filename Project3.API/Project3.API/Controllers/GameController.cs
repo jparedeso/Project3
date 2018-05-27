@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNetCore.Authorization;
@@ -48,7 +49,7 @@ namespace Project3.API.Controllers
 
         [HttpGet]
         [Route("Search/{name}")]
-        public async Task<ActionResult> SearchGame(string name)
+        public async Task<ActionResult> SearchGames(string name)
         {
             const int limit = 10;
             var gamesApi = await Utilities.API.Get<List<Game.GameAPIModel>>($"games/?search={name}&fields=id,name,summary,genres,platforms,cover.url,release_dates&limit={limit}");
@@ -94,17 +95,44 @@ namespace Project3.API.Controllers
 
         [HttpPost]
         [Route("")]
-        public ActionResult InsertGame([FromBody] Game.GameModel game)
+        public async Task<ActionResult> InsertGame()
         {
+            var queryString = HttpContext.Request.QueryString.ToString();
+            NameValueCollection nvc = HttpUtility.ParseQueryString(queryString);
+            var id = int.Parse(nvc["id"]);
+
+            const int limit = 1;
+            var apiGame = await Utilities.API.Get<List<Game.GameAPIModel>>($"games/{id}/?fields=id,name,genres,platforms,summary,cover.url,release_dates&limit={limit}");
+
+            var game = new Game.GameModel
+            {
+                Id = apiGame[0].Id,
+                Name = apiGame[0].Name,
+                Summary = apiGame[0].Summary,
+                Cover = apiGame[0].Cover == null ? "https://www.picclickimg.com/00/s/MTYwMFgxNjAw/z/8xgAAOSwr81USRqc/$/Nintendo-WII-DVD-Video-Game-Case-White-Blank-_57.jpg" : apiGame[0].Cover.Url,
+                GenresStr = "",
+                PlatformsStr = ""
+            };
+
+            foreach (var genre in apiGame[0].Genres)
+            {
+                game.GenresStr += $"{genre},";
+            }
+
+            foreach (var platform in apiGame[0].Platforms)
+            {
+                game.PlatformsStr += $"{platform},";
+            }
+
             try
             {
-                var newGame = Game.InsertGame(game);
+                var newGame = Game.InsertGame(User.FindFirst(ClaimTypes.NameIdentifier).Value, game);
 
                 return Created("/api/Games", newGame);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new {message = ex.Message});
+                return StatusCode(500, new { message = ex.Message });
             }
         }
     }

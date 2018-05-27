@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using System.Web;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -29,20 +31,24 @@ namespace Project3.Web.Controllers
             return View();
         }
 
-        [Route("Search/{name}")]
-        public async Task<ActionResult> SearchGame(string name)
+        [Route("Search")]
+        public async Task<ActionResult> SearchGame()
         {
-            var games = await Utilities.API.Get<List<GameModel>>(_appSettings, _httpContextAccessor, $"Search/{name}");
+            var queryString = HttpContext.Request.QueryString.ToString();
+            NameValueCollection nvc = HttpUtility.ParseQueryString(queryString);
+            var name = nvc["name"];
 
-            return View(games);
+            var games = await Utilities.API.Get<List<GameModel>>(_appSettings, _httpContextAccessor, $"Games/Search/{name}");
+
+            return Json(games);
         }
 
         [HttpPost]
-        public async Task<ActionResult> InsertGame([FromBody] GameModel game)
+        public async Task<ActionResult> InsertGame([FromForm] int id)
         {
             try
             {
-                var response = await Utilities.API.Post(_appSettings, _httpContextAccessor, "Games", game);
+                var response = await Utilities.API.Post(_appSettings, _httpContextAccessor, $"Games?id={id}", new {id});
 
                 if (response.StatusCode != HttpStatusCode.Created)
                 {

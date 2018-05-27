@@ -17,7 +17,9 @@ namespace Project3.API.Models.Game
             public int Id { get; set; }
             public string Name { get; set; }
             public string Summary { get; set; }
+            public string GenresStr { get; set; }
             public List<Genre> Genres { get; set; }
+            public string PlatformsStr { get; set; }
             public List<Platform> Platforms { get; set; }
             public int ReleaseDate { get; set; }
             public string Cover { get; set; }
@@ -99,17 +101,19 @@ namespace Project3.API.Models.Game
             }
         }
 
-        public static JToken InsertGame(GameModel game)
+        public static JToken InsertGame(string username, GameModel game)
         {
             using (SqlConnection conn = DbConnectionFactory.CreateSqlConnection())
             using (SqlCommand command = new SqlCommand("AddGame", conn))
             {
                 command.CommandType = CommandType.StoredProcedure;
 
-                //if (!string.IsNullOrEmpty(clientIdentifier))
                 command.Parameters.AddWithValue("@GameID", game.Id);
+                command.Parameters.AddWithValue("@Username", username);
                 command.Parameters.AddWithValue("@GameName", game.Name);
-                command.Parameters.AddWithValue("@ReleaseDate", game.ReleaseDate);
+                command.Parameters.AddWithValue("@Summary", game.Summary);
+                command.Parameters.AddWithValue("@Genres", game.GenresStr);
+                command.Parameters.AddWithValue("@Platforms", game.PlatformsStr);
                 command.Parameters.AddWithValue("@Cover", game.Cover);
 
                 using (SqlDataReader reader = command.ExecuteReader())

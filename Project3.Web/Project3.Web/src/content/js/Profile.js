@@ -1,28 +1,75 @@
-var Profile = function() {
+const Profile = function () {
+
     function init() {
         initEventHandlers();
     }
 
     function initEventHandlers() {
-        addGame();
+        //        addGame();
 
         // a test function to see if games can append dynamically. function is not displayGames() below add game, its below value function.
         // this function will be be removed and not called, and instead displayGames() will be used once we have the api route.
-        displayGamesTest();
+        //        displayGamesTest();
+        searchGames();
     }
 
+    function searchGames() {
+        $("#addGameBtn").on("click", function () {
+            const game = $(".gameTitle").val().trim();
+
+            //$.ajax({
+            //    url: "/Games/Search/" + game,
+            //    method: "GET",
+            //    success: function(data) {
+            //        console.log(data);
+            //    }
+            //});
+        });
+
+        $("#searchGameForm").on("submit", function (e) {
+            e.preventDefault();
+
+            const name = $(".gameTitle").val().trim();
+
+            $.ajax({
+                url    : this.action,
+                method : this.method,
+                data   : {name},
+                success: response => {
+                    console.log(response);
+                    for (let i = 0; i < response.length; i++) {
+                        $("#gameReturn").append(`
+                        <div class="gameSelection" data-id="${response[i].id}">${response[i].name}</div>
+                        `);
+                    }
+                    $(".gameSelection").on("click", function () {
+                        var id = $(this).attr("data-id");
+
+                        $.ajax({
+                            url: "/Games/InsertGame",
+                            method: "POST",
+                            data: {id},
+                            success: response => {
+                                console.log(response);
+                            }
+                        })
+                    });
+                }
+            });
+        });
+    }
 
     function addGame() {
-        $("#addGameBtn").on("click", function(event) {
+        $("#addGameBtn").on("click", function (event) {
             event.preventDefault();
-            var newGame = {
+            const newGame = {
                 Name: $(".gameTitle").val().trim()
             };
-    
+
             console.log(newGame);
-    
+
             // Send the POST request to create new Game.
-    
+
             // $.ajax("/api/game", {
             //     type: "POST",
             //     data: newGame
@@ -37,9 +84,9 @@ var Profile = function() {
     function displayGames() {
         if ($("#displayGames")[0]) {
             $.ajax({
-                url: "/api/games/",
-                method: "GET",
-                success: function(data) {
+                url    : "/api/games/",
+                method : "GET",
+                success: function (data) {
                     console.log(data);
                     // empty to displayGames before adding new content
                     $("#displayGames").empty();
@@ -48,7 +95,7 @@ var Profile = function() {
                         $("#displayGames").append("<h2> I'm sorry, but there aren't any games yet</h2>");
                     }
                     else {
-                        for (var i = 0; i < data.length; i++) {
+                        for (let i = 0; i < data.length; i++) {
                             // the title, platform, condition, image, summary, and value will all be data.whatever from DB once api route is given and data can be tested.
                             $("#displayGames").append(
                                 `
@@ -104,50 +151,50 @@ var Profile = function() {
                         }
                     }
                 }
-            })
+            });
         }
     }
 
     function gameValue() {
-        var value = [];
+        const value = [];
 
         $.ajax({
-            url: "/api/games",
-            method: "GET",
-            success: function(data) {
+            url    : "/api/games",
+            method : "GET",
+            success: function (data) {
 
-                for (var i = 0; i < data.length; i++) {
+                for (let i = 0; i < data.length; i++) {
                     const gameName = data[i].Name;
                     const platformName = data[i].Platform;
                     // console.log(gameName);
                     // console.log(platformName);
 
-                    var settings = {
-                        "async": false,
+                    const settings = {
+                        "async"      : false,
                         "crossDomain": true,
-                        "url": "https://cors-anywhere.herokuapp.com/https://svcs.ebay.com/services/search/FindingService/v1?RESPONSE-DATA-FORMAT=JSON&keywords=" + gameName + "," + platformName + "&categoryId=139973",
-                        "method": "GET",
-                        "headers": {
-                            "X-EBAY-SOA-SERVICE-VERSION": "1.13.0",
-                            "X-EBAY-SOA-OPERATION-NAME": "findCompletedItems",
+                        "url"        : "https://cors-anywhere.herokuapp.com/https://svcs.ebay.com/services/search/FindingService/v1?RESPONSE-DATA-FORMAT=JSON&keywords=" + gameName + "," + platformName + "&categoryId=139973",
+                        "method"     : "GET",
+                        "headers"    : {
+                            "X-EBAY-SOA-SERVICE-VERSION" : "1.13.0",
+                            "X-EBAY-SOA-OPERATION-NAME"  : "findCompletedItems",
                             "X-EBAY-SOA-SECURITY-APPNAME": "FuzzyJon-RetroGam-PRD-92cc9f5ed-70036e56",
-                            "Cache-Control": "no-cache",
-                            "Postman-Token": "2533f0d4-46b4-4ae3-90c5-bfa1c936774a"
+                            "Cache-Control"              : "no-cache",
+                            "Postman-Token"              : "2533f0d4-46b4-4ae3-90c5-bfa1c936774a"
                         }
-                    }
+                    };
 
                     let that = this;
 
                     $.ajax(settings).done(function (response) {
-                        var results = JSON.parse(response);
+                        const results = JSON.parse(response);
                         // console.log(results);
-                        var items = results.findCompletedItemsResponse[0].searchResult[0].item;
-                        var priceArray = [];
+                        const items = results.findCompletedItemsResponse[0].searchResult[0].item;
+                        const priceArray = [];
 
-                        for (var i = 0; i < items.length; i++) {
+                        for (let i = 0; i < items.length; i++) {
                             // console.log(items[i]);
-                            var sellingState = items[i].sellingStatus[0].sellingState;
-                            var sellingPrice = items[i].sellingStatus[0].currentPrice[0].__value__;
+                            const sellingState = items[i].sellingStatus[0].sellingState;
+                            const sellingPrice = items[i].sellingStatus[0].currentPrice[0].__value__;
                             // console.log(sellingState);
                             // var sum = 0;
                             if (sellingState == "EndedWithSales") {
@@ -159,17 +206,17 @@ var Profile = function() {
                         }
                         // console.log(priceArray);
 
-                        var sum = 0;
+                        let sum = 0;
 
-                        for (var j = 0; j < priceArray.length; j++) {
-                            sum += parseInt( priceArray[j])
+                        for (let j = 0; j < priceArray.length; j++) {
+                            sum += parseInt(priceArray[j]);
                         }
 
-                        var average = sum/priceArray.length;
+                        const average = sum / priceArray.length;
                         // console.log(sum);
                         // console.log("game name: " + gameName + "game price: " + average);
 
-                        var averagePrice = average.toFixed(2);
+                        const averagePrice = average.toFixed(2);
 
                         value.push(averagePrice);
 
@@ -236,14 +283,14 @@ aliquam. Neque velit reiciendis blanditiis, perferendis ipsam dicta molestiae?
 </div>
 </div>
             `
-        )
+        );
     };
 
     return {
         init: init
-    }
+    };
 }();
 
 $(function() {
     Profile.init();
-});[]
+});

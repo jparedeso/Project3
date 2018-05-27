@@ -21,36 +21,31 @@
 <!-- game modal -->
   <div class="modal modal fade" id="gameSearchModal">
     <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">SEARCH GAMES</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <div class="modal-body">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-3">
-                <form action="">
-                GAME TITLE:
-                <br>
-                <input class="gameTitle" type="text" name="GameTitle">
-                <br>
-                </form>
-              </div>
-              <div id="gameReturn" class="col-sm-8">
-                <p>game info populates here.sdfdfsdklndfksnflksndf
-                  lsdkfslkfjskljfksljfjsdklfjskljfsjfksjdfkjsdfjslkfslkdfjskldjf
-                  sldfjslkjfslkdjfdlkfjslkdjsdlkfsldksjjfdskjfjfkl
-                  lsdkfjslkdjfslkjflsdkjfslkjf
-                </p>
-              </div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">SEARCH GAMES</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button id="findGameBtn" type="submit" class="btn btn-primary">FIND GAME</button>
-          <button id="addGameBtn" type="submit" class="btn btn-primary" data-dismiss="modal">ADD GAME</button>
-        </div>
+            <form id="searchGameForm" asp-controller="Games" asp-action="SearchGame" method="get">
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                GAME TITLE:
+                                <br>
+                                <input class="gameTitle" type="text" name="GameTitle">
+                                <br>
+
+                            </div>
+                            <div id="gameReturn" class="col-sm-8"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="findGameBtn" type="submit" class="btn btn-primary">FIND GAME</button>
+                    <button id="addGameBtn" type="button" class="btn btn-primary" data-dismiss="modal">ADD GAME</button>
+                </div>
+            </form>
       </div>
     </div>
   </div>
