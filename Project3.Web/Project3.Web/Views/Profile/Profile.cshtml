@@ -1,20 +1,4 @@
-<!-- <!DOCTYPE html>
-<html lang="en-us">
-<head>
-  <meta charset="UTF-8" name="viewport" content="width=device-width, initial scale=1.0">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-    crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-    crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Audiowide|Press+Start+2P" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="Profile.css">
-  <title>Profile</title>
-</head>
 
-<body> -->
   <!-- inventory -->
 <div class="inventory container">
   <div class="row">
@@ -28,7 +12,56 @@
 </div>
 
 <!-- games -->
-  <div class="game-grid-container">
+<div id="displayGames">
+  <!-- right now the game is being displayed dynamically from the Profile.js for testing, displayGamesTest() function.-->
+  <!-- will later swtich over to the displayGames() function once we have data to append -->
+  <!-- the code that was here is commented out at the bottom of the page incase we need it later for reference -->
+</div>
+
+<!-- game modal -->
+  <div class="modal modal fade" id="gameSearchModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">SEARCH GAMES</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-3">
+                <form action="">
+                GAME TITLE:
+                <br>
+                <input class="gameTitle" type="text" name="GameTitle">
+                <br>
+                </form>
+              </div>
+              <div id="gameReturn" class="col-sm-8">
+                <p>game info populates here.sdfdfsdklndfksnflksndf
+                  lsdkfslkfjskljfksljfjsdklfjskljfsjfksjdfkjsdfjslkfslkdfjskldjf
+                  sldfjslkjfslkdjfdlkfjslkdjsdlkfsldksjjfdskjfjfkl
+                  lsdkfjslkdjfslkjflsdkjfslkjf
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="findGameBtn" type="submit" class="btn btn-primary">FIND GAME</button>
+          <button id="addGameBtn" type="submit" class="btn btn-primary" data-dismiss="modal">ADD GAME</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+<!-- <div class="game-grid-container">
     <div id="gameStats" class="row">
       <div class="col-sm-3 gameName">
         <strong>TITLE: </strong>Zelda: Breath of the Wild
@@ -74,44 +107,4 @@
         </p>
       </div>
     </div>
-  </div>
-
-<!-- game modal -->
-  <div class="modal modal fade" id="gameSearchModal">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">SEARCH GAMES</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <div class="modal-body">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-3">
-                <form action="">
-                GAME TITLE:
-                <br>
-                <input class="gameTitle" type="text" name="GameTitle">
-                <br>
-                </form>
-              </div>
-              <div id="gameReturn" class="col-sm-8">
-                <p>game info populates here.sdfdfsdklndfksnflksndf
-                  lsdkfslkfjskljfksljfjsdklfjskljfsjfksjdfkjsdfjslkfslkdfjskldjf
-                  sldfjslkjfslkdjfdlkfjslkdjsdlkfsldksjjfdskjfjfkl
-                  lsdkfjslkdjfslkjflsdkjfslkjf
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button id="findGameBtn" type="submit" class="btn btn-primary">FIND GAME</button>
-          <button id="addGameBtn" type="submit" class="btn btn-primary" data-dismiss="modal">ADD GAME</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<!-- </body>
-</html> -->
+  </div> -->
