@@ -55,7 +55,7 @@ var Forum = function() {
                     $("#displayThreads").empty();
                     // if the data is not there, then return an error message
                     if (!data) {
-                        $("#displayThreads").append("<h2> I'm sorry, but there aren't any  threads yet</h2>");
+                        $("#displayThreads").append("<h2> I'm sorry, but there aren't any threads yet</h2>");
                     }
                     else {
                         for (var i = 0; i < data.length; i++) {

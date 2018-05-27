@@ -2,7 +2,7 @@ body {
   background: #2c2c2c;
 }
 
-h1 {
+#inventory {
     font-family: 'Audiowide', cursive;
     color:red;
     margin: 0px;
