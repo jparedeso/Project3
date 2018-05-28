@@ -16,18 +16,6 @@ namespace Project3.Web.Models.GameModels
         public string Cover { get; set; }
     }
 
-    public class GameInfoModel
-    {
-        public int GameId { get; set; }
-        public string Name { get; set; }
-        public string Summary { get; set; }
-        public string Cover { get; set; }
-        public int GenreId { get; set; }
-        public string GenreName { get; set; }
-        public int PlatformId { get; set; }
-        public string PlatformName { get; set; }
-    }
-
     public class Genre
     {
         public int GenreId { get; set; }

@@ -76,6 +76,22 @@ namespace Project3.Web.Utilities
             }
         }
 
+        public static async Task<HttpResponseMessage> Delete(AppSettings appSettings, IHttpContextAccessor httpContextAccessor, string requestString)
+        {
+            using (var client = _createClient(appSettings, httpContextAccessor))
+            {
+                Debug.WriteLine("WebAPI ASYNC REQ: DELETE {0}}", requestString);
+                var result = await client.DeleteAsync(requestString).ConfigureAwait(false);
+                if (!result.IsSuccessStatusCode)
+                {
+                    var errorContent = await result.Content.ReadAsStringAsync();
+                    Debug.WriteLine("WebAPI ASYNC RESP: {0}: {1}, ERROR: ", result.StatusCode, result.ReasonPhrase);
+                    throw new HttpRequestException(errorContent);
+                }
+                return result;
+            }
+        }
+
         public static async Task<TContent> GetResponseContent<TContent>(Task<HttpResponseMessage> responseTask) where TContent : class
         {
             var response = await responseTask.ConfigureAwait(false);

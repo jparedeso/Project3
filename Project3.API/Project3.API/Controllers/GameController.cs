@@ -55,6 +55,18 @@ namespace Project3.API.Controllers
             return Json(games);
         }
 
+        [HttpDelete]
+        [Route("")]
+        public ActionResult DeleteGame()
+        {
+            var queryString = HttpContext.Request.QueryString.ToString();
+            NameValueCollection nvc = HttpUtility.ParseQueryString(queryString);
+
+            Game.DeleteGame(User.FindFirst(ClaimTypes.NameIdentifier).Value, int.Parse(nvc["gameId"]));
+
+            return Ok();
+        }
+
         [HttpGet]
         [Route("Search/{name}")]
         public async Task<ActionResult> SearchGames(string name)

@@ -42,7 +42,7 @@ namespace Project3.Web.Controllers
         [HttpGet]
         public async Task<ActionResult> GameInfo()
         {
-            var games = await Utilities.API.Get<List<GameInfoModel>>(_appSettings, _httpContextAccessor, "Info");
+            var games = await Utilities.API.Get<List<GameModel>>(_appSettings, _httpContextAccessor, "Games/Info");
 
             return Json(games);
         }
@@ -80,6 +80,22 @@ namespace Project3.Web.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult> DeleteUserGame()
+        {
+            var queryString = HttpContext.Request.QueryString.ToString();
+            NameValueCollection nvc = HttpUtility.ParseQueryString(queryString);
+
+            var response = await Utilities.API.Delete(_appSettings, _httpContextAccessor, $"Games?gameId={nvc["gameId"]}");
+
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                return BadRequest(response.ReasonPhrase);
+            }
+
+            return Ok();
         }
     }
 }

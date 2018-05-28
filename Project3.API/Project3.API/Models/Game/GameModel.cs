@@ -168,6 +168,23 @@ namespace Project3.API.Models.Game
             }
         }
 
+        public static JToken DeleteGame(string username, int gameId)
+        {
+            using (SqlConnection conn = DbConnectionFactory.CreateSqlConnection())
+            using (SqlCommand command = new SqlCommand("DeleteGame", conn))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@GameID", gameId);
+                command.Parameters.AddWithValue("@Username", username);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    return JsonUtils.CreateJsonFromSqlReader(reader);
+                }
+            }
+        }
+
         public static JToken GetPlatform(int platformId)
         {
             using (SqlConnection conn = DbConnectionFactory.CreateSqlConnection())
