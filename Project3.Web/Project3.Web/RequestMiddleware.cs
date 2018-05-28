@@ -152,7 +152,7 @@ namespace Project3.Web
 
                     if (controllerName == "Home" ||
                         controllerName == "XsrfToken" ||
-                        controllerName == "Account" && (actionName == "Login" || actionName == "Register"))
+                        controllerName == "Account" && (actionName == "Login" || actionName == "Register" || actionName == "ForgotPassword" || actionName == "ResetPassword" || actionName == "ForgotPasswordConfirmation" || actionName == "ResetPasswordConfirmation"))
                     {
                         await _next.Invoke(context);
                     }
