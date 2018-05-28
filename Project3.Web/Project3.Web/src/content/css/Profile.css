@@ -32,15 +32,18 @@ body {
 }
 
 #gameStats {
-    margin-left: 5px
+    margin-left: 5px;
 }
 
 .gameImage {
     margin: 5px 5px 5px 40px;
     width: 130px;
     height: 130px;
+}
+
+.gameImage img {
+    height: 100%;
     border: 1px solid black;
-    border-radius: 5px;
 }
 
 strong {
