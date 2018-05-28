@@ -24,37 +24,56 @@ const Profile = function () {
                     console.log(response);
                     $("#gameReturn").html("");
                     for (let i = 0; i < response.length; i++) {
+
                         $("#gameReturn").append(`
                         <div class="gameSelection" data-id="${response[i].gameId}">${response[i].name}</div>
+                        <div class="platformReturn"></div>
                         `);
+
+                        let platforms = response[i].platforms;
+                        // console.log(platforms);
+
+                        for (let j = 0; j < platforms.length; j++) {
+                            // console.log(platforms[j].platformName);
+                            $(".platformReturn").append(`
+                            <div class="platformSelection" style="padding-left: 25px; color: black; display: none;">${platforms[j].platformName}</div>
+                            `)
+                        }
                     }
 
-                    let selection = $(".gameSelection").on("click", function () {
-                        const classHighlight = "highlight";
+                    let gameSelection = $(".gameSelection").on("click", function () {
+                        const gameHighlight = "gameHighlight";
                         const id = $(this).attr("data-id");
-                        selection.removeClass(classHighlight);
-                        $(this).addClass(classHighlight);
+                        gameSelection.removeClass(gameHighlight);
+                        $(this).addClass(gameHighlight);
                         console.log(id);
+                        $(".platformSelection").show();
+                    });
+
+                    let platformSelection = $(".platformSelection").on("click", function () {
+                        const platformHighlight = "platformHighlight";
+                        platformSelection.removeClass(platformHighlight);
+                        $(this).addClass(platformHighlight);
                     });
                 }
             });
         });
 
         $("#addGameBtn").on("click", function () {
-            let id = $(".highlight").attr("data-id");
+            let id = $(".gameHighlight").attr("data-id");
                 console.log(id);
                 console.log("im highlighted");
-                $.ajax({
-                    url: "/Games/InsertGame",
-                    method: "POST",
-                    data: {id},
-                    success: response => {
-                        console.log(response);
-                        $('#gameSearchModal').modal('hide');
-                        getUserGames();
-                        location.reload();
-                    }
-                });
+                // $.ajax({
+                //     url: "/Games/InsertGame",
+                //     method: "POST",
+                //     data: {id},
+                //     success: response => {
+                //         console.log(response);
+                //         $('#gameSearchModal').modal('hide');
+                //         getUserGames();
+                //         location.reload();
+                //     }
+                // });
         });
     }
 

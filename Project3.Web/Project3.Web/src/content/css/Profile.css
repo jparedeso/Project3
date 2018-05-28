@@ -154,11 +154,20 @@ input {
     overflow: scroll;
 } */
 
-.highlight {
+.gameHighlight {
     background-color: yellow;
     border: 1px solid red;
 }
 
-.highlight:hover {
+.gameHighlight:hover {
+    transform: scale(1.05);
+}
+
+.platformHighlight {
+    background-color: orange;
+    border: 1px solid black;
+}
+
+.platformHighlight:hover {
     transform: scale(1.05);
 }
