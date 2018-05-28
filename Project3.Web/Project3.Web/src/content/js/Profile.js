@@ -60,9 +60,10 @@ const Profile = function () {
 
     function getUserGames() {
         $.ajax({
-            url: "/Games/SearchUserGames",
+            url: "/Games/GameInfo",
             method: "GET",
             success: response => {
+                console.log(response);
                 $("#displayGames").html("");
                 for (var i = 0; i < response.length; i++) {
                     $("#displayGames").append(`
