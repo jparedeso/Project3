@@ -38,9 +38,19 @@ const Profile = function () {
                             // `)
                         }
 
+                        let list;
+                        for (let k = 0; k < platformArray.length; k++) {
+                            list += "<li class='platformList'>" + platformArray[k] + "</li>";
+                        }
+                        
+
                         $("#gameReturn").append(`
                         <div class="gameSelection" data-id="${response[i].gameId}">${response[i].name}</div>
-                        <div class="platformReturn" style="padding-left: 25px; color: black; display: none;">${platformArray}</div>
+                        <div class="platformReturn" style="padding-left: 25px; color: black; display: none;">
+                            <ol>
+                                ${list}
+                            </ol>
+                        </div>
                         `);
                     }
 
@@ -53,9 +63,9 @@ const Profile = function () {
                         $(".platformReturn").show();
                     });
 
-                    let platformReturn = $(".platformReturn").on("click", function () {
+                    let platformList = $(".platformList").on("click", function () {
                         const platformHighlight = "platformHighlight";
-                        platformReturn.removeClass(platformHighlight);
+                        platformList.removeClass(platformHighlight);
                         $(this).addClass(platformHighlight);
                     });
                 }
