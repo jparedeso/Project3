@@ -10,9 +10,6 @@ const Profile = function () {
     }
 
     function searchGames() {
-        $("#addGameBtn").on("click", function () {
-            //Ideally we want to just HIGHLIGHT the current game selection, and then ADD it when we PRESS this button.
-        });
 
         $("#searchGameForm").on("submit", function (e) {
             e.preventDefault();
@@ -31,22 +28,33 @@ const Profile = function () {
                         <div class="gameSelection" data-id="${response[i].gameId}">${response[i].name}</div>
                         `);
                     }
-                    $(".gameSelection").on("click", function () {
-                        const id = $(this).attr("data-id");
 
-                        $.ajax({
-                            url: "/Games/InsertGame",
-                            method: "POST",
-                            data: {id},
-                            success: response => {
-                                console.log(response);
-                                $('#gameSearchModal').modal('hide');
-                                getUserGames();
-                            }
-                        });
+                    let selection = $(".gameSelection").on("click", function () {
+                        const classHighlight = "highlight";
+                        const id = $(this).attr("data-id");
+                        selection.removeClass(classHighlight);
+                        $(this).addClass(classHighlight);
+                        console.log(id);
                     });
                 }
             });
+        });
+
+        $("#addGameBtn").on("click", function () {
+            let id = $(".highlight").attr("data-id");
+                console.log(id);
+                console.log("im highlighted");
+                $.ajax({
+                    url: "/Games/InsertGame",
+                    method: "POST",
+                    data: {id},
+                    success: response => {
+                        console.log(response);
+                        $('#gameSearchModal').modal('hide');
+                        getUserGames();
+                        location.reload();
+                    }
+                });
         });
     }
 
