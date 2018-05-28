@@ -55,7 +55,6 @@ namespace Project3.API.Controllers
             return Json(games);
         }
 
-
         [HttpGet]
         [Route("Search/{name}")]
         public async Task<ActionResult> SearchGames(string name)
@@ -103,6 +102,63 @@ namespace Project3.API.Controllers
             }
 
             games = games.Where(p => userGames.All(p2 => p2.GameId != p.GameId)).ToList();
+
+            return Json(games);
+        }
+
+        [HttpGet]
+        [Route("Info")]
+        public ActionResult GameInfo()
+        {
+            var gamesObj = Game.GameInfo(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var userGames = gamesObj.ToObject<List<Game.GameInfoModel>>();
+
+            var games = userGames
+                .GroupBy(g => new
+                {
+                    g.GameId
+                })
+                .Select(g => new Game.GameModel
+                {
+                    GameId = g.Key.GameId,
+                    Name = g.First().Name,
+                    Summary = g.First().Summary,
+                    Cover = g.First().Cover == null ? "https://www.picclickimg.com/00/s/MTYwMFgxNjAw/z/8xgAAOSwr81USRqc/$/Nintendo-WII-DVD-Video-Game-Case-White-Blank-_57.jpg" : g.First().Cover,
+                    Genres = new List<Game.Genre>(),
+                    Platforms = new List<Game.Platform>()
+                }).ToList();
+
+            foreach (var game in games)
+            {
+                var genres = userGames
+                    .Where(g => g.GameId == game.GameId)
+                    .GroupBy(g => new
+                    {
+                        g.GenreId
+                    })
+                    .Select(g => new Game.Genre
+                    {
+                        GenreId = g.First().GenreId,
+                        GenreName = g.First().GenreName,
+                        GameId = g.First().GameId
+                    }).ToList();
+
+                var platforms = userGames
+                    .Where(g => g.GameId == game.GameId)
+                    .GroupBy(g => new
+                    {
+                        g.PlatformId
+                    })
+                    .Select(g => new Game.Platform
+                    {
+                        PlatformId = g.First().PlatformId,
+                        PlatformName = g.First().PlatformName,
+                        GameId = g.First().GameId
+                    }).ToList();
+
+                game.Genres = genres;
+                game.Platforms = platforms;
+            }
 
             return Json(games);
         }

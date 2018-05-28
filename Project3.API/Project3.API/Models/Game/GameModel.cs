@@ -84,6 +84,34 @@ namespace Project3.API.Models.Game
             public int GameId { get; set; }
         }
 
+        public class GameInfoModel
+        {
+            public int GameId { get; set; }
+            public string Name { get; set; }
+            public string Summary { get; set; }
+            public string Cover { get; set; }
+            public int GenreId { get; set; }
+            public string GenreName { get; set; }
+            public int PlatformId { get; set; }
+            public string PlatformName { get; set; }
+        }
+
+        public static JToken GameInfo(string username)
+        {
+            using (SqlConnection conn = DbConnectionFactory.CreateSqlConnection())
+            using (SqlCommand command = new SqlCommand("GameInfo", conn))
+            {
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@Username", username);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    return JsonUtils.CreateJsonArrayFromSqlReader(reader);
+                }
+            }
+        }
+
         public static JToken GetGames(string username, int? gameId)
         {
             using (SqlConnection conn = DbConnectionFactory.CreateSqlConnection())

@@ -39,6 +39,14 @@ namespace Project3.Web.Controllers
             return Json(games);
         }
 
+        [HttpGet]
+        public async Task<ActionResult> GameInfo()
+        {
+            var games = await Utilities.API.Get<List<GameInfoModel>>(_appSettings, _httpContextAccessor, "Info");
+
+            return Json(games);
+        }
+
         [Route("Search")]
         public async Task<ActionResult> SearchGame()
         {
