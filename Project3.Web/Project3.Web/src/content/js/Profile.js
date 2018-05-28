@@ -24,21 +24,24 @@ const Profile = function () {
                     console.log(response);
                     $("#gameReturn").html("");
                     for (let i = 0; i < response.length; i++) {
-
-                        $("#gameReturn").append(`
-                        <div class="gameSelection" data-id="${response[i].gameId}">${response[i].name}</div>
-                        <div class="platformReturn"></div>
-                        `);
+                        let platformArray = [];
+                        console.log(platformArray);
 
                         let platforms = response[i].platforms;
                         // console.log(platforms);
 
                         for (let j = 0; j < platforms.length; j++) {
+                            platformArray.push(platforms[j].platformName);
                             // console.log(platforms[j].platformName);
-                            $(".platformReturn").append(`
-                            <div class="platformSelection" style="padding-left: 25px; color: black; display: none;">${platforms[j].platformName}</div>
-                            `)
+                            // $(".platformReturn").append(`
+                            // <div class="platformSelection" style="padding-left: 25px; color: black; display: none;">${platforms[j].platformName}</div>
+                            // `)
                         }
+
+                        $("#gameReturn").append(`
+                        <div class="gameSelection" data-id="${response[i].gameId}">${response[i].name}</div>
+                        <div class="platformReturn" style="padding-left: 25px; color: black; display: none;">${platformArray}</div>
+                        `);
                     }
 
                     let gameSelection = $(".gameSelection").on("click", function () {
@@ -47,12 +50,12 @@ const Profile = function () {
                         gameSelection.removeClass(gameHighlight);
                         $(this).addClass(gameHighlight);
                         console.log(id);
-                        $(".platformSelection").show();
+                        $(".platformReturn").show();
                     });
 
-                    let platformSelection = $(".platformSelection").on("click", function () {
+                    let platformReturn = $(".platformReturn").on("click", function () {
                         const platformHighlight = "platformHighlight";
-                        platformSelection.removeClass(platformHighlight);
+                        platformReturn.removeClass(platformHighlight);
                         $(this).addClass(platformHighlight);
                     });
                 }
