@@ -31,7 +31,7 @@ const Profile = function () {
                         // console.log(platforms);
 
                         for (let j = 0; j < platforms.length; j++) {
-                            platformArray.push(platforms[j].platformName);
+                            platformArray.push(platforms[j]);
                             // console.log(platforms[j].platformName);
                             // $(".platformReturn").append(`
                             // <div class="platformSelection" style="padding-left: 25px; color: black; display: none;">${platforms[j].platformName}</div>
@@ -40,14 +40,14 @@ const Profile = function () {
 
                         let list;
                         for (let k = 0; k < platformArray.length; k++) {
-                            list += "<li class='platformList'>" + platformArray[k] + "</li>";
+                            list += "<li class='platformListItem' platform-id=" + platformArray[k].platformId  + ">" + platformArray[k].platformName + "</li>";
                         }
                         
 
                         $("#gameReturn").append(`
                         <div class="gameSelection" data-id="${response[i].gameId}">${response[i].name}</div>
-                        <div class="platformReturn" style="padding-left: 25px; color: black; display: none;">
-                            <ol>
+                        <div class="platformReturn" style="padding-left: 25px; color: black;">
+                            <ol class="platformList" style="display: none;">
                                 ${list}
                             </ol>
                         </div>
@@ -60,13 +60,15 @@ const Profile = function () {
                         gameSelection.removeClass(gameHighlight);
                         $(this).addClass(gameHighlight);
                         console.log(id);
-                        $(".platformReturn").show();
+                        $(".platformList").show();
                     });
 
-                    let platformList = $(".platformList").on("click", function () {
+                    let platformListItem = $(".platformListItem").on("click", function () {
                         const platformHighlight = "platformHighlight";
-                        platformList.removeClass(platformHighlight);
+                        const platformId = $(this).attr("platform-id");
+                        platformListItem.removeClass(platformHighlight);
                         $(this).addClass(platformHighlight);
+                        console.log(platformId);
                     });
                 }
             });
