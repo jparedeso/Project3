@@ -18,6 +18,9 @@ body {
   margin-top: 10px;
 }
 
+#gameSearchBtn:hover {
+    transform: scale(1.1);
+}
 
 .game-grid-container {
     border: 2px solid rgb(248, 252, 236);
@@ -32,15 +35,18 @@ body {
 }
 
 #gameStats {
-    margin-left: 5px
+    margin-left: 5px;
 }
 
 .gameImage {
     margin: 5px 5px 5px 40px;
     width: 130px;
     height: 130px;
+}
+
+.gameImage img {
+    height: 100%;
     border: 1px solid black;
-    border-radius: 5px;
 }
 
 strong {
@@ -144,6 +150,15 @@ input {
   width: 200px;
 }
 
-#gameReturn {
+/* #gameReturn {
     overflow: scroll;
+} */
+
+.highlight {
+    background-color: yellow;
+    border: 1px solid red;
+}
+
+.highlight:hover {
+    transform: scale(1.05);
 }
