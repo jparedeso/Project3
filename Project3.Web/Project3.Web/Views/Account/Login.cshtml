@@ -33,7 +33,7 @@
             <div class="form-group">
                 <div class="checkbox">
                     <label asp-for="RememberMe">
-                        <input type="checkbox" asp-for="RememberMe" />
+                        <input type="checkbox" asp-for=" RememberMe" />
                         @Html.DisplayNameFor(m => m.RememberMe)
                     </label>
                 </div>
@@ -42,11 +42,11 @@
                 <button type="submit" class="btn btn-success" id='submitButton'>LOGIN</button>
             </div>
             <div class="form-group">
-                <p>
-                    <a asp-action="ForgotPassword">Forgot your password?</a>
+                <p class="loginInHelp">
+                    <a asp-action="ForgotPassword">FORGOT YOUR PASSWORD</a>
                 </p>
-                <p>
-                    <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a>
+                <p class="loginInHelp">
+                    <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">REGISTER AS A NEW USER?</a>
                 </p>
             </div>
         </form>

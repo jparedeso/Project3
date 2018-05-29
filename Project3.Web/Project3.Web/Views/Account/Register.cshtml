@@ -1,6 +1,6 @@
 ﻿@model RegisterViewModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,7 +11,6 @@
         <h1 id="regReq" class="flash">WAIT... THE PRINCESS REQUESTS THAT YOU REGISTER OR LOGIN BEFORE ENTERING THE KINGDOM!</h1>
         <br />
         <div id="form" class="col-sm-6">
-            <hr />
             <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post" id="registerForm">
                 @* <div asp-validation-summary="All" class="text-danger"></div> *@
                 <div class="form-group">
