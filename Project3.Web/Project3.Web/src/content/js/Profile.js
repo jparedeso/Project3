@@ -24,6 +24,7 @@ const Profile = function () {
                     console.log(response);
                     $("#gameReturn").html("");
                     for (let i = 0; i < response.length; i++) {
+                        // array for platforms to push into for each games
                         let platformArray = [];
                         // console.log(platformArray);
 
@@ -55,15 +56,18 @@ const Profile = function () {
                         `);
                     }
 
+                    // highlight game selection
                     let gameSelection = $(".gameSelection").on("click", function () {
                         const gameHighlight = "gameHighlight";
                         const id = $(this).attr("data-id");
                         gameSelection.removeClass(gameHighlight);
                         $(this).addClass(gameHighlight);
                         console.log(id);
+                        // show the platforms list that is hidden
                         $(".platformList").show();
                     });
 
+                    // highlight platform selection
                     let platformListItem = $(".platformListItem").on("click", function () {
                         const platformHighlight = "platformHighlight";
                         const platformName = $(this).attr("platform-name");
