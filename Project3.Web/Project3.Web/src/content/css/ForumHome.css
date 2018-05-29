@@ -11,7 +11,7 @@ body {
 .forumMenu {
   border-radius: 10px;
   padding: 10px;
-  margin: 0px;
+  margin: 5px 15px 5px 20px;
   background-color: rgb(248, 252, 236);
   font-family: 'Audiowide', cursive;
   text-align: left;
@@ -39,6 +39,7 @@ ul {
 
 .forumTitle {
   color: red;
+  margin-left: 50px;
 }
 
 #tableTop {

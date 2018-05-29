@@ -6,22 +6,24 @@ body {
 label, #submitButton, #regReq {
   font-family: 'Audiowide', cursive;
   color: red;
+   background-color:rgb(75, 72, 72)
 }
 
 #logInForm {
-  background-color: rgb(248, 252, 236);
+ background-color: #2c2c2c;
   border: rgb(248, 252, 236);
   border-radius: 10px;
   padding: 40px;
 }
 
-.rounded {
+.form-control {
   border-radius: 10px;
+    background-color: rgb(233, 240, 212);
 }
 
- {
-  border-radius: 10px;
-  background-color: rgb(248, 252, 236);
+.rounded {
+border-radius: 15px;
+background-color: #2c2c2c;
 }
 
 placeholder {
@@ -37,7 +39,6 @@ placeholder {
 }
 
 #form {
-  background-color: rgb(248, 252, 236);
   border: rgb(248, 252, 236);
   border-radius: 10px;
   padding: 10px;
@@ -50,6 +51,7 @@ placeholder {
 .formContainer {
   border: none;
   padding: 10px;
+  margin-left: 80px;
 }
 
 #submitButton {

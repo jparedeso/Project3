@@ -1,3 +1,7 @@
+body {
+  background-color: black;
+}
+
 container {
   margin-top: 25px;
 }
@@ -23,18 +27,23 @@ container {
   color:  red;
   text-decoration: underline;
   font-size: 65px;
+  margin-top: 50px;
 }
 
 .highlights {
   color:  rgb(212, 139, 4);
+   background-color: #2c2c2c;
   font-family: 'Audiowide', cursive;
   text-align: left;
+  border-radius: 10px;
+  padding: 5px;
 }
 
 .highlights1 {
   color:  rgb(228, 58, 6);
   font-family: 'Audiowide', cursive;
   text-align: left;
+  margin-top: 0px;
 }
 
 h4 {

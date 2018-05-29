@@ -1,14 +1,13 @@
 ﻿body {
-    padding-top: 20px;
+    padding-top: 10px;
     padding-bottom: 20px;
-    background-color:  rgb(75, 72, 72);
+    background-color: black;
 }
 
-/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    background-color: black;
 }
 
 hr {
@@ -20,11 +19,13 @@ hr {
     height: 500px;
 }
 
-footer {
+#footerText {
     color: red;
     font-family: 'Audiowide', cursive;
     margin-left: 20px;
+    padding: 20px;
 }
+
 
 /* Carousel */
 .carousel-caption p {
@@ -48,4 +49,8 @@ footer {
     .carousel-caption {
         display: none;
     }
+}
+
+#RemeberMe {
+    font-size: 30px;
 }

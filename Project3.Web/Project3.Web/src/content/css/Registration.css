@@ -8,6 +8,7 @@ label, #submitButton, .registrationLink, #regReq, footer {
 }
 
 #regReq {
+  margin-top: 0px;
   text-align: center;
   font-size: 30px;
   animation-delay: 1.5s;
@@ -16,7 +17,7 @@ label, #submitButton, .registrationLink, #regReq, footer {
 }
 
 #form {
-  background-color:  rgb(248, 252, 236);
+ background-color: #2c2c2c;
   border: rgb(248, 252, 236);
   border-radius: 10px;
   padding: 40px;
@@ -26,8 +27,13 @@ label, #submitButton, .registrationLink, #regReq, footer {
    border-radius: 10px;
 }
 
+.form-control {
+   background-color: rgb(233, 240, 212);
+}
+
 .formContainer {
   border: none;
+  margin-top: 0px;
 }
 
 #submitButton {
