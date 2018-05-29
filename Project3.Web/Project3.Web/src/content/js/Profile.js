@@ -63,19 +63,20 @@ const Profile = function () {
                         gameSelection.removeClass(gameHighlight);
                         $(this).addClass(gameHighlight);
                         console.log(id);
-                        
+
                         // show the platforms list that is hidden
                         // $(".platformList").show();
                     });
 
                     // highlight platform selection
-                    let platformListItem = $(".platformListItem").on("click", function () {
-                        const platformHighlight = "platformHighlight";
-                        const platformName = $(this).attr("platform-name");
-                        platformListItem.removeClass(platformHighlight);
-                        $(this).addClass(platformHighlight);
-                        console.log(platformName);
-                    });
+
+                    // let platformListItem = $(".platformListItem").on("click", function () {
+                    //     const platformHighlight = "platformHighlight";
+                    //     const platformName = $(this).attr("platform-name");
+                    //     platformListItem.removeClass(platformHighlight);
+                    //     $(this).addClass(platformHighlight);
+                    //     console.log(platformName);
+                    // });
                 }
             });
         });
@@ -83,8 +84,8 @@ const Profile = function () {
         $("#addGameBtn").on("click", function () {
             let id = $(".gameHighlight").attr("data-id");
                 console.log("game highlighted: " + id);
-            let platformChosen = $(".platformHighlight").attr("platform-name");
-                console.log("platform highlighted: " + platformChosen);
+            // let platformChosen = $(".platformHighlight").attr("platform-name");
+            //     console.log("platform highlighted: " + platformChosen);
                 $.ajax({
                     url: "/Games/InsertGame",
                     method: "POST",
