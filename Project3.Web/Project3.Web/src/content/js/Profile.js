@@ -107,63 +107,67 @@ const Profile = function () {
                 $("#displayGames").html("");
                 for (var i = 0; i < response.length; i++) {
 
-                    let gameName = response[i].name;
-                    console.log(gameName);
+                    console.log(response[i].platforms);
 
-                    let value= [];
-                    console.log(value);
+                    // everything commented below makes the ebay api work
+                    
+                    // let gameName = response[i].name;
+                    // console.log(gameName);
 
-                    const settings = {
-                        "async"      : true,
-                        "crossDomain": true,
-                        "url"        : "https://cors-anywhere.herokuapp.com/https://svcs.ebay.com/services/search/FindingService/v1?RESPONSE-DATA-FORMAT=JSON&keywords=" + gameName + "&categoryId=139973",
-                        "method"     : "GET",
-                        "headers"    : {
-                            "X-EBAY-SOA-SERVICE-VERSION" : "1.13.0",
-                            "X-EBAY-SOA-OPERATION-NAME"  : "findCompletedItems",
-                            "X-EBAY-SOA-SECURITY-APPNAME": "FuzzyJon-RetroGam-PRD-92cc9f5ed-70036e56",
-                            "Cache-Control"              : "no-cache",
-                            "Postman-Token"              : "2533f0d4-46b4-4ae3-90c5-bfa1c936774a"
-                        }
-                    };
+                    // let value= [];
+                    // console.log(value);
+
+                    // const settings = {
+                    //     "async"      : true,
+                    //     "crossDomain": true,
+                    //     "url"        : "https://cors-anywhere.herokuapp.com/https://svcs.ebay.com/services/search/FindingService/v1?RESPONSE-DATA-FORMAT=JSON&keywords=" + gameName + "&categoryId=139973",
+                    //     "method"     : "GET",
+                    //     "headers"    : {
+                    //         "X-EBAY-SOA-SERVICE-VERSION" : "1.13.0",
+                    //         "X-EBAY-SOA-OPERATION-NAME"  : "findCompletedItems",
+                    //         "X-EBAY-SOA-SECURITY-APPNAME": "FuzzyJon-RetroGam-PRD-92cc9f5ed-70036e56",
+                    //         "Cache-Control"              : "no-cache",
+                    //         "Postman-Token"              : "2533f0d4-46b4-4ae3-90c5-bfa1c936774a"
+                    //     }
+                    // };
             
-                    $.ajax(settings).done(function (response) {
-                        const results = JSON.parse(response);
-                        // console.log(results);
-                        const items = results.findCompletedItemsResponse[0].searchResult[0].item;
-                        const priceArray = [];
+                    // $.ajax(settings).done(function (response) {
+                    //     const results = JSON.parse(response);
+                    //     // console.log(results);
+                    //     const items = results.findCompletedItemsResponse[0].searchResult[0].item;
+                    //     const priceArray = [];
             
-                        for (let i = 0; i < items.length; i++) {
-                            // console.log(items[i]);
-                            const sellingState = items[i].sellingStatus[0].sellingState;
-                            const sellingPrice = items[i].sellingStatus[0].currentPrice[0].__value__;
-                            // console.log(sellingState);
-                            // var sum = 0;
-                            if (sellingState == "EndedWithSales") {
-                                // console.log("true");
-                                // console.log(sellingPrice);
-                                priceArray.push(sellingPrice);
-                                // console.log(priceArray);
-                            }
-                        }
-                        // console.log(priceArray);
+                    //     for (let i = 0; i < items.length; i++) {
+                    //         // console.log(items[i]);
+                    //         const sellingState = items[i].sellingStatus[0].sellingState;
+                    //         const sellingPrice = items[i].sellingStatus[0].currentPrice[0].__value__;
+                    //         // console.log(sellingState);
+                    //         // var sum = 0;
+                    //         if (sellingState == "EndedWithSales") {
+                    //             // console.log("true");
+                    //             // console.log(sellingPrice);
+                    //             priceArray.push(sellingPrice);
+                    //             // console.log(priceArray);
+                    //         }
+                    //     }
+                    //     // console.log(priceArray);
             
-                        let sum = 0;
+                    //     let sum = 0;
             
-                        for (let j = 0; j < priceArray.length; j++) {
-                            sum += parseInt(priceArray[j]);
-                        }
+                    //     for (let j = 0; j < priceArray.length; j++) {
+                    //         sum += parseInt(priceArray[j]);
+                    //     }
             
-                        const average = sum / priceArray.length;
-                        // console.log(sum);
-                        // console.log("game name: " + gameName + "game price: " + average);
+                    //     const average = sum / priceArray.length;
+                    //     // console.log(sum);
+                    //     // console.log("game name: " + gameName + "game price: " + average);
             
-                        const averagePrice = average.toFixed(2);
-                        console.log("game name: " + gameName + " / price: " + averagePrice);
-                        value.push(averagePrice);
-                        console.log(value);
+                    //     const averagePrice = average.toFixed(2);
+                    //     console.log("game name: " + gameName + " / price: " + averagePrice);
+                    //     value.push(averagePrice);
+                    //     console.log(value);
                         
-                    });
+                    // });
 
                     $("#displayGames").append(`
                         <div class="game-grid-container" data-id="${response[i].gameId}">
@@ -173,7 +177,7 @@ const Profile = function () {
                                 </div>
                                 <div class="col-sm-2 gameValue">
                                     <img id="coin" src="https://media0.giphy.com/media/yCyVbqru5Ggfu/giphy.gif">
-                                    <strong>EST. VALUE: </strong>${value[0]}
+                                    <strong>EST. VALUE: </strong>
                                 </div>
                                 <div class="col-sm-2 gameCondition dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <strong id="conditionBtn" role="button">EST. CONDITION: </strong>
@@ -188,7 +192,7 @@ const Profile = function () {
                                     </div>
                                 </div>
                                 <div class="col-sm-2 gamePlatform">
-                                    <strong>PLATFORM: </strong>
+                                    <strong>PLATFORM: </strong>${response[i].platforms[0].platformName}
                                 </div>
                                 <div class="col-sm-2 actions">
                                     <img id="edit" src="https://png.icons8.com/metro/1600/edit-property.png" role="button">
