@@ -30,26 +30,27 @@ const Profile = function () {
                         let platforms = response[i].platforms;
                         // console.log(platforms);
 
-                        for (let j = 0; j < platforms.length; j++) {
-                            platformArray.push(platforms[j]);
+                        for (let i = 0; i < platforms.length; i++) {
+                            platformArray.push(platforms[i]);
                             // console.log(platforms[j].platformName);
                             // $(".platformReturn").append(`
                             // <div class="platformSelection" style="padding-left: 25px; color: black; display: none;">${platforms[j].platformName}</div>
                             // `)
                         }
 
+                        // creating a li to insert into the ul below
                         let list;
-                        for (let k = 0; k < platformArray.length; k++) {
-                            list += "<li class='platformListItem' platform-name='" + platformArray[k].platformName  + "'>" + platformArray[k].platformName + "</li>";
+                        for (let i = 0; i < platformArray.length; i++) {
+                            list += "<li class='platformListItem' platform-name='" + platformArray[i].platformName  + "'>" + platformArray[i].platformName + "</li>";
                         }
                         
-
+                        // append a list of platforms to append into the gamesReturn div
                         $("#gameReturn").append(`
                         <div class="gameSelection" data-id="${response[i].gameId}">${response[i].name}</div>
                         <div class="platformReturn" style="padding-left: 25px; color: black;">
-                            <ol class="platformList" style="display: none;">
+                            <ul class="platformList" style="display: none;">
                                 ${list}
-                            </ol>
+                            </ul>
                         </div>
                         `);
                     }
