@@ -17,7 +17,17 @@ var Forum = function() {
             var newPost = {
                 Content: $("#modalPost").val().trim()
             };
+            
+            
             console.log(newThread, newPost);
+            
+
+            $("#displayThreads").append("<tr>" + 
+            "<td><a class='artTitle' href='#'>" + newThread.Name + "</a></td>" + 
+            "<td class='align'>" + "MarioFan4ever" + "</td>" +
+            "<td class='align'>" + "Just now" + "</td>" +
+            "<td class='align'>" + "Just now" + "</td>" +
+            "</tr>");
 
             // Send the POST request to create new thread.
 
