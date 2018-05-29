@@ -84,17 +84,17 @@ const Profile = function () {
                 console.log("game highlighted: " + id);
             let platformChosen = $(".platformHighlight").attr("platform-name");
                 console.log("platform highlighted: " + platformChosen);
-                // $.ajax({
-                //     url: "/Games/InsertGame",
-                //     method: "POST",
-                //     data: {id},
-                //     success: response => {
-                //         console.log(response);
-                //         $('#gameSearchModal').modal('hide');
-                //         getUserGames();
-                //         location.reload();
-                //     }
-                // });
+                $.ajax({
+                    url: "/Games/InsertGame",
+                    method: "POST",
+                    data: {id},
+                    success: response => {
+                        console.log(response);
+                        $('#gameSearchModal').modal('hide');
+                        getUserGames();
+                        location.reload();
+                    }
+                });
         });
     }
 
