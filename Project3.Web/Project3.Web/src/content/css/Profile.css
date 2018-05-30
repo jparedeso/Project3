@@ -2,10 +2,15 @@ body {
   background: #2c2c2c;
 }
 
+.welcome {
+    margin-left: 50px;
+}
+
 #inventory {
     font-family: 'Audiowide', cursive;
     color:red;
-    margin: 0px;
+    margin-left: 0px;
+    padding: 10px;
 }
 
 #gameSearchBtn {
