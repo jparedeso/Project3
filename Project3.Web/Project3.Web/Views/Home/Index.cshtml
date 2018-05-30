@@ -13,9 +13,16 @@
     @if (SignInManager.IsSignedIn(User))
     {
         //whatever you want to show when people are already logged in. the following is a button example for logout, you can get rid of it if you want.
-        <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
-                    <button type="submit">Log out</button>
-        </form>
+        // <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+        //             <button type="submit">Log out</button>
+        // </form>
+        <div id="welcomeUser" class="row">
+            <h3 id="currentUser">WELCOME, (userName)... <br>
+            THE PRINCESS HAS BEEN WAITING FOR YOU, <br>
+            YOU MAY ENTER THE KINGDOM. <br>
+            GOOD LUCK ON YOUR QUEST.</h3>
+            <img id="enterPic" src="/dist/images/flagpole.gif">
+        </div>
     }
      else
     {

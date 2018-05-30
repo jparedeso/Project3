@@ -54,3 +54,20 @@ h4 {
   width: 30px;
   height: 40px;
 }
+
+logoutForm {
+  color: red;
+}
+
+#currentUser {
+  color:  red;
+  font-family: 'Audiowide', cursive;
+  text-align: center;
+  margin-top: 0px;
+}
+
+#enterPic {
+  width: 600px;
+  height: 500px;
+  margin-left: 280px;
+}
