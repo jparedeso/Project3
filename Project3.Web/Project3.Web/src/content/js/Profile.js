@@ -23,7 +23,7 @@ const Profile = function () {
                 method : this.method,
                 data   : {name},
                 success: response => {
-                    console.log(response);
+                    // console.log(response);
                     $("#gameReturn").html("");
                     for (let i = 0; i < response.length; i++) {
                         // array for platforms to push into for each games
@@ -64,7 +64,7 @@ const Profile = function () {
                         const id = $(this).attr("data-id");
                         gameSelection.removeClass(gameHighlight);
                         $(this).addClass(gameHighlight);
-                        console.log(id);
+                        // console.log(id);
 
                         // show the platforms list that is hidden
                         // $(".platformList").show();
@@ -85,7 +85,7 @@ const Profile = function () {
 
         $("#addGameBtn").on("click", function () {
             let id = $(".gameHighlight").attr("data-id");
-                console.log("game highlighted: " + id);
+                // console.log("game highlighted: " + id);
             // let platformChosen = $(".platformHighlight").attr("platform-name");
             //     console.log("platform highlighted: " + platformChosen);
                 $.ajax({
@@ -93,7 +93,7 @@ const Profile = function () {
                     method: "POST",
                     data: {id},
                     success: response => {
-                        console.log(response);
+                        // console.log(response);
                         $('#gameSearchModal').modal('hide');
                         getUserGames();
                         // location.reload();
@@ -107,7 +107,7 @@ const Profile = function () {
             url: "/Games/GameInfo",
             method: "GET",
             success: response => {
-                console.log(response);
+                // console.log(response);
                 $("#displayGames").html("");
                 for (var i = 0; i < response.length; i++) {
 
@@ -229,8 +229,8 @@ const Profile = function () {
 
             const title = $(".valueGameTitle").val().trim();
             const platform = $(".valuePlatform").val().trim();
-            console.log(title);
-            console.log(platform);
+            // console.log(title);
+            // console.log(platform);
 
             const settings = {
                 "async"      : true,
@@ -278,7 +278,7 @@ const Profile = function () {
                 // console.log("game name: " + gameName + "game price: " + average);
         
                 const averageValue = average.toFixed(2);
-                console.log("game: " + title + " / Value: $" + averageValue);
+                // console.log("game: " + title + " / Value: $" + averageValue);
 
                 $('#valueReturn').append(`
                 <h5 id="estimatedValueText">ESTIMATED VALUE:</h5>
