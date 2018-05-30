@@ -12,6 +12,7 @@
   
   .page-header {
     margin-top: 5px;
+    margin-left: -20px;
     height: 250px;
     background-color: #2b2a2a;
     border-style: solid;

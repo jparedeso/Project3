@@ -1,7 +1,8 @@
 body {
   background-color: black;
+  background-image: url("https://www.gamingrebellion.com/wp-content/uploads/2015/08/Star-Tropics-Background.jpg");
+  background-repeat: repeat-y;
 }
-
 container {
   margin-top: 25px;
 }
@@ -30,7 +31,7 @@ container {
   margin-top: 50px;
 }
 
-.highlights {
+.highlights, .highlights2, .highlights3, .highlights4, .highlights5 {
   color:  rgb(212, 139, 4);
    background-color: #2c2c2c;
   font-family: 'Audiowide', cursive;
@@ -44,6 +45,24 @@ container {
   font-family: 'Audiowide', cursive;
   text-align: left;
   margin-top: 0px;
+  
+}
+
+.highlights {
+  animation-delay: .5s;
+}
+
+.highlights2 {
+  animation-delay: 1.5s;
+}
+.highlights3 {
+  animation-delay: 2.5s;
+}
+.highlights4 {
+  animation-delay: 3.5s;
+}
+.highlights5 {
+  animation-delay: 4.5s;
 }
 
 h4 {
@@ -68,8 +87,8 @@ logoutForm {
 
 #enterPic {
   border-radius: 50px;
-  width: 600px;
-  height: 400px;
-  margin-left: 280px;
-  animation-delay: 4s;
+  width: 50%;
+  height: 50%;
+  margin-left: 300px;
+  animation-delay: 3.4s;
 }
