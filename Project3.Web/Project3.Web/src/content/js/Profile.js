@@ -6,6 +6,17 @@ const Profile = function () {
     }
 
     function initEventHandlers() {
+        // $("#delete").on("click", function() {
+        //     id = $(this).parent("div").parent("div").parent("div").attr("data-id");
+        //     $.ajax({
+        //         url: "/Games/DeleteUserGame",
+        //         method: "DELETE",
+        //         data: {id},
+        //         success: response => {
+        //             getUserGames();
+        //         }
+        //     });
+        // });
         searchGames();
         checkValue();
         valueModalClose();

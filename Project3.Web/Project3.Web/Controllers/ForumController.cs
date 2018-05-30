@@ -31,5 +31,10 @@ namespace Project3.Web.Controllers
 
             return View(subForum);
         }
+
+        public ActionResult UserPost()
+        {
+            return View();
+        }
     }
 }
