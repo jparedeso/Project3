@@ -96,7 +96,7 @@ const Profile = function () {
                         // console.log(response);
                         $('#gameSearchModal').modal('hide');
                         getUserGames();
-                        // location.reload();
+                        location.reload();
                     }
                 });
         });
