@@ -10,7 +10,7 @@ label, #submitButton, #regReq {
 }
 
 #logInForm {
- background-color: #2c2c2c;
+background-color: (0, 0, 0, 0);
   border: rgb(248, 252, 236);
   border-radius: 10px;
   padding: 40px;
@@ -55,7 +55,7 @@ placeholder {
 }
 
 #submitButton {
-  background-color: black;;
+  background-color: (0, 0, 0, 0);
   color: white;
   border: none;
   border-radius: 10px;
