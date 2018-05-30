@@ -1,8 +1,16 @@
-body {
+
+#body {
   background-color: black;
   background-image: url("https://www.gamingrebellion.com/wp-content/uploads/2015/08/Star-Tropics-Background.jpg");
   background-repeat: repeat-y;
 }
+
+.body-content {
+  background-color: black;
+  background-image: url("https://www.gamingrebellion.com/wp-content/uploads/2015/08/Star-Tropics-Background.jpg");
+  background-repeat: repeat-y;
+}
+
 container {
   margin-top: 25px;
 }
@@ -13,6 +21,7 @@ container {
     border: yellow;
     border: 2px;
     border-radius: 10px;
+    margin-left: 50px;
 }
 
 #about {
@@ -90,5 +99,5 @@ logoutForm {
   width: 50%;
   height: 50%;
   margin-left: 300px;
-  animation-delay: 3.4s;
+  animation-delay: 3.3s;
 }

@@ -14,6 +14,7 @@ label, #submitButton, .registrationLink, #regReq, footer {
   animation-delay: 1.5s;
   animation-duration: 1s;
   animation-iteration-count: 2;
+  background-color: black;
 }
 
 #form {
