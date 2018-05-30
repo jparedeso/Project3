@@ -23,21 +23,27 @@ container {
     margin-left: 50px;
 }
 
+hr {
+ border-color: red;
+ border-width: 3px;
+}
+
 #about {
-  color: rgb(228, 58, 6);
+  color: rgb(248, 92, 31);
   font-family: 'Audiowide', cursive;
-  text-align: center;
-  margin-top: 10px;
+  text-align: left;
+  margin-top: 5px;
+  margin-left: 0px;
   width: 100%;
 }
 
 #cartCatalog {
   font-family: 'Audiowide', cursive;
   color:  red;
-  text-align: center;
-  text-decoration: underline;
-  font-size: 65px;
-  margin-top: 50px;
+  text-align: left;
+  /* text-decoration: underline; */
+  font-size: 50px;
+  margin-top: 10px;
 }
 
 .highlights, .highlights2, .highlights3, .highlights4, .highlights5 {
@@ -50,28 +56,29 @@ container {
 }
 
 .highlights1 {
-  color:  rgb(228, 58, 6);
+  color: rgb(248, 92, 31);
   font-family: 'Audiowide', cursive;
-  text-align: center;
+  text-align: left;
   margin-top: 0px;
+  margin-left: 0px;
   
 }
 
 .highlights {
-  animation-delay: .5s;
+  animation-delay: 1.5s;
 }
 
 .highlights2 {
-  animation-delay: 1.5s;
-}
-.highlights3 {
   animation-delay: 2.5s;
 }
-.highlights4 {
+.highlights3 {
   animation-delay: 3.5s;
 }
-.highlights5 {
+.highlights4 {
   animation-delay: 4.5s;
+}
+.highlights5 {
+  animation-delay: 5.5s;
 }
 
 h4 {
@@ -95,9 +102,9 @@ logoutForm {
 }
 
 #enterPic {
-  border-radius: 50px;
-  width: 50%;
-  height: 50%;
-  margin-left: 300px;
+  border-radius: 20px;
+  width: 700px;
+  height: 300px;
+  margin-left: 240px;
   animation-delay: 3.3s;
 }
