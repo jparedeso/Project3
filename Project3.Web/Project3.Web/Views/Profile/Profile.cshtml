@@ -8,6 +8,9 @@
     <div id="addGame" class="col-sm-2">
       <button id="gameSearchBtn" type="button" data-toggle="modal" data-target="#gameSearchModal">SEARCH  GAMES</button>
     </div>
+    <div id="checkValue" class="col-sm-2">
+      <button id="checkValueBtn" type="button" data-toggle="modal" data-target="#checkValueModal">CHECK VALUE</button>
+    </div>
   </div>
 </div>
 
@@ -24,7 +27,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">SEARCH GAMES</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button id="modalCloseButton" type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <form id="searchGameForm" asp-controller="Games" asp-action="SearchGame" method="get">
                 <div class="modal-body">
@@ -43,6 +46,40 @@
                 <div class="modal-footer">
                     <button id="findGameBtn" type="submit" class="btn btn-primary">FIND GAME</button>
                     <button id="addGameBtn" type="button" class="btn btn-primary" data-dismiss="modal">ADD GAME</button>
+                </div>
+            </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- check value modal -->
+  <div class="modal modal fade" id="checkValueModal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">EST. GAME VALUE</h4>
+                <button id="modalCloseButton" type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <form id="searchValueForm" asp-controller="Value" asp-action="SearchValue" method="get">
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                GAME TITLE:
+                                <br>
+                                <input class="valueGameTitle" type="text" name="valueGameTitle">
+                                <br>
+                                PLATFORM:
+                                <br>
+                                <input class="valuePlatform" type="text" name="valuePlatform">
+                                <br>
+                            </div>
+                        </div>
+                        <div id="valueReturn"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="findValueBtn" type="submit" class="btn btn-primary">FIND VALUE</button>
                 </div>
             </form>
       </div>
