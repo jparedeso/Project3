@@ -22,6 +22,40 @@ body {
     transform: scale(1.1);
 }
 
+#checkValueBtn {
+  background-color:red;
+  color: black;
+  border-radius: 10px;
+  border: none;
+  font-family: 'Audiowide', cursive;
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+#checkValueBtn:hover {
+    transform: scale(1.1);
+}
+
+#valueReturn {
+    padding-top: 10px;
+}
+
+#estimatedValueText, #estimatedValue {
+    color: black;
+}
+
+#estimatedValueText {
+    font-size: 110%;
+}
+
+#estimatedValue {
+    font-size: 130%;
+}
+
+#estimatedValue:hover {
+    text-shadow: 0 0 1px #FF0000;
+}
+
 .game-grid-container {
     border: 2px solid rgb(248, 252, 236);
     border-radius: 10px;
@@ -116,6 +150,14 @@ strong {
   margin-top: 100px;
 }
 
+#checkValueModal {
+  font-family: 'Audiowide', cursive;
+  color: red;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  margin-top: 100px;
+}
+
 .modal-content {
   border-radius: 20px;
   border-top-left-radius: 20px;
@@ -127,11 +169,19 @@ strong {
    font-size: 30px;
 }
 
+.modal-title {
+    color: red;
+}
+
+#modalCloseButton {
+    color: red;
+}
+
 .modal-body {
   background-color: rgb(248, 252, 236);
 }
 
-#addGameBtn, #findGameBtn {
+#addGameBtn, #findGameBtn, #findValueBtn {
   background-color: black;
   color: white;
   border-radius: 10px;

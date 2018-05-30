@@ -7,6 +7,8 @@ const Profile = function () {
 
     function initEventHandlers() {
         searchGames();
+        checkValue();
+        valueModalClose();
     }
 
     function searchGames() {
@@ -94,7 +96,7 @@ const Profile = function () {
                         console.log(response);
                         $('#gameSearchModal').modal('hide');
                         getUserGames();
-                        location.reload();
+                        // location.reload();
                     }
                 });
         });
@@ -219,6 +221,79 @@ const Profile = function () {
                 }
             }
         });
+    }
+
+    function checkValue() {
+        $("#searchValueForm").on("submit", function (e) {
+            e.preventDefault();
+
+            const title = $(".valueGameTitle").val().trim();
+            const platform = $(".valuePlatform").val().trim();
+            console.log(title);
+            console.log(platform);
+
+            const settings = {
+                "async"      : true,
+                "crossDomain": true,
+                "url"        : "https://cors-anywhere.herokuapp.com/https://svcs.ebay.com/services/search/FindingService/v1?RESPONSE-DATA-FORMAT=JSON&keywords=" + title + "," + platform + "&categoryId=139973",
+                "method"     : "GET",
+                "headers"    : {
+                "X-EBAY-SOA-SERVICE-VERSION" : "1.13.0",
+                "X-EBAY-SOA-OPERATION-NAME"  : "findCompletedItems",
+                "X-EBAY-SOA-SECURITY-APPNAME": "FuzzyJon-RetroGam-PRD-92cc9f5ed-70036e56",
+                "Cache-Control"              : "no-cache",
+                "Postman-Token"              : "2533f0d4-46b4-4ae3-90c5-bfa1c936774a"
+                }
+                };
+        
+                $.ajax(settings).done(function (response) {
+                const results = JSON.parse(response);
+                // console.log(results);
+                const items = results.findCompletedItemsResponse[0].searchResult[0].item;
+                const priceArray = [];
+        
+                for (let i = 0; i < items.length; i++) {
+                    // console.log(items[i]);
+                    const sellingState = items[i].sellingStatus[0].sellingState;
+                    const sellingPrice = items[i].sellingStatus[0].currentPrice[0].__value__;
+                    // console.log(sellingState);
+                    // var sum = 0;
+                    if (sellingState == "EndedWithSales") {
+                        // console.log("true");
+                        // console.log(sellingPrice);
+                        priceArray.push(sellingPrice);
+                        // console.log(priceArray);
+                    }
+                }
+                // console.log(priceArray);
+        
+                let sum = 0;
+        
+                for (let j = 0; j < priceArray.length; j++) {
+                    sum += parseInt(priceArray[j]);
+                }
+        
+                const average = sum / priceArray.length;
+                // console.log(sum);
+                // console.log("game name: " + gameName + "game price: " + average);
+        
+                const averageValue = average.toFixed(2);
+                console.log("game: " + title + " / Value: $" + averageValue);
+
+                $('#valueReturn').append(`
+                <h5 id="estimatedValueText">ESTIMATED VALUE:</h5>
+                <h5 id="estimatedValue">$${averageValue}</h5>
+                `)
+        
+                });
+        });
+    }
+
+    function valueModalClose() {
+        // reloads page after closing modal to clear values
+        $('#checkValueModal').on('hidden.bs.modal', function () {
+            location.reload();
+           })
     }
 
     function gameValue() {
