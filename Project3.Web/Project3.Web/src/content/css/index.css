@@ -59,7 +59,7 @@ logoutForm {
   color: red;
 }
 
-#currentUser {
+#currentUser, h4 {
   color:  red;
   font-family: 'Audiowide', cursive;
   text-align: center;
@@ -67,7 +67,8 @@ logoutForm {
 }
 
 #enterPic {
+  border-radius: 50px;
   width: 600px;
-  height: 500px;
+  height: 400px;
   margin-left: 280px;
 }
