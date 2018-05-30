@@ -96,7 +96,7 @@ const Profile = function () {
                         // console.log(response);
                         $('#gameSearchModal').modal('hide');
                         getUserGames();
-                        // location.reload();
+                        location.reload();
                     }
                 });
         });
@@ -182,10 +182,10 @@ const Profile = function () {
                                 </div>
                                 <div class="col-sm-2 gameValue">
                                     <img id="coin" src="https://media0.giphy.com/media/yCyVbqru5Ggfu/giphy.gif">
-                                    <strong>EST. VALUE: </strong>
+                                    <strong>EST. VALUE: </strong> $ ???
                                 </div>
                                 <div class="col-sm-2 gameCondition dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <strong id="conditionBtn" role="button">EST. CONDITION: </strong>
+                                    <strong id="conditionBtn" role="button">EST. CONDITION: </strong> GOOD
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                                     <a class="dropdown-item" href="#">
                                         <img class="lifeHeart" scr="https://pbs.twimg.com/profile_images/554699922138624000/0AopZpk4_400x400.png">
