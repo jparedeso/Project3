@@ -1,13 +1,13 @@
 ﻿body {
     padding-top: 10px;
     padding-bottom: 20px;
-    background-color: black;
+ 
 }
 
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
-    background-color: black;
+ 
 }
 
 hr {
@@ -51,6 +51,6 @@ hr {
     }
 }
 
-#RemeberMe {
-    font-size: 30px;
+#logoutForm {
+    color: red;
 }
