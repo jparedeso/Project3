@@ -11,12 +11,26 @@ body {
 .forumMenu {
   border-radius: 10px;
   padding: 10px;
-  margin: 5px 15px 5px 50px;
+  margin: 5px 15px 5px 50px;;
   background-color: rgb(248, 252, 236);
   font-family: 'Audiowide', cursive;
   text-align: left;
   font-size: 18px;
 }
+
+p {
+  text-align: left;
+}
+
+.platform {
+  color: black;
+  text-align: left;
+}
+
+.forumTitle {
+  color: red;
+}
+
 
 ul {
   border-radius: 10px;
@@ -31,6 +45,7 @@ ul {
 
 .platform {
   color: black;
+  font-family: 'Titillium Web', sans-serif;
 }
 
 #platformList, #lightGreen, #lightGreen2, #lightGreen3 {
@@ -65,6 +80,7 @@ ul {
 }
 
 .table {
+  margin-top: 10px;
   border-radius: 10px;
   padding: 10px;
   background-color: rgb(248, 252, 236);
@@ -80,6 +96,7 @@ th {
 .artTitle {
   font-weight: bold;
   color: black;
+  font-family: 'Titillium Web', sans-serif;
 }
 
 .align {
@@ -101,7 +118,7 @@ th {
 }
 
 .modal-header {
-   background-color: #2c2c2c;
+   background-color: black;
    font-size: 30px;
 }
 
